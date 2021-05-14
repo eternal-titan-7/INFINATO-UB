@@ -62,7 +62,7 @@ else:
 # decorator
 
 
-def infinato_cmd(allow_sudo=on, **args):
+def ultroid_cmd(allow_sudo=on, **args):
     args["func"] = lambda e: e.via_bot_id is None
     stack = inspect.stack()
     previous_stack_frame = stack[1]

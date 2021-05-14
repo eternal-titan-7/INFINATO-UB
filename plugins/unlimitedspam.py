@@ -1,7 +1,7 @@
 from . import *
 
 
-@infinato_cmd(pattern="uspam")
+@ultroid_cmd(pattern="uspam")
 async def unlimitedspam(ult):
     input = ult.text[7:]
     udB.delete("USPAM")
@@ -11,7 +11,7 @@ async def unlimitedspam(ult):
         await ult.respond(input)
 
 
-@infinato_cmd(pattern="stopuspam$")
+@ultroid_cmd(pattern="stopuspam$")
 async def _(e):
     udB.set("USPAM", ".")
     await eod(e, "Unlimited spam stopped")

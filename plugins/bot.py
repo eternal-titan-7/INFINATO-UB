@@ -52,7 +52,7 @@ except BaseException:
     HEROKU_APP_NAME = None
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="alive$",
 )
 async def lol(ult):
@@ -91,7 +91,7 @@ async def lol(ult):
             await eor(ult, als, link_preview=False)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="ping$",
 )
 async def _(event):
@@ -103,14 +103,14 @@ async def _(event):
     await x.edit("🏓**Pong !!** - `{}ms`\n⏱**Uptime** - `{}`\n\n**My Master** - [{}](tg://user?id={})".format(ms, uptime, OWNER_NAME, OWNER_ID))
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="cmds$",
 )
 async def cmds(event):
     await allcmds(event)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="restart$",
 )
 async def restartbt(ult):
@@ -124,7 +124,7 @@ async def restartbt(ult):
         await bash("pkill python3 && python3 -m infinatoUserbot")
 
 
-@infinato_cmd(pattern="shutdown")
+@ultroid_cmd(pattern="shutdown")
 async def shutdownbot(ult):
     try:
         dyno = ult.text.split(" ", maxsplit=1)[1]
@@ -139,7 +139,7 @@ async def shutdownbot(ult):
         await shutdown(ult)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="logs",
 )
 async def get_logs(event):

@@ -16,7 +16,7 @@ from . import *
 tr = Translator()
 
 
-@infinato_cmd(pattern="autocorrect")
+@ultroid_cmd(pattern="autocorrect")
 async def acc(e):
     if not is_fullsudo(ult.sender_id):
         return await eod(ult, "`This Command Is Sudo Restricted.`")

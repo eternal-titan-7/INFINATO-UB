@@ -13,7 +13,7 @@ from datetime import datetime as dt
 from . import *
 
 
-@infinato_cmd(pattern="mediainfo$")
+@ultroid_cmd(pattern="mediainfo$")
 async def mi(e):
     r = await e.get_reply_message()
     if not (r and r.media):

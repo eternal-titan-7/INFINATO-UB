@@ -48,7 +48,7 @@ def user_list(l, n):
         yield l[i : i + n]
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="stopvc$",
     admins_only=True,
     groups_only=True,
@@ -61,7 +61,7 @@ async def _(e):
         await eor(e, f"`{str(ex)}`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="playvc$",
 )
 async def _(e):
@@ -72,7 +72,7 @@ async def _(e):
     await zz.edit(f"Failed {er}")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="vcinvite$",
     groups_only=True,
 )
@@ -93,7 +93,7 @@ async def _(e):
     await ok.edit(f"`Invited {z} users`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="startvc$",
     admins_only=True,
     groups_only=True,
@@ -106,7 +106,7 @@ async def _(e):
         await eor(e, f"`{str(ex)}`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="listvcaccess$",
 )
 async def _(e):
@@ -123,7 +123,7 @@ async def _(e):
     await xx.edit(pp)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="rmvcaccess ?(.*)",
 )
 async def _(e):
@@ -157,7 +157,7 @@ async def _(e):
         return await eod(xx, f"`{str(ex)}`", time=5)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="vcaccess ?(.*)",
 )
 async def _(e):

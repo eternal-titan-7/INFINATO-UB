@@ -47,7 +47,7 @@ async def evalJs(
 
 
 # The Command Is `.evaljs`
-@infinato_cmd(
+@ultroid_cmd(
     pattern="evaljs",
 )
 async def evaluateJs(event):

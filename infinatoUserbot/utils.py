@@ -34,7 +34,7 @@ def load_plugins(plugin_name):
             inline_owner,
             owner,
         )
-        from .misc._decorators import infinato_cmd
+        from .misc._decorators import ultroid_cmd
         from .misc._wrappers import eod, eor
 
         path = Path(f"plugins/{plugin_name}.py")
@@ -59,8 +59,8 @@ def load_plugins(plugin_name):
         mod.eor = eor
         mod.edit_or_reply = eor
         mod.asst_cmd = asst_cmd
-        mod.infinato_cmd = infinato_cmd
-        mod.on_cmd = infinato_cmd
+        mod.ultroid_cmd = ultroid_cmd
+        mod.on_cmd = ultroid_cmd
         mod.callback = callback
         mod.Redis = udB.get
         sys.modules["support"] = xxx
@@ -109,7 +109,7 @@ def load_addons(plugin_name):
             inline_owner,
             owner,
         )
-        from .misc._decorators import infinato_cmd
+        from .misc._decorators import ultroid_cmd
         from .misc._supporter import Config, admin_cmd, sudo_cmd
         from .misc._wrappers import eod, eor
 
@@ -143,8 +143,8 @@ def load_addons(plugin_name):
         mod.eor = eor
         mod.edit_or_reply = eor
         mod.asst_cmd = asst_cmd
-        mod.infinato_cmd = infinato_cmd
-        mod.on_cmd = infinato_cmd
+        mod.ultroid_cmd = ultroid_cmd
+        mod.on_cmd = ultroid_cmd
         mod.callback = callback
         mod.Redis = udB.get
         mod.admin_cmd = admin_cmd

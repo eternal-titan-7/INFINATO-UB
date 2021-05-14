@@ -81,13 +81,13 @@ telegraph.create_account(short_name="INFINATO")
 # ================================================================#
 
 
-@infinato_cmd(pattern="kickme$", groups_only=True, allow_sudo=False)
+@ultroid_cmd(pattern="kickme$", groups_only=True, allow_sudo=False)
 async def leave(ult):
     await eor(ult, f"`{infinato_bot.me.first_name} has left this group, bye!!.`")
     await infinato_bot(LeaveChannelRequest(ult.chat_id))
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="date$",
 )
 async def date(event):
@@ -99,7 +99,7 @@ async def date(event):
     ultroid = await eor(event, f"`{k}\n\n{d}`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="calc",
 )
 async def _(event):
@@ -149,7 +149,7 @@ async def aexec(code, event):
     return await locals()["__aexec"](event)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="chatinfo(?: |$)(.*)",
 )
 async def info(event):
@@ -166,7 +166,7 @@ async def info(event):
     return
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="listreserved$",
 )
 async def _(event):
@@ -183,7 +183,7 @@ async def _(event):
         await eor(event, output_str)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="stats$",
 )
 async def stats(
@@ -256,7 +256,7 @@ async def stats(
     await ok.edit(response)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="paste( (.*)|$)",
 )
 async def _(event):
@@ -316,7 +316,7 @@ async def _(event):
         await xx.edit(reply_text)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="info ?(.*)",
 )
 async def _(event):
@@ -395,7 +395,7 @@ async def _(event):
     await xx.delete()
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="invite ?(.*)",
     groups_only=True,
 )
@@ -431,7 +431,7 @@ async def _(ult):
                 await xx.edit(str(e))
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern=r"rmbg$",
 )
 async def rmbg(event):
@@ -481,7 +481,7 @@ async def rmbg(event):
     await xx.delete()
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="telegraph ?(.*)",
 )
 async def telegraphcmd(event):
@@ -526,7 +526,7 @@ async def telegraphcmd(event):
         await xx.edit("Reply to a Message !")
 
 
-@infinato_cmd(pattern="json")
+@ultroid_cmd(pattern="json")
 async def _(event):
     the_real_message = None
     reply_to_id = None
@@ -552,7 +552,7 @@ async def _(event):
         await eor(event, f"```{the_real_message}```")
 
 
-@infinato_cmd(pattern="suggest")
+@ultroid_cmd(pattern="suggest")
 async def sugg(event):
     if await event.get_reply_message():
         msgid = (await event.get_reply_message()).id
@@ -583,7 +583,7 @@ async def sugg(event):
         )
 
 
-@infinato_cmd(pattern="ipinfo ?(.*)")
+@ultroid_cmd(pattern="ipinfo ?(.*)")
 async def ipinfo(event):
     xx = await eor(event, get_string("com_1"))
     ip = event.text.split(" ")

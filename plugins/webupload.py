@@ -16,7 +16,7 @@ from telethon.errors.rpcerrorlist import BotResponseTimeoutError as rep
 from . import *
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="webupload",
 )
 async def _(event):

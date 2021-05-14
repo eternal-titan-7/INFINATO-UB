@@ -16,7 +16,7 @@ from telethon.tl.types import DocumentAttributeAudio
 from . import *
 
 
-@infinato_cmd(pattern="saavn ?(.*)")
+@ultroid_cmd(pattern="saavn ?(.*)")
 async def siesace(e):
     song = e.pattern_match.group(1)
     if not song:

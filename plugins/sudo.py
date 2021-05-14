@@ -18,7 +18,7 @@ from infinatoUserbot.misc._decorators import sed
 from . import *
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="addsudo ?(.*)",
 )
 async def _(ult):
@@ -78,7 +78,7 @@ async def _(ult):
         return await eod(ok, "`Reply to a msg or add it's id/username.`", time=5)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="delsudo ?(.*)",
 )
 async def _(ult):
@@ -134,7 +134,7 @@ async def _(ult):
         await eod(ok, mmm, time=5)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="listsudo$",
 )
 async def _(ult):

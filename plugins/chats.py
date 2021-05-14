@@ -24,11 +24,11 @@ from telethon.tl.functions.messages import (
     ExportChatInviteRequest,
 )
 
-from infinatoUserbot.misc._decorators import infinato_cmd
+from infinatoUserbot.misc._decorators import ultroid_cmd
 from . import *
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="delchat$",
     groups_only=True,
 )
@@ -45,7 +45,7 @@ async def _(e):
     await e.client.send_message(Var.LOG_CHANNEL, f"#Deleted\nDeleted {e.chat_id}")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="getlink$",
     groups_only=True,
 )
@@ -60,7 +60,7 @@ async def _(e):
     await eod(xx, f"Link:- {r.link}")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="create (b|g|c)(?: |$)(.*)",
 )
 async def _(e):

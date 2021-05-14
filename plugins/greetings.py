@@ -33,7 +33,7 @@ from . import *
 Note = "\n\nNote: `{mention}`, `{group}`, `{count}`, `{name}`, `{fullname}`, `{username}`, `{userid}` can be used as formatting parameters.\n\n"
 
 
-@infinato_cmd(pattern="setwelcome")
+@ultroid_cmd(pattern="setwelcome")
 async def setwel(event):
     x = await eor(event, get_string("com_1"))
     r = await event.get_reply_message()
@@ -68,7 +68,7 @@ async def setwel(event):
         await eod(x, "`Reply to message which u want to set as welcome`")
 
 
-@infinato_cmd(pattern="clearwelcome$")
+@ultroid_cmd(pattern="clearwelcome$")
 async def clearwel(event):
     if not get_welcome(event.chat_id):
         await eod(event, "`No welcome was set!`", time=5)
@@ -76,7 +76,7 @@ async def clearwel(event):
     await eod(event, "`Welcome Note Deleted`")
 
 
-@infinato_cmd(pattern="getwelcome$")
+@ultroid_cmd(pattern="getwelcome$")
 async def listwel(event):
     wel = get_welcome(event.chat_id)
     if not wel:
@@ -129,7 +129,7 @@ async def _(event):
                 await event.reply(file=med)
 
 
-@infinato_cmd(pattern="setgoodbye")
+@ultroid_cmd(pattern="setgoodbye")
 async def setgb(event):
     x = await eor(event, get_string("com_1"))
     r = await event.get_reply_message()
@@ -164,7 +164,7 @@ async def setgb(event):
         await eod(x, "`Reply to message which u want to set as goodbye`")
 
 
-@infinato_cmd(pattern="cleargoodbye$")
+@ultroid_cmd(pattern="cleargoodbye$")
 async def clearwgb(event):
     if not get_goodbye(event.chat_id):
         await eod(event, "`No goodbye was set!`", time=5)
@@ -172,7 +172,7 @@ async def clearwgb(event):
     await eod(event, "`Goodbye Note Deleted`")
 
 
-@infinato_cmd(pattern="getgoodbye$")
+@ultroid_cmd(pattern="getgoodbye$")
 async def listgd(event):
     wel = get_goodbye(event.chat_id)
     if not wel:

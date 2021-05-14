@@ -315,97 +315,97 @@ h_gali = random.choice(hindi)
 e_gali = random.choice(english)
 
 
-@infinato_cmd(pattern="habuse")
+@ultroid_cmd(pattern="habuse")
 async def hindi(ult):
     return await ult.edit(f"`{h_gali}`")
 
 
-@infinato_cmd(pattern="eabuse")
+@ultroid_cmd(pattern="eabuse")
 async def english(ult):
     await ult.edit(f"`{e_gali}`")
 
 
-@infinato_cmd(pattern=r"monster")
+@ultroid_cmd(pattern=r"monster")
 async def bluedevilmonster(monster):
     await monster.edit(A)
 
 
-@infinato_cmd(pattern=r"pig")
+@ultroid_cmd(pattern=r"pig")
 async def bluedevilpig(pig):
     await pig.edit(B)
 
 
-@infinato_cmd(pattern=r"killer")
+@ultroid_cmd(pattern=r"killer")
 async def bluedevilkiller(killer):
     await killer.edit(C)
 
 
-@infinato_cmd(pattern=r"gun")
+@ultroid_cmd(pattern=r"gun")
 async def bluedevilgun(gun):
     await gun.edit(D)
 
 
-@infinato_cmd(pattern=r"dog")
+@ultroid_cmd(pattern=r"dog")
 async def bluedevildog(dog):
     await dog.edit(E)
 
 
-@infinato_cmd(pattern=r"hello")
+@ultroid_cmd(pattern=r"hello")
 async def bluedevilhello(hello):
     await hello.edit(F)
 
 
-@infinato_cmd(pattern=r"hmf")
+@ultroid_cmd(pattern=r"hmf")
 async def bluedevilhmf(hmf):
     await hmf.edit(G)
 
 
-@infinato_cmd(pattern=r"couple")
+@ultroid_cmd(pattern=r"couple")
 async def bluedevilcouple(couple):
     await couple.edit(H)
 
 
-@infinato_cmd(pattern=r"sup$")
+@ultroid_cmd(pattern=r"sup$")
 async def bluedevilsupreme(supreme):
     await supreme.edit(I)
 
 
-@infinato_cmd(pattern=r"india")
+@ultroid_cmd(pattern=r"india")
 async def bluedevilindia(india):
     await india.edit(J)
 
 
-@infinato_cmd(pattern=r"wc")
+@ultroid_cmd(pattern=r"wc")
 async def bluedevilwelcome(welcome):
     await welcome.edit(K)
 
 
-@infinato_cmd(pattern=r"snk")
+@ultroid_cmd(pattern=r"snk")
 async def bluedevilsnake(snake):
     await snake.edit(L)
 
 
-@infinato_cmd(pattern=r"cat")
+@ultroid_cmd(pattern=r"cat")
 async def bluedevilded(cat):
     await cat.edit(M)
 
 
-@infinato_cmd(pattern=r"bye")
+@ultroid_cmd(pattern=r"bye")
 async def bluedevilbye(bye):
     await bye.edit(N)
 
 
-@infinato_cmd(pattern=r"shitos")
+@ultroid_cmd(pattern=r"shitos")
 async def bluedevilshitos(shitos):
     await shitos.edit(O)
 
 
-@infinato_cmd(pattern=r"dislike")
+@ultroid_cmd(pattern=r"dislike")
 async def bluedevildislike(dislike):
     await dislike.edit(P)
 
 
-@infinato_cmd(pattern="stupid$")
+@ultroid_cmd(pattern="stupid$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -433,7 +433,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 14])
 
 
-@infinato_cmd(pattern=f"bombs$")
+@ultroid_cmd(pattern=f"bombs$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -459,7 +459,7 @@ async def snku(ult):
     await asyncio.sleep(2)
 
 
-@infinato_cmd(pattern=r"call$")
+@ultroid_cmd(pattern=r"call$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -491,7 +491,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 18])
 
 
-@infinato_cmd(pattern=r"deploy$")
+@ultroid_cmd(pattern=r"deploy$")
 async def deployee(ult):
     if ult.fwd_from:
         return
@@ -518,7 +518,7 @@ async def deployee(ult):
         await ult.edit(animation_chars[i % 12])
 
 
-@infinato_cmd(pattern="wtf$")
+@ultroid_cmd(pattern="wtf$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -537,7 +537,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 5])
 
 
-@infinato_cmd(pattern="eye$")
+@ultroid_cmd(pattern="eye$")
 async def eyei(ult):
     if ult.fwd_from:
         return
@@ -563,7 +563,7 @@ async def eyei(ult):
     await ult.delete()
 
 
-@infinato_cmd(pattern="thinking$")
+@ultroid_cmd(pattern="thinking$")
 async def _(ult):
     if ult.fwd_from:
         return
@@ -613,7 +613,7 @@ async def _(ult):
         await ult.edit(animation_chars[i % 36])
 
 
-@infinato_cmd(pattern="unoob$")
+@ultroid_cmd(pattern="unoob$")
 async def _(ult):
     if ult.fwd_from:
         return
@@ -636,7 +636,7 @@ async def _(ult):
         await ult.edit(animation_chars[i % 9])
 
 
-@infinato_cmd(pattern="menoob$")
+@ultroid_cmd(pattern="menoob$")
 async def _(ult):
     if ult.fwd_from:
         return
@@ -659,7 +659,7 @@ async def _(ult):
         await ult.edit(animation_chars[i % 9])
 
 
-@infinato_cmd(pattern="upro$")
+@ultroid_cmd(pattern="upro$")
 async def _(ult):
     if ult.fwd_from:
         return
@@ -681,7 +681,7 @@ async def _(ult):
         await ult.edit(animation_chars[i % 8])
 
 
-@infinato_cmd(pattern="mepro$")
+@ultroid_cmd(pattern="mepro$")
 async def _(ult):
     if ult.fwd_from:
         return
@@ -703,7 +703,7 @@ async def _(ult):
         await ult.edit(animation_chars[i % 8])
 
 
-@infinato_cmd(pattern="quickheal$")
+@ultroid_cmd(pattern="quickheal$")
 async def _(ult):
     if ult.fwd_from:
         return
@@ -728,7 +728,7 @@ async def _(ult):
         await ult.edit(animation_chars[i % 11])
 
 
-@infinato_cmd(pattern="vquickheal$")
+@ultroid_cmd(pattern="vquickheal$")
 async def _(ult):
     if ult.fwd_from:
         return
@@ -753,7 +753,7 @@ async def _(ult):
         await ult.edit(animation_chars[i % 11])
 
 
-@infinato_cmd(pattern="macos$")
+@ultroid_cmd(pattern="macos$")
 async def _(ult):
     if ult.fwd_from:
         return
@@ -778,7 +778,7 @@ async def _(ult):
         await ult.edit(animation_chars[i % 11])
 
 
-@infinato_cmd(pattern="windows$")
+@ultroid_cmd(pattern="windows$")
 async def _(ult):
     if ult.fwd_from:
         return
@@ -803,7 +803,7 @@ async def _(ult):
         await ult.edit(animation_chars[i % 11])
 
 
-@infinato_cmd(pattern="linux$")
+@ultroid_cmd(pattern="linux$")
 async def _(ult):
     if ult.fwd_from:
         return
@@ -828,7 +828,7 @@ async def _(ult):
         await ult.edit(animation_chars[i % 11])
 
 
-@infinato_cmd(pattern="stock$")
+@ultroid_cmd(pattern="stock$")
 async def _(ult):
     if ult.fwd_from:
         return
@@ -853,7 +853,7 @@ async def _(ult):
         await ult.edit(animation_chars[i % 11])
 
 
-@infinato_cmd(pattern="os$")
+@ultroid_cmd(pattern="os$")
 async def _(ult):
     if ult.fwd_from:
         return
@@ -874,7 +874,7 @@ async def _(ult):
         await ult.edit(animation_chars[i % 7])
 
 
-@infinato_cmd(pattern="ding$")
+@ultroid_cmd(pattern="ding$")
 async def snkuu(ult):
     animation_interval = 0.3
     animation_ttl = range(0, 30)
@@ -899,7 +899,7 @@ async def snkuu(ult):
         await ult.edit(animation_chars[i % 10])
 
 
-@infinato_cmd(pattern=f"think$")
+@ultroid_cmd(pattern=f"think$")
 async def thinku(ult):
     if ult.fwd_from:
         return
@@ -911,7 +911,7 @@ async def thinku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern=f"hypno$")
+@ultroid_cmd(pattern=f"hypno$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -940,7 +940,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 15])
 
 
-@infinato_cmd(pattern="gangasta$")
+@ultroid_cmd(pattern="gangasta$")
 async def snku(ult):
     await ult.edit("EVERyBOdy")
     await asyncio.sleep(0.3)
@@ -959,7 +959,7 @@ async def snku(ult):
     await ult.edit("EVERyBOdy iZ GangSTur UNtIL I ArRivE 🔥🔥🔥")
 
 
-@infinato_cmd(pattern=f"charging$")
+@ultroid_cmd(pattern=f"charging$")
 async def _(ult):
     if ult.fwd_from:
         return
@@ -981,7 +981,7 @@ async def _(ult):
     )
 
 
-@infinato_cmd(pattern=r"lul$")
+@ultroid_cmd(pattern=r"lul$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -992,7 +992,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern=r"nothappy$")
+@ultroid_cmd(pattern=r"nothappy$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1003,7 +1003,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern="clock$")
+@ultroid_cmd(pattern="clock$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1014,7 +1014,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern=r"muah$")
+@ultroid_cmd(pattern=r"muah$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1025,7 +1025,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern="heart$")
+@ultroid_cmd(pattern="heart$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1036,7 +1036,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern="gym$")
+@ultroid_cmd(pattern="gym$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1047,7 +1047,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern="earth$")
+@ultroid_cmd(pattern="earth$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1058,7 +1058,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern="moon$")
+@ultroid_cmd(pattern="moon$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1069,7 +1069,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern="candy$")
+@ultroid_cmd(pattern="candy$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1080,7 +1080,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern="smoon$")
+@ultroid_cmd(pattern="smoon$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1102,7 +1102,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 8])
 
 
-@infinato_cmd(pattern="tmoon$")
+@ultroid_cmd(pattern="tmoon$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1148,7 +1148,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 32])
 
 
-@infinato_cmd(pattern="clown$")
+@ultroid_cmd(pattern="clown$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1177,7 +1177,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 16])
 
 
-@infinato_cmd(pattern="human$")
+@ultroid_cmd(pattern="human$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1207,7 +1207,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 16])
 
 
-@infinato_cmd(pattern=f"music$")
+@ultroid_cmd(pattern=f"music$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1232,7 +1232,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 11])
 
 
-@infinato_cmd(pattern=f"squ$")
+@ultroid_cmd(pattern=f"squ$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1282,7 +1282,7 @@ async def snku(ult):
     await asyncio.sleep(6)
 
 
-@infinato_cmd(pattern="kiler( (.*)|$)")
+@ultroid_cmd(pattern="kiler( (.*)|$)")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1307,7 +1307,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 8])
 
 
-@infinato_cmd(pattern="star$")
+@ultroid_cmd(pattern="star$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1318,7 +1318,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern="boxs")
+@ultroid_cmd(pattern="boxs")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1329,7 +1329,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern="rain$")
+@ultroid_cmd(pattern="rain$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1340,7 +1340,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern="clol$")
+@ultroid_cmd(pattern="clol$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1351,7 +1351,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern="odra$")
+@ultroid_cmd(pattern="odra$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1362,7 +1362,7 @@ async def snku(ult):
         deq.rotate(1)
 
 
-@infinato_cmd(pattern="dump ?(.*)")
+@ultroid_cmd(pattern="dump ?(.*)")
 async def snku(ult):
     try:
         obj = ult.pattern_match.group(1)
@@ -1401,7 +1401,7 @@ async def snku(ult):
                 return
 
 
-@infinato_cmd(pattern="fleaveme$")
+@ultroid_cmd(pattern="fleaveme$")
 async def snku(ult):
     animation_interval = 1
     animation_ttl = range(0, 10)
@@ -1426,7 +1426,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 10])
 
 
-@infinato_cmd(pattern="loveu")
+@ultroid_cmd(pattern="loveu")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1475,7 +1475,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 35])
 
 
-@infinato_cmd(pattern="plane")
+@ultroid_cmd(pattern="plane")
 async def snku(ult):
     if ult.fwd_from:
         retun
@@ -1497,7 +1497,7 @@ async def snku(ult):
     await ult.delete()
 
 
-@infinato_cmd(pattern="police")
+@ultroid_cmd(pattern="police")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1523,7 +1523,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 12])
 
 
-@infinato_cmd(pattern=f"jio$")
+@ultroid_cmd(pattern=f"jio$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1556,7 +1556,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 19])
 
 
-@infinato_cmd(pattern="solarsystem")
+@ultroid_cmd(pattern="solarsystem")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1578,7 +1578,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 8])
 
 
-@infinato_cmd(pattern=f"snake$")
+@ultroid_cmd(pattern=f"snake$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1619,7 +1619,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 27])
 
 
-@infinato_cmd(pattern=f"human$")
+@ultroid_cmd(pattern=f"human$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1649,7 +1649,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 16])
 
 
-@infinato_cmd(pattern=f"mc$")
+@ultroid_cmd(pattern=f"mc$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1691,7 +1691,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 28])
 
 
-@infinato_cmd(pattern="virus$")
+@ultroid_cmd(pattern="virus$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1735,7 +1735,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 30])
 
 
-@infinato_cmd(pattern=r"repe$")
+@ultroid_cmd(pattern=r"repe$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1779,7 +1779,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 30])
 
 
-@infinato_cmd(pattern=f"isro$")
+@ultroid_cmd(pattern=f"isro$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1818,7 +1818,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 24])
 
 
-@infinato_cmd(pattern=f"nakal$")
+@ultroid_cmd(pattern=f"nakal$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1838,7 +1838,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 6])
 
 
-@infinato_cmd(pattern=f"music$")
+@ultroid_cmd(pattern=f"music$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1863,7 +1863,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 11])
 
 
-@infinato_cmd(pattern=f"squ$")
+@ultroid_cmd(pattern=f"squ$")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1912,7 +1912,7 @@ async def snku(ult):
     await asyncio.sleep(6)
 
 
-@infinato_cmd(pattern="bufferedd( (.*)|$)")
+@ultroid_cmd(pattern="bufferedd( (.*)|$)")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1924,7 +1924,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 4])
 
 
-@infinato_cmd(pattern="dabba( (.*)|$)")
+@ultroid_cmd(pattern="dabba( (.*)|$)")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1936,7 +1936,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 4])
 
 
-@infinato_cmd(pattern="kein( (.*)|$)")
+@ultroid_cmd(pattern="kein( (.*)|$)")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1948,7 +1948,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 4])
 
 
-@infinato_cmd(pattern="dhab( (.*)|$)")
+@ultroid_cmd(pattern="dhab( (.*)|$)")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1960,7 +1960,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 4])
 
 
-@infinato_cmd(pattern="hart( (.*)|$)")
+@ultroid_cmd(pattern="hart( (.*)|$)")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1972,7 +1972,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 4])
 
 
-@infinato_cmd(pattern="repoed( (.*)|$)")
+@ultroid_cmd(pattern="repoed( (.*)|$)")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -1996,7 +1996,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 11])
 
 
-@infinato_cmd(pattern="fnl( (.*)|$)")
+@ultroid_cmd(pattern="fnl( (.*)|$)")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -2008,7 +2008,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 6])
 
 
-@infinato_cmd(pattern="monkey( (.*)|$)")
+@ultroid_cmd(pattern="monkey( (.*)|$)")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -2020,7 +2020,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 6])
 
 
-@infinato_cmd(pattern="herber( (.*)|$)")
+@ultroid_cmd(pattern="herber( (.*)|$)")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -2043,7 +2043,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 11])
 
 
-@infinato_cmd(pattern="hand( (.*)|$)")
+@ultroid_cmd(pattern="hand( (.*)|$)")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -2069,7 +2069,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 14])
 
 
-@infinato_cmd(pattern="gsg( (.*)|$)")
+@ultroid_cmd(pattern="gsg( (.*)|$)")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -2094,7 +2094,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 13])
 
 
-@infinato_cmd(pattern="theart( (.*)|$)")
+@ultroid_cmd(pattern="theart( (.*)|$)")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -2125,7 +2125,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 18])
 
 
-@infinato_cmd(pattern=r"fdance")
+@ultroid_cmd(pattern=r"fdance")
 async def snku(ult):
     if ult.fwd_from:
         return
@@ -2145,7 +2145,7 @@ async def snku(ult):
         await ult.edit(animation_chars[i % 5])
 
 
-@infinato_cmd(pattern="g1 ?(.*)")
+@ultroid_cmd(pattern="g1 ?(.*)")
 async def payf(event):
     paytext = event.pattern_match.group(1)
     pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
@@ -2273,7 +2273,7 @@ async def payf(event):
     await event.edit(pay)
 
 
-@infinato_cmd(pattern="uff ?(.*)")
+@ultroid_cmd(pattern="uff ?(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -2299,7 +2299,7 @@ async def _(event):
         await event.edit(animation_chars[i % 13])
 
 
-@infinato_cmd(pattern="ctext ?(.*)")
+@ultroid_cmd(pattern="ctext ?(.*)")
 async def payf(event):
     paytext = event.pattern_match.group(1)
     pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
@@ -2319,7 +2319,7 @@ async def payf(event):
     await event.edit(pay)
 
 
-@infinato_cmd(pattern="ftext ?(.*)")
+@ultroid_cmd(pattern="ftext ?(.*)")
 async def payf(event):
     paytext = event.pattern_match.group(1)
     pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
@@ -2339,7 +2339,7 @@ async def payf(event):
     await event.edit(pay)
 
 
-@infinato_cmd(outgoing=True, pattern="kf$(.*)")
+@ultroid_cmd(outgoing=True, pattern="kf$(.*)")
 async def _(event):
     r = random.randint(0, 3)
     logger.debug(r)
@@ -2350,7 +2350,7 @@ async def _(event):
         await event.edit("╭━━━╮\n┃╭━━╯\n┃╰━━╮\n┃╭━━╯\n┃┃\n╰╯")
 
 
-@infinato_cmd(pattern="f (.*)")
+@ultroid_cmd(pattern="f (.*)")
 async def payf(e):
     paytext = e.pattern_match.group(1)
     pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}".format(

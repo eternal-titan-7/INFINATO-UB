@@ -12,7 +12,7 @@ import requests
 from . import *
 
 
-@infinato_cmd(pattern="webshot")
+@ultroid_cmd(pattern="webshot")
 async def webss(event):
     xx = await eor(event, get_string("com_1"))
     mssg = event.text.split(" ", maxsplit=2)

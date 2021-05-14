@@ -8,7 +8,7 @@
 from . import *
 
 
-@infinato_cmd(pattern="dm ?(.*)")
+@ultroid_cmd(pattern="dm ?(.*)")
 async def dm(e):
     if len(e.text) > 3:
         if not e.text[3] == " ":  # weird fix

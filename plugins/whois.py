@@ -31,7 +31,7 @@ from telethon.utils import get_input_location
 from . import *
 
 
-@infinato_cmd(pattern="userinfo(?: |$)(.*)")
+@ultroid_cmd(pattern="userinfo(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -122,7 +122,7 @@ async def get_full_user(event):
     return None, "No input is found"
 
 
-@infinato_cmd(pattern="whois(?: |$)(.*)")
+@ultroid_cmd(pattern="whois(?: |$)(.*)")
 async def who(event):
     cat = await eor(
         event, "`Sit tight while I steal some data from This guuyyy...`"
@@ -238,7 +238,7 @@ async def fetch_info(replied_user, event):
     return photo, caption
 
 
-@infinato_cmd(pattern="link(?: |$)(.*)")
+@ultroid_cmd(pattern="link(?: |$)(.*)")
 async def permalink(mention):
     """ For .link command, generates a link to the user's PM with a custom text. """
     user, custom = await get_user_from_event(mention)

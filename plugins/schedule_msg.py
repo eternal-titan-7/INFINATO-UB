@@ -13,7 +13,7 @@ from datetime import timedelta
 from . import *
 
 
-@infinato_cmd(pattern="schedule ?(.*)")
+@ultroid_cmd(pattern="schedule ?(.*)")
 async def _(e):
     x = e.pattern_match.group(1)
     xx = await e.get_reply_message()

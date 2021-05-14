@@ -31,7 +31,7 @@ from . import *
 TOKEN_FILE = "resources/auths/auth_token.txt"
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="listdrive$",
 )
 async def files(event):
@@ -41,7 +41,7 @@ async def files(event):
     await eor(event, list_files(http))
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="ugdrive ?(.*)",
 )
 async def _(event):
@@ -107,7 +107,7 @@ async def _(event):
         return await eod(mone, "`File Not found in local server.`", time=10)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="drivesearch ?(.*)",
 )
 async def sch(event):
@@ -130,7 +130,7 @@ async def sch(event):
         return await a.edit(str(ex))
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="udir ?(.*)",
 )
 async def _(event):
@@ -152,7 +152,7 @@ async def _(event):
         return await eod(event, f"Directory {input_str} does not seem to exist", time=5)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="gfolder$",
 )
 async def _(event):

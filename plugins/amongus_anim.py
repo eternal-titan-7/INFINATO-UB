@@ -9,7 +9,7 @@ from . import *
 DEFAULTUSER = infinato_bot.me.first_name
 
 
-@infinato_cmd(pattern="imp(|n) (.*)", outgoing=True)
+@ultroid_cmd(pattern="imp(|n) (.*)", outgoing=True)
 async def _(event):
     infinato = infinato_bot.uid
     USERNAME = f"tg://user?id={infinato}"
@@ -93,7 +93,7 @@ async def _(event):
         await event.client.send_file(event.chat_id, "CAADAQADQAADnjOcH-WOkB8DEctJAg")
 
 
-@infinato_cmd(pattern="timp(|n) (.*)", outgoing=True)
+@ultroid_cmd(pattern="timp(|n) (.*)", outgoing=True)
 async def _(event):
     name = event.pattern_match.group(2)
     cmd = event.pattern_match.group(1).lower()

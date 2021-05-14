@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup as bs
 from . import *
 
 
-@infinato_cmd(pattern="unsplash ?(.*)")
+@ultroid_cmd(pattern="unsplash ?(.*)")
 async def searchunsl(ult):
     match = ult.pattern_match.group(1)
     if not match:

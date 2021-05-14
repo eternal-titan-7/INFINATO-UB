@@ -21,7 +21,7 @@ from infinatoUserbot.functions.blacklist_db import *
 from . import *
 
 
-@infinato_cmd(pattern="blacklist ?(.*)")
+@ultroid_cmd(pattern="blacklist ?(.*)")
 async def af(e):
     if e.is_group:
         if not e._chat.admin_rights:
@@ -37,7 +37,7 @@ async def af(e):
     await eor(e, f"Done : `{wrd}` Blacklisted here.")
 
 
-@infinato_cmd(pattern="remblacklist ?(.*)")
+@ultroid_cmd(pattern="remblacklist ?(.*)")
 async def rf(e):
     if e.is_group:
         if not e._chat.admin_rights:
@@ -53,7 +53,7 @@ async def rf(e):
     await eor(e, f"Done : `{wrd}` Removed from Blacklist.")
 
 
-@infinato_cmd(pattern="listblacklist")
+@ultroid_cmd(pattern="listblacklist")
 async def lsnote(e):
     if e.is_group:
         if not e._chat.admin_rights:

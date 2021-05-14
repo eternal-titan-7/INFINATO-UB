@@ -37,7 +37,7 @@ from . import *
 opn = []
 
 
-@infinato_cmd(pattern="thumbnail$")
+@ultroid_cmd(pattern="thumbnail$")
 async def _(e):
     r = await e.get_reply_message()
     if not (r and r.media):
@@ -50,7 +50,7 @@ async def _(e):
     await eor(e, f"Added [This]({nn}) As Your Custom Thumbnail", link_preview=False)
 
 
-@infinato_cmd(pattern="rename ?(.*)")
+@ultroid_cmd(pattern="rename ?(.*)")
 async def imak(event):
     reply = await event.get_reply_message()
     t = time.time()
@@ -90,7 +90,7 @@ async def imak(event):
     await xx.delete()
 
 
-@infinato_cmd(pattern="mtoi$")
+@ultroid_cmd(pattern="mtoi$")
 async def imak(event):
     reply = await event.get_reply_message()
     if not (reply and (reply.media)):
@@ -112,7 +112,7 @@ async def imak(event):
     os.remove(image)
 
 
-@infinato_cmd(pattern="mtos$")
+@ultroid_cmd(pattern="mtos$")
 async def smak(event):
     reply = await event.get_reply_message()
     if not (reply and (reply.media)):
@@ -134,7 +134,7 @@ async def smak(event):
     os.remove(image)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="doc",
 )
 async def _(event):
@@ -159,7 +159,7 @@ async def _(event):
             os.remove(input_str)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="open$",
 )
 async def _(event):

@@ -152,7 +152,7 @@ async def on_afk(event):
             pass
 
 
-@infinato_cmd(pattern=r"afk ?(.*)")
+@ultroid_cmd(pattern=r"afk ?(.*)")
 async def _(event):
     if not is_fullsudo(event.sender_id):
         return await eor(event, "`This Command Is Sudo Restricted.`")

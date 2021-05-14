@@ -21,7 +21,7 @@ from telethon.utils import pack_bot_file_id
 from . import *
 
 
-@infinato_cmd(pattern="addfilter ?(.*)")
+@ultroid_cmd(pattern="addfilter ?(.*)")
 async def af(e):
     wrd = (e.pattern_match.group(1)).lower()
     wt = await e.get_reply_message()
@@ -53,7 +53,7 @@ async def af(e):
     await eor(e, f"Done : Filter `{wrd}` Saved.")
 
 
-@infinato_cmd(pattern="remfilter ?(.*)")
+@ultroid_cmd(pattern="remfilter ?(.*)")
 async def rf(e):
     wrd = (e.pattern_match.group(1)).lower()
     chat = e.chat_id
@@ -63,7 +63,7 @@ async def rf(e):
     await eor(e, f"Done : Filter `{wrd}` Removed.")
 
 
-@infinato_cmd(pattern="listfilter$")
+@ultroid_cmd(pattern="listfilter$")
 async def lsnote(e):
     x = list_filter(e.chat_id)
     if x:

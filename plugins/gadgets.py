@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup as bs
 from . import *
 
 
-@infinato_cmd(pattern="gadget ?(.*)")
+@ultroid_cmd(pattern="gadget ?(.*)")
 async def mobs(e):
     mat = e.pattern_match.group(1)
     if not mat:

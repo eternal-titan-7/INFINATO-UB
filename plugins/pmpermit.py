@@ -85,7 +85,7 @@ PMCMDS = [
 # =================================================================
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="logpm$",
 )
 async def _(e):
@@ -98,7 +98,7 @@ async def _(e):
         return await eod(e, "`Wasn logging msgs from here.`", time=3)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="nologpm$",
 )
 async def _(e):
@@ -303,7 +303,7 @@ if sett == "True" and sett != "False":
                         f"[{name0}](tg://user?id={user.id}) was Blocked for spamming.",
                     )
 
-    @infinato_cmd(
+    @ultroid_cmd(
         pattern="(a|approve)(?: |$)",
     )
     async def approvepm(apprvpm):
@@ -363,7 +363,7 @@ if sett == "True" and sett != "False":
         else:
             await apprvpm.edit(NO_REPLY)
 
-    @infinato_cmd(
+    @ultroid_cmd(
         pattern="(da|disapprove)(?: |$)",
     )
     async def disapprovepm(e):
@@ -416,7 +416,7 @@ if sett == "True" and sett != "False":
         else:
             await e.edit(NO_REPLY)
 
-    @infinato_cmd(
+    @ultroid_cmd(
         pattern="block$",
     )
     async def blockpm(block):
@@ -457,7 +457,7 @@ if sett == "True" and sett != "False":
                 f"#BLOCKED\nUser: [{name0}](tg://user?id={uid})",
             )
 
-    @infinato_cmd(
+    @ultroid_cmd(
         pattern="unblock$",
     )
     async def unblockpm(unblock):

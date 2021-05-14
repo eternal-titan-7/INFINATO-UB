@@ -23,7 +23,7 @@ from telethon.utils import pack_bot_file_id
 from . import *
 
 
-@infinato_cmd(pattern="addsnip ?(.*)")
+@ultroid_cmd(pattern="addsnip ?(.*)")
 async def an(e):
     wrd = (e.pattern_match.group(1)).lower()
     wt = await e.get_reply_message()
@@ -57,7 +57,7 @@ async def an(e):
     await eor(e, f"Done : snip `${wrd}` Saved.")
 
 
-@infinato_cmd(pattern="remsnip ?(.*)")
+@ultroid_cmd(pattern="remsnip ?(.*)")
 async def rs(e):
     wrd = (e.pattern_match.group(1)).lower()
     if not wrd:
@@ -68,7 +68,7 @@ async def rs(e):
     await eor(e, f"Done : snip `${wrd}` Removed.")
 
 
-@infinato_cmd(pattern="listsnip")
+@ultroid_cmd(pattern="listsnip")
 async def lsnote(e):
     x = list_snip()
     if x:

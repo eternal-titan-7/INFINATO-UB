@@ -57,7 +57,7 @@ from . import *
 from . import humanbytes as hb
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="sysinfo$",
 )
 async def _(e):
@@ -71,7 +71,7 @@ async def _(e):
     remove("neo.txt")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="tr",
 )
 async def _(event):
@@ -101,7 +101,7 @@ async def _(event):
         await eod(xx, str(exc), time=10)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="id ?(.*)",
 )
 async def _(event):
@@ -139,7 +139,7 @@ async def _(event):
         await eor(event, "**Current Chat ID:**  `{}`".format(str(event.chat_id)))
 
 
-@infinato_cmd(pattern="bots ?(.*)")
+@ultroid_cmd(pattern="bots ?(.*)")
 async def _(ult):
     await ult.edit("`...`")
     if ult.is_private:
@@ -182,7 +182,7 @@ async def _(ult):
     await eor(ult, mentions)
 
 
-@infinato_cmd(pattern="hl")
+@ultroid_cmd(pattern="hl")
 async def _(ult):
     try:
         input = ult.text.split(" ", maxsplit=1)[1]
@@ -191,7 +191,7 @@ async def _(ult):
     await eor(ult, "[ㅤㅤㅤㅤㅤㅤㅤ](" + input + ")", link_preview=False)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="circle$",
 )
 async def _(e):
@@ -289,7 +289,7 @@ async def _(e):
         return await eor(e, "**Reply to a gif or audio file only**")
 
 
-@infinato_cmd(pattern="ls ?(.*)")
+@ultroid_cmd(pattern="ls ?(.*)")
 async def _(e):
     path = Path(e.pattern_match.group(1))
     if not path:
@@ -381,7 +381,7 @@ async def _(e):
     await eor(e, text)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="bash",
 )
 async def _(event):
@@ -441,7 +441,7 @@ async def _(event):
 p = print  # ignore: pylint
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="eval",
 )
 async def _(event):
@@ -522,7 +522,7 @@ async def aexec(code, event):
     return await locals()["__aexec"](e, e.client)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="sg ?(.*)",
 )
 async def lastname(steal):

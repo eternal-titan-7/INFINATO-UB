@@ -18,7 +18,7 @@ from infinatoUserbot.functions.clean_db import *
 from . import *
 
 
-@infinato_cmd(pattern="addclean$", admins_only=True)
+@ultroid_cmd(pattern="addclean$", admins_only=True)
 async def _(e):
     add_clean(e.chat_id)
     await eod(e, "Added Clean Action Setting For this Chat")
@@ -27,13 +27,13 @@ async def _(e):
             await x.delete()
 
 
-@infinato_cmd(pattern="remclean$")
+@ultroid_cmd(pattern="remclean$")
 async def _(e):
     rem_clean(e.chat_id)
     await eod(e, "Removed Clean Action Setting For this Chat")
 
 
-@infinato_cmd(pattern="listclean$")
+@ultroid_cmd(pattern="listclean$")
 async def _(e):
     k = udB.get("CLEANCHAT")
     if k:

@@ -35,7 +35,7 @@ except BaseException:
     HEROKU_APP_NAME = None
 
 
-@infinato_cmd(pattern="usage")
+@ultroid_cmd(pattern="usage")
 async def usage_finder(event):
     x = await eor(event, get_string("com_1"))
     try:

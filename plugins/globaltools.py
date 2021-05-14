@@ -34,7 +34,7 @@ from telethon import events
 from . import *
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="ungban ?(.*)",
 )
 async def _(e):
@@ -74,7 +74,7 @@ async def _(e):
     )
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="gban ?(.*)",
 )
 async def _(e):
@@ -137,7 +137,7 @@ async def _(e):
     await xx.edit(gb_msg)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="gcast ?(.*)",
 )
 async def gcast(event):
@@ -162,7 +162,7 @@ async def gcast(event):
     await kk.edit(f"Done in {done} chats, error in {er} chat(s)")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="gucast ?(.*)",
 )
 async def gucast(event):
@@ -187,7 +187,7 @@ async def gucast(event):
     await kk.edit(f"Done in {done} chats, error in {er} chat(s)")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="gkick ?(.*)",
 )
 async def gkick(e):
@@ -225,7 +225,7 @@ async def gkick(e):
     await xx.edit(f"`Gkicked` [{name}](tg://user?id={userid}) `in {chats} chats.`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="gmute ?(.*)",
 )
 async def _(e):
@@ -266,7 +266,7 @@ async def _(e):
     await xx.edit(f"`Gmuted` [{name}](tg://user?id={userid}) `in {chats} chats.`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="ungmute ?(.*)",
 )
 async def _(e):
@@ -326,7 +326,7 @@ async def _(e):
                     pass
 
 
-@infinato_cmd(pattern="listgban")
+@ultroid_cmd(pattern="listgban")
 async def list_gengbanned(event):
     users = gbanned_user()
     x = await eor(event, get_string("com_1"))

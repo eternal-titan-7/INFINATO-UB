@@ -13,7 +13,7 @@ import os
 from . import *
 
 
-@infinato_cmd(pattern="glitch$")
+@ultroid_cmd(pattern="glitch$")
 async def _(e):
     reply = await e.get_reply_message()
     if not (reply and reply.media):

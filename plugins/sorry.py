@@ -2,7 +2,7 @@ from telethon import events
 import asyncio
 
 
-@infinato_cmd(pattern="imsorry (.*)")
+@ultroid_cmd(pattern="imsorry (.*)")
 async def _(event):
     if event.fwd_from:
         return

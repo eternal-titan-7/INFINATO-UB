@@ -21,7 +21,7 @@ from telethon.tl.functions.photos import UploadProfilePhotoRequest
 from . import *
 
 
-@infinato_cmd(pattern="autopic ?(.*)")
+@ultroid_cmd(pattern="autopic ?(.*)")
 async def autopic(e):
     search = e.pattern_match.group(1)
     if not search:
@@ -53,7 +53,7 @@ async def autopic(e):
             await asyncio.sleep(1111)
 
 
-@infinato_cmd(pattern="stoppic$")
+@ultroid_cmd(pattern="stoppic$")
 async def stoppo(ult):
     gt = udB.get("AUTOPIC")
     if not gt == "True":

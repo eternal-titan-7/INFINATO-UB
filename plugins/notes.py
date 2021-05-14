@@ -24,7 +24,7 @@ from telethon.utils import pack_bot_file_id
 from . import *
 
 
-@infinato_cmd(pattern="addnote ?(.*)")
+@ultroid_cmd(pattern="addnote ?(.*)")
 async def an(e):
     if e.is_group:
         if not e._chat.admin_rights:
@@ -62,7 +62,7 @@ async def an(e):
     await eor(e, f"Done Note : `#{wrd}` saved.")
 
 
-@infinato_cmd(pattern="remnote ?(.*)")
+@ultroid_cmd(pattern="remnote ?(.*)")
 async def rn(e):
     if e.is_group:
         if not e._chat.admin_rights:
@@ -77,7 +77,7 @@ async def rn(e):
     await eor(e, f"Done Note: `#{wrd}` Removed.")
 
 
-@infinato_cmd(pattern="listnote$")
+@ultroid_cmd(pattern="listnote$")
 async def lsnote(e):
     if e.is_group:
         if not e._chat.admin_rights:

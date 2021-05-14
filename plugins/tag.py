@@ -34,7 +34,7 @@ from telethon.utils import get_display_name
 from . import *
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="tag(on|off|all|bots|rec|admins|owner)?(.*)",
     groups_only=True,
 )

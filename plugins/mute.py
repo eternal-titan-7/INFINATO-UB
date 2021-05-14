@@ -35,7 +35,7 @@ async def watcher(event):
         await event.delete()
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="dmute ?(.*)",
 )
 async def startmute(event):
@@ -80,7 +80,7 @@ async def startmute(event):
         await eod(xx, "Error: " + f"`{str(e)}`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="undmute ?(.*)",
 )
 async def endmute(event):
@@ -113,7 +113,7 @@ async def endmute(event):
         await eod(xx, "Error: " + f"`{str(e)}`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="tmute",
     groups_only=True,
 )
@@ -163,7 +163,7 @@ async def _(e):
         await eod(xx, f"`{str(m)}`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="unmute ?(.*)",
     groups_only=True,
 )
@@ -202,7 +202,7 @@ async def _(e):
         await eod(xx, f"`{str(m)}`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="mute ?(.*)",
     groups_only=True,
 )

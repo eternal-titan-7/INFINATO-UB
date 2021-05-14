@@ -36,7 +36,7 @@ if not os.path.exists("pdf/"):
     os.makedirs("pdf/")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="pdf ?(.*)",
 )
 async def pdfseimg(event):
@@ -89,7 +89,7 @@ async def pdfseimg(event):
         os.remove("ult.png")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="pdtext ?(.*)",
 )
 async def pdfsetxt(event):
@@ -162,7 +162,7 @@ async def pdfsetxt(event):
         os.remove(dl)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="pdscan ?(.*)",
 )
 async def imgscan(event):
@@ -219,7 +219,7 @@ async def imgscan(event):
     os.remove(scann)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="pdsave ?(.*)",
 )
 async def savepdf(event):
@@ -287,7 +287,7 @@ async def savepdf(event):
     os.remove(ultt)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="pdsend ?(.*)",
 )
 async def sendpdf(event):

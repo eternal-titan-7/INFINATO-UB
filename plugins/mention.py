@@ -3,7 +3,7 @@ import asyncio
 from . import *
 
 
-@infinato_cmd(pattern="mention (.*)")
+@ultroid_cmd(pattern="mention (.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -13,7 +13,7 @@ async def _(event):
     await event.edit(f"[{nm}](https://t.me/{un}) {' '.join(txt[2::])}")
 
 
-@infinato_cmd(pattern="mention_id (.*)")
+@ultroid_cmd(pattern="mention_id (.*)")
 async def _(event):
     if event.fwd_from:
         return

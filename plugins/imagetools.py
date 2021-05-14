@@ -48,7 +48,7 @@ from validators.url import url
 from . import *
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="sketch$",
 )
 async def sketch(e):
@@ -89,7 +89,7 @@ async def sketch(e):
     os.remove("ultroid.png")
 
 
-@infinato_cmd(pattern="color$")
+@ultroid_cmd(pattern="color$")
 async def _(event):
     reply = await event.get_reply_message()
     if not reply.media:
@@ -119,7 +119,7 @@ async def _(event):
     await xx.delete()
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="grey$",
 )
 async def ultd(event):
@@ -161,7 +161,7 @@ async def ultd(event):
     os.remove(ultt)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="blur$",
 )
 async def ultd(event):
@@ -203,7 +203,7 @@ async def ultd(event):
     os.remove(ultt)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="negative$",
 )
 async def ultd(event):
@@ -246,7 +246,7 @@ async def ultd(event):
     os.remove(ultt)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="mirror$",
 )
 async def ultd(event):
@@ -290,7 +290,7 @@ async def ultd(event):
     os.remove(ultt)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="flip$",
 )
 async def ultd(event):
@@ -335,7 +335,7 @@ async def ultd(event):
     os.remove(ultt)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="quad$",
 )
 async def ultd(event):
@@ -382,7 +382,7 @@ async def ultd(event):
     os.remove(ultt)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="toon$",
 )
 async def ultd(event):
@@ -442,7 +442,7 @@ async def ultd(event):
     os.remove(ultt)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="danger$",
 )
 async def ultd(event):
@@ -486,7 +486,7 @@ async def ultd(event):
     os.remove(ultt)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="blue$",
 )
 async def ultd(event):

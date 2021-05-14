@@ -12,7 +12,7 @@ import requests
 from . import *
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="github (.*)",
 )
 async def gitsearch(event):

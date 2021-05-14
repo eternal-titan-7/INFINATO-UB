@@ -24,7 +24,7 @@ from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 from . import *
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="dl ?(.*)",
 )
 async def download(event):
@@ -83,7 +83,7 @@ async def download(event):
         await eor(xx, f"Downloaded `{file_name}` in `0 second(s)`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="ul ?(.*)",
 )
 async def download(event):

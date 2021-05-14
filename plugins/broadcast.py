@@ -24,7 +24,7 @@ import io
 from . import *
 
 
-@infinato_cmd(pattern="add ?(.*)", allow_sudo=False)
+@ultroid_cmd(pattern="add ?(.*)", allow_sudo=False)
 async def broadcast_adder(event):
     if len(event.text) > 4:
         if not event.text[4] == " ":  # weird fix
@@ -86,7 +86,7 @@ async def broadcast_adder(event):
         await event.delete()
 
 
-@infinato_cmd(pattern="rem ?(.*)", allow_sudo=False)
+@ultroid_cmd(pattern="rem ?(.*)", allow_sudo=False)
 async def broadcast_remover(event):
     if len(event.text) > 4:
         if not event.text[4] == " ":  # weird fix
@@ -114,7 +114,7 @@ async def broadcast_remover(event):
         await x.delete()
 
 
-@infinato_cmd(pattern="listchannels")
+@ultroid_cmd(pattern="listchannels")
 async def list_all(event):
     x = await eor(event, "`Calculating...`")
     channels = get_channels()
@@ -147,7 +147,7 @@ async def list_all(event):
         await x.edit(msg)
 
 
-@infinato_cmd(pattern="forward ?(.*)", allow_sudo=False)
+@ultroid_cmd(pattern="forward ?(.*)", allow_sudo=False)
 async def forw(event):
     if not event.is_reply:
         await eor(event, "Reply to a message to broadcast.")
@@ -188,7 +188,7 @@ async def forw(event):
             await x.edit("Set up log channel for checking errors.")
 
 
-@infinato_cmd(pattern="broadcast ?(.*)", allow_sudo=False)
+@ultroid_cmd(pattern="broadcast ?(.*)", allow_sudo=False)
 async def sending(event):
     x = await eor(event, "`Processing...`")
     if not event.is_reply:

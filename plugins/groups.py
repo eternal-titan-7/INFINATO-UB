@@ -25,7 +25,7 @@ from telethon.tl.types import (
 from . import *
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="unbanall$",
     groups_only=True,
 )
@@ -46,7 +46,7 @@ async def _(event):
     await eod(xx, "{title}: {p} unbanned")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="rmusers ?(.*)",
     groups_only=True,
 )

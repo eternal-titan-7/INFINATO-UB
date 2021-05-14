@@ -18,7 +18,7 @@
 from . import *
 
 
-@infinato_cmd(pattern="ftyping ?(.*)")
+@ultroid_cmd(pattern="ftyping ?(.*)")
 async def _(e):
     t = e.pattern_match.group(1)
     if not (t or t.isdigit()):
@@ -36,7 +36,7 @@ async def _(e):
         await asyncio.sleep(t)
 
 
-@infinato_cmd(pattern="faudio ?(.*)")
+@ultroid_cmd(pattern="faudio ?(.*)")
 async def _(e):
     t = e.pattern_match.group(1)
     if not (t or t.isdigit()):
@@ -54,7 +54,7 @@ async def _(e):
         await asyncio.sleep(t)
 
 
-@infinato_cmd(pattern="fvideo ?(.*)")
+@ultroid_cmd(pattern="fvideo ?(.*)")
 async def _(e):
     t = e.pattern_match.group(1)
     if not (t or t.isdigit()):
@@ -72,7 +72,7 @@ async def _(e):
         await asyncio.sleep(t)
 
 
-@infinato_cmd(pattern="fgame ?(.*)")
+@ultroid_cmd(pattern="fgame ?(.*)")
 async def _(e):
     t = e.pattern_match.group(1)
     if not (t or t.isdigit()):

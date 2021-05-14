@@ -9,7 +9,7 @@ from . import *
 from git import Repo
 
 
-@infinato_cmd(pattern="update$")
+@ultroid_cmd(pattern="update$")
 async def _(e):
     x = await updater()
     branch = (Repo.init()).active_branch

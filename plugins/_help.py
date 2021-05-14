@@ -8,7 +8,7 @@ from telethon.tl.custom import Button
 from . import *
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="help ?(.*)",
 )
 async def ult(ult):

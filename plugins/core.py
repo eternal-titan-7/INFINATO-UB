@@ -91,7 +91,7 @@ async def inline_handler(event):
             return
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="install",
 )
 async def install(event):
@@ -100,7 +100,7 @@ async def install(event):
     await safeinstall(event)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern=r"unload ?(.*)",
 )
 async def unload(event):
@@ -123,7 +123,7 @@ async def unload(event):
         return await eod(event, f"**Nᴏ Pʟᴜɢɪɴ Nᴀᴍᴇᴅ** `{shortname}`", time=3)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern=r"uninstall ?(.*)",
 )
 async def uninstall(event):
@@ -147,7 +147,7 @@ async def uninstall(event):
         return await eod(event, f"**Nᴏ Pʟᴜɢɪɴ Nᴀᴍᴇᴅ** `{shortname}`", time=3)
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern=r"load ?(.*)",
 )
 async def load(event):

@@ -19,7 +19,7 @@ import os
 from . import *
 
 
-@infinato_cmd(pattern="get")
+@ultroid_cmd(pattern="get")
 async def get_var(event):
     x = await eor(event, get_string("com_1"))
     if not event.out and not is_fullsudo(event.sender_id):

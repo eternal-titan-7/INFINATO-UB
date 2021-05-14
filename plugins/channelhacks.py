@@ -59,7 +59,7 @@ async def _(e):
             await infinato_bot.send_message(bot.me.id, str(e))
 
 
-@infinato_cmd(pattern="shift (.*)")
+@ultroid_cmd(pattern="shift (.*)")
 async def _(e):
     x = e.pattern_match.group(1)
     z = await eor(e, "`processing..`")
@@ -89,7 +89,7 @@ async def _(e):
     await z.edit("Done")
 
 
-@infinato_cmd(pattern="asource (.*)")
+@ultroid_cmd(pattern="asource (.*)")
 async def source(e):
     x = e.pattern_match.group(1)
     try:
@@ -107,7 +107,7 @@ async def source(e):
         await eor(e, "Source channel already added")
 
 
-@infinato_cmd(pattern="dsource ?(.*)")
+@ultroid_cmd(pattern="dsource ?(.*)")
 async def dd(event):
     chat_id = event.pattern_match.group(1)
     x = await eor(event, "processing")
@@ -140,7 +140,7 @@ async def dd(event):
         await x.delete()
 
 
-@infinato_cmd(pattern="listsource")
+@ultroid_cmd(pattern="listsource")
 async def list_all(event):
     x = await eor(event, "`Calculating...`")
     channels = get_source_channels()
@@ -173,7 +173,7 @@ async def list_all(event):
         await x.edit(msg)
 
 
-@infinato_cmd(pattern="adest (.*)")
+@ultroid_cmd(pattern="adest (.*)")
 async def destination(e):
     x = e.pattern_match.group(1)
     try:
@@ -191,7 +191,7 @@ async def destination(e):
         await eor(e, "Destination channel already added")
 
 
-@infinato_cmd(pattern="ddest ?(.*)")
+@ultroid_cmd(pattern="ddest ?(.*)")
 async def dd(event):
     chat_id = event.pattern_match.group(1)
     x = await eor(event, "processing")
@@ -224,7 +224,7 @@ async def dd(event):
         await x.delete()
 
 
-@infinato_cmd(pattern="listdest")
+@ultroid_cmd(pattern="listdest")
 async def list_all(event):
     x = await eor(event, "`Calculating...`")
     channels = get_destinations()

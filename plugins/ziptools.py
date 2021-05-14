@@ -14,7 +14,7 @@ import zipfile
 from . import *
 
 
-@infinato_cmd(pattern="unzip$")
+@ultroid_cmd(pattern="unzip$")
 async def _(ult):
     if not ult.is_reply:
         return await eor(ult, "`Reply to a Zipfile..`")

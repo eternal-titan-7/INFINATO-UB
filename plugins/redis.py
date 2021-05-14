@@ -31,7 +31,7 @@ import re
 from . import *
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="setredis ?(.*)",
 )
 async def _(ult):
@@ -54,7 +54,7 @@ async def _(ult):
         await ok.edit("`Something Went Wrong`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="getredis ?(.*)",
 )
 async def _(ult):
@@ -69,7 +69,7 @@ async def _(ult):
         await ok.edit("`Something Went Wrong`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="delredis ?(.*)",
 )
 async def _(ult):
@@ -85,7 +85,7 @@ async def _(ult):
         await ok.edit("`Something Went Wrong`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="renredis ?(.*)",
 )
 async def _(ult):
@@ -110,7 +110,7 @@ async def _(ult):
         await ok.edit("Key not found")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="getkeys$",
 )
 async def _(ult):
@@ -125,7 +125,7 @@ async def _(ult):
     await ok.edit(f"**List of Redis Keys :**\n{msg}")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="redisusage$",
 )
 async def _(ult):

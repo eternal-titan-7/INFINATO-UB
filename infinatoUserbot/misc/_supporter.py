@@ -87,8 +87,8 @@ def admin_cmd(pattern=None, command=None, **args):
 
 friday_on_cmd = admin_cmd
 j_cmd = admin_cmd
-command = infinato_cmd
-register = infinato_cmd
+command = ultroid_cmd
+register = ultroid_cmd
 
 
 def sudo_cmd(allow_sudo=True, pattern=None, command=None, **args):

@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup as bs
 from . import *
 
 
-@infinato_cmd(pattern="eod ?(.*)")
+@ultroid_cmd(pattern="eod ?(.*)")
 async def diela(e):
     match = e.pattern_match.group(1)
     m = await eor(e, "`Processing... `")

@@ -10,7 +10,7 @@ import requests
 from . import *
 
 
-@infinato_cmd(pattern="getaddons ?(.*)")
+@ultroid_cmd(pattern="getaddons ?(.*)")
 async def get_the_addons_lol(event):
     thelink = event.pattern_match.group(1)
     xx = await eor(event, get_string("com_1"))

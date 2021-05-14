@@ -56,7 +56,7 @@ from telethon.tl.types import ChatAdminRights, InputMessagesFilterPinned
 from . import *
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="promote ?(.*)",
     groups_only=True,
     admins_only=True,
@@ -94,7 +94,7 @@ async def prmte(ult):
     await xx.delete()
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="demote ?(.*)",
     groups_only=True,
     admins_only=True,
@@ -132,7 +132,7 @@ async def dmote(ult):
     await xx.delete()
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="ban ?(.*)",
     groups_only=True,
     admins_only=True,
@@ -169,7 +169,7 @@ async def bban(ult):
         )
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="unban ?(.*)",
     groups_only=True,
     admins_only=True,
@@ -196,7 +196,7 @@ async def uunban(ult):
         )
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="kick ?(.*)",
     groups_only=True,
     admins_only=True,
@@ -232,7 +232,7 @@ async def kck(ult):
         )
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="pin ?(.*)",
 )
 async def pin(msg):
@@ -274,7 +274,7 @@ async def pin(msg):
             pass
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="unpin($| (.*))",
 )
 async def unp(ult):
@@ -305,7 +305,7 @@ async def unp(ult):
     await xx.edit("`Unpinned!`")
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="purge ?(.*)",
 )
 async def fastpurger(purg):
@@ -343,7 +343,7 @@ async def fastpurger(purg):
     await done.delete()
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="purgeme ?(.*)",
 )
 async def fastpurgerme(purg):
@@ -393,7 +393,7 @@ async def fastpurgerme(purg):
     await done.delete()
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="purgeall$",
 )
 async def _(e):
@@ -419,7 +419,7 @@ async def _(e):
         )
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="del$",
 )
 async def delete_it(delme):
@@ -436,7 +436,7 @@ async def delete_it(delme):
             )
 
 
-@infinato_cmd(
+@ultroid_cmd(
     pattern="edit",
 )
 async def editer(edit):
@@ -453,7 +453,7 @@ async def editer(edit):
         i = i + 1
 
 
-@infinato_cmd(pattern="pinned")
+@ultroid_cmd(pattern="pinned")
 async def get_pinned(event):
     x = await eor(event, get_string("com_1"))
     chat_id = (str(event.chat_id)).replace("-100", "")
@@ -473,7 +473,7 @@ async def get_pinned(event):
         return await eod(x, "There is no pinned message in chat!", time=5)
 
 
-@infinato_cmd(pattern="listpinned")
+@ultroid_cmd(pattern="listpinned")
 async def get_all_pinned(event):
     x = await eor(event, get_string("com_1"))
     chat_id = (str(event.chat_id)).replace("-100", "")
