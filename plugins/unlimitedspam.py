@@ -20,7 +20,7 @@ async def _(ult: Message):
     except Exception as ex:
         LOGS.info(ex)
     if ult.reply_to_msg_id:
-        m = ult.get_reply_message()
+        m = await ult.get_reply_message()
         if m:
             await ult.respond(m)
 
