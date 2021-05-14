@@ -21,7 +21,7 @@ ofox = "https://telegra.ph/file/231f0049fcd722824f13b.jpg"
 gugirl = "https://telegra.ph/file/0df54ae4541abca96aa11.jpg"
 yeah = "https://telegra.ph/file/e3c67885e16a194937516.jpg"
 ps = "https://telegra.ph/file/de0b8d9c858c62fae3b6e.jpg"
-ultpic = "https://telegra.ph/file/4136aa1650bc9d4109cc5.jpg"
+ultpic = "https://telegra.ph/file/6caf4aa6587c30824a440.png"
 rex_langs = """ada, bash, brainfuck, c (clang), c, c (vc),
 c#, c++ (clang), c++, c++ (vc++), d, elixir,
 erlang, f#, fortran, go, haskell, java, js,
