@@ -28,7 +28,7 @@ async def _(ult):
         return await msg.edit("`Reply to a Zipfile...`")
     k = time.time()
     d = "resources/downloads/"
-    dnl = await infinato_bot.download_media(
+    dnl = await ultroid_bot.download_media(
         gt,
         d,
         progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
@@ -47,7 +47,7 @@ async def _(ult):
         if os.path.exists(single_file):
             caption_rts = os.path.basename(single_file)
             try:
-                await infinato_bot.send_file(
+                await ultroid_bot.send_file(
                     ult.chat_id,
                     single_file,
                     thumb=THUMB,
@@ -63,11 +63,11 @@ async def _(ult):
     await msg.edit(f"**Unzipped `{len(filename)-Enum}/{len(filename)}` Files**")
     if Enum > 0:
         if len(Elist) < 4096:
-            await infinato_bot.send_message(Var.LOG_CHANNEL, Elist)
+            await ultroid_bot.send_message(Var.LOG_CHANNEL, Elist)
         else:
             file = open("UnzipError.txt", "w").write(Elist)
             file.close()
-            await infinato_bot.send_message(
+            await ultroid_bot.send_message(
                 Var.LOG_CHANNEL,
                 "UnzipError.txt",
                 caption=f"`Error Occured on Unzip cmd",

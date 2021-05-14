@@ -39,14 +39,14 @@ async def ult(ult):
             await eor(ult, "Error 🤔 occured.")
     else:
         # if BOT_MODE:
-        #    await infinato_bot.send_message(
+        #    await ultroid_bot.send_message(
         #        ult.chat_id,
-        #        f"Bot of {infinato_bot.me.first_name}",
+        #        f"Bot of {ultroid_bot.me.first_name}",
         #        buttons=[Button.inline(text="Open Help", data="open")],
         #    )
         #    return
         try:
-            results = await infinato_bot.inline_query(tgbot, "ultd")
+            results = await ultroid_bot.inline_query(tgbot, "ultd")
         except BotMethodInvalidError:
             z = []
             for x in LIST.values():
@@ -54,7 +54,7 @@ async def ult(ult):
                     z.append(y)
             cmd = len(z) + 10
             bnn = asst.me.username
-            return await infinato_bot.send_message(
+            return await ultroid_bot.send_message(
                 ult.chat_id,
                 get_string("inline_4").format(
                     OWNER_NAME,

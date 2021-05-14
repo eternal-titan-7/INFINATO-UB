@@ -111,7 +111,7 @@ async def _(e):
         return await eod(e, "`Wasn't logging msgs from here.`", time=3)
 
 
-@infinato_bot.on(
+@ultroid_bot.on(
     events.NewMessage(
         incoming=True,
         func=lambda e: e.is_private,
@@ -135,7 +135,7 @@ if sett is None:
     sett = True
 if sett == "True" and sett != "False":
 
-    @infinato_bot.on(
+    @ultroid_bot.on(
         events.NewMessage(
             outgoing=True,
             func=lambda e: e.is_private,
@@ -164,7 +164,7 @@ if sett == "True" and sett != "False":
                     f"#AutoApproved\nßecoz of outgoing msg\nUser - [{name0}](tg://user?id={e.chat_id})",
                 )
 
-    @infinato_bot.on(
+    @ultroid_bot.on(
         events.NewMessage(
             incoming=True,
             func=lambda e: e.is_private,

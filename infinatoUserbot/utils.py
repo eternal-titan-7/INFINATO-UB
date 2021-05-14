@@ -23,7 +23,7 @@ def load_plugins(plugin_name):
         import sys
         from pathlib import Path
 
-        from . import HNDLR, LOGS, udB, infinato_bot
+        from . import HNDLR, LOGS, udB, ultroid_bot
         from .dB.database import Var
         from .misc import _supporter as xxx
         from .misc._assistant import (
@@ -41,11 +41,11 @@ def load_plugins(plugin_name):
         name = "plugins.{}".format(plugin_name)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
-        mod.asst = infinato_bot.asst
-        mod.tgbot = infinato_bot.asst
-        mod.infinato_bot = infinato_bot
-        mod.bot = infinato_bot
-        mod.infinato = infinato_bot
+        mod.asst = ultroid_bot.asst
+        mod.tgbot = ultroid_bot.asst
+        mod.ultroid_bot = ultroid_bot
+        mod.bot = ultroid_bot
+        mod.infinato = ultroid_bot
         mod.owner = owner()
         mod.in_owner = inline_owner()
         mod.inline = inline()
@@ -98,7 +98,7 @@ def load_addons(plugin_name):
         import sys
         from pathlib import Path
 
-        from . import HNDLR, LOGS, udB, infinato_bot
+        from . import HNDLR, LOGS, udB, ultroid_bot
         from .dB.database import Var
         from .misc import _supporter as xxx
         from .misc._assistant import (
@@ -117,16 +117,16 @@ def load_addons(plugin_name):
         name = "addons.{}".format(plugin_name)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
-        mod.asst = infinato_bot.asst
-        mod.tgbot = infinato_bot.asst
-        mod.infinato_bot = infinato_bot
-        mod.ub = infinato_bot
-        mod.bot = infinato_bot
-        mod.infinato = infinato_bot
-        mod.borg = infinato_bot
-        mod.telebot = infinato_bot
-        mod.jarvis = infinato_bot
-        mod.friday = infinato_bot
+        mod.asst = ultroid_bot.asst
+        mod.tgbot = ultroid_bot.asst
+        mod.ultroid_bot = ultroid_bot
+        mod.ub = ultroid_bot
+        mod.bot = ultroid_bot
+        mod.infinato = ultroid_bot
+        mod.borg = ultroid_bot
+        mod.telebot = ultroid_bot
+        mod.jarvis = ultroid_bot
+        mod.friday = ultroid_bot
         mod.owner = owner()
         mod.in_owner = inline_owner()
         mod.inline = inline()
@@ -197,7 +197,7 @@ def load_assistant(plugin_name):
         import sys
         from pathlib import Path
 
-        from . import HNDLR, udB, infinato_bot
+        from . import HNDLR, udB, ultroid_bot
         from .misc._assistant import asst_cmd, callback, in_pattern, inline_owner, owner
         from .misc._wrappers import eod, eor
 
@@ -205,12 +205,12 @@ def load_assistant(plugin_name):
         name = "assistant.{}".format(plugin_name)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
-        mod.infinato_bot = infinato_bot
-        mod.infinato = infinato_bot
+        mod.ultroid_bot = ultroid_bot
+        mod.infinato = ultroid_bot
         mod.Redis = udB.get
         mod.udB = udB
-        mod.bot = infinato_bot
-        mod.asst = infinato_bot.asst
+        mod.bot = ultroid_bot
+        mod.asst = ultroid_bot.asst
         mod.owner = owner()
         mod.in_pattern = in_pattern
         mod.in_owner = inline_owner()
@@ -244,7 +244,7 @@ def load_pmbot(plugin_name):
         import sys
         from pathlib import Path
 
-        from . import HNDLR, udB, infinato_bot
+        from . import HNDLR, udB, ultroid_bot
         from .misc._assistant import asst_cmd, callback, owner
         from .misc._wrappers import eod, eor
 
@@ -252,12 +252,12 @@ def load_pmbot(plugin_name):
         name = "assistant.pmbot.{}".format(plugin_name)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
-        mod.infinato_bot = infinato_bot
-        mod.infinato = infinato_bot
-        mod.bot = infinato_bot
+        mod.ultroid_bot = ultroid_bot
+        mod.infinato = ultroid_bot
+        mod.bot = ultroid_bot
         mod.Redis = udB.get
         mod.udB = udB
-        mod.asst = infinato_bot.asst
+        mod.asst = ultroid_bot.asst
         mod.owner = owner()
         mod.eod = eod
         mod.eor = eor

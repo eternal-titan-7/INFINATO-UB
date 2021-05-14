@@ -83,8 +83,8 @@ telegraph.create_account(short_name="INFINATO")
 
 @ultroid_cmd(pattern="kickme$", groups_only=True, allow_sudo=False)
 async def leave(ult):
-    await eor(ult, f"`{infinato_bot.me.first_name} has left this group, bye!!.`")
-    await infinato_bot(LeaveChannelRequest(ult.chat_id))
+    await eor(ult, f"`{ultroid_bot.me.first_name} has left this group, bye!!.`")
+    await ultroid_bot(LeaveChannelRequest(ult.chat_id))
 
 
 @ultroid_cmd(
@@ -172,7 +172,7 @@ async def info(event):
 async def _(event):
     if BOT_MODE:
         return await eor(ult, "You Cant Use this Command in BOT MODE")
-    result = await infinato_bot(GetAdminedPublicChannelsRequest())
+    result = await ultroid_bot(GetAdminedPublicChannelsRequest())
     output_str = ""
     r = result.chats
     for channel_obj in r:
@@ -204,7 +204,7 @@ async def stats(
     unread_mentions = 0
     unread = 0
     dialog: Dialog
-    async for dialog in infinato_bot.iter_dialogs():
+    async for dialog in ultroid_bot.iter_dialogs():
         entity = dialog.entity
         if isinstance(entity, Channel):
             if entity.broadcast:
@@ -237,7 +237,7 @@ async def stats(
         unread += dialog.unread_count
     stop_time = time.time() - start_time
 
-    full_name = inline_mention(await infinato_bot.get_me())
+    full_name = inline_mention(await ultroid_bot.get_me())
     response = f"🔸 **Stats for {full_name}** \n\n"
     response += f"**Private Chats:** {private_chats} \n"
     response += f"**  •• **`Users: {private_chats - bots}` \n"
@@ -309,7 +309,7 @@ async def _(event):
     q = f"paste-{key}"
     reply_text = f"• **Pasted to Nekobin :** [Neko](https://nekobin.com/{key})\n• **Raw Url :** : [Raw](https://nekobin.com/raw/{key})"
     try:
-        ok = await infinato_bot.inline_query(asst.me.username, q)
+        ok = await ultroid_bot.inline_query(asst.me.username, q)
         await ok[0].click(event.chat_id, reply_to=event.reply_to_msg_id, hide_via=True)
         await xx.delete()
     except BaseException:
@@ -407,7 +407,7 @@ async def _(ult):
     if not ult.is_channel and ult.is_group:
         for user_id in to_add_users.split(" "):
             try:
-                await infinato_bot(
+                await ultroid_bot(
                     AddChatUserRequest(
                         chat_id=ult.chat_id,
                         user_id=user_id,
@@ -420,7 +420,7 @@ async def _(ult):
     else:
         for user_id in to_add_users.split(" "):
             try:
-                await infinato_bot(
+                await ultroid_bot(
                     InviteToChannelRequest(
                         channel=ult.chat_id,
                         users=[user_id],
@@ -443,7 +443,7 @@ async def rmbg(event):
         )
     if event.reply_to_msg_id:
         reply = await event.get_reply_message()
-        dl = await infinato_bot.download_media(reply.media)
+        dl = await ultroid_bot.download_media(reply.media)
         if not dl.endswith(("webp", "jpg", "png", "jpeg")):
             os.remove(dl)
             return await xx.edit("`Unsupported Media`")
@@ -469,13 +469,13 @@ async def rmbg(event):
     if zz.mode != "RGB":
         zz.convert("RGB")
     zz.save("ult.webp", "webp")
-    await infinato_bot.send_file(
+    await ultroid_bot.send_file(
         event.chat_id,
         rmbgp,
         force_document=True,
         reply_to=reply,
     )
-    await infinato_bot.send_file(event.chat_id, "ult.webp", reply_to=reply)
+    await ultroid_bot.send_file(event.chat_id, "ult.webp", reply_to=reply)
     os.remove(rmbgp)
     os.remove("ult.webp")
     await xx.delete()
@@ -490,7 +490,7 @@ async def telegraphcmd(event):
     if event.reply_to_msg_id:
         getmsg = await event.get_reply_message()
         if getmsg.photo or getmsg.video or getmsg.gif:
-            getit = await infinato_bot.download_media(getmsg)
+            getit = await ultroid_bot.download_media(getmsg)
             try:
                 variable = uf(getit)
                 os.remove(getit)
@@ -500,7 +500,7 @@ async def telegraphcmd(event):
                 amsg = f"Error - {e}"
             await xx.edit(amsg)
         elif getmsg.document:
-            getit = await infinato_bot.download_media(getmsg)
+            getit = await ultroid_bot.download_media(getmsg)
             ab = open(getit)
             cd = ab.read()
             ab.close()
@@ -540,7 +540,7 @@ async def _(event):
     if len(the_real_message) > 4096:
         with io.BytesIO(str.encode(the_real_message)) as out_file:
             out_file.name = "json-ult.txt"
-            await infinato_bot.send_file(
+            await ultroid_bot.send_file(
                 event.chat_id,
                 out_file,
                 force_document=True,

@@ -5,7 +5,7 @@ from collections import deque
 
 from . import *
 
-ALIVE_NAME = infinato_bot.me.first_name
+ALIVE_NAME = ultroid_bot.me.first_name
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "INFINATO"
 
 M = ("___________ \n"
@@ -498,7 +498,7 @@ async def deployee(ult):
     animation_interval = 3
     animation_ttl = range(0, 12)
     ult = await eor(ult, "Starting To Deploy......")
-    mentos = infinato_bot.me.first_name
+    mentos = ultroid_bot.me.first_name
     animation_chars = [
         "**Heroku Connecting To Latest Github Build **",
         f"**Build started by user** {mentos}",

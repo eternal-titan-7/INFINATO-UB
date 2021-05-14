@@ -43,7 +43,7 @@ BOT_MODE = Var.BOT_MODE or udB.get("BOT_MODE")
 
 if Var.SESSION:
     try:
-        infinato_bot = TelegramClient(
+        ultroid_bot = TelegramClient(
             StringSession(Var.SESSION), Var.API_ID, Var.API_HASH
         )
     except Exception as ap:
@@ -51,7 +51,7 @@ if Var.SESSION:
         exit(1)
 elif str(BOT_MODE) == "True":
     try:
-        infinato_bot = TelegramClient(
+        ultroid_bot = TelegramClient(
             None, api_id=Var.API_ID, api_hash=Var.API_HASH
         ).start(bot_token=Var.BOT_TOKEN)
     except Exception as ap:

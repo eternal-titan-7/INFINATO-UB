@@ -28,7 +28,7 @@ async def acc(e):
         await eof(e, "AUTOCORRECT Feature Off")
 
 
-@infinato_bot.on(events.NewMessage(outgoing=True))
+@ultroid_bot.on(events.NewMessage(outgoing=True))
 async def gramme(event):
     if Redis("AUTOCORRECT") != "True":
         return

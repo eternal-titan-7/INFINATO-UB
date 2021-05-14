@@ -120,13 +120,13 @@ async def AreUpdatesAvailable():
     try:
         repo = Repo()
     except NoSuchPathError as error:
-        await infinato_bot.asst.send_message(
+        await ultroid_bot.asst.send_message(
             Var.LOG_CHANNEL, f"{txt}\n`directory {error} is not found`"
         )
         repo.__del__()
         return
     except GitCommandError as error:
-        await infinato_bot.asst.send_message(
+        await ultroid_bot.asst.send_message(
             Var.LOG_CHANNEL, f"{txt}\n`Early failure! {error}`"
         )
         repo.__del__()
@@ -158,13 +158,13 @@ async def updater():
     try:
         repo = Repo()
     except NoSuchPathError as error:
-        await infinato_bot.asst.send_message(
+        await ultroid_bot.asst.send_message(
             Var.LOG_CHANNEL, f"{txt}\n`directory {error} is not found`"
         )
         repo.__del__()
         return
     except GitCommandError as error:
-        await infinato_bot.asst.send_message(
+        await ultroid_bot.asst.send_message(
             Var.LOG_CHANNEL, f"{txt}\n`Early failure! {error}`"
         )
         repo.__del__()
@@ -185,7 +185,7 @@ async def updater():
     ups_rem.fetch(ac_br)
     changelog, tl_chnglog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
     if changelog:
-        msg = await infinato_bot.asst.send_file(
+        msg = await ultroid_bot.asst.send_file(
             Var.LOG_CHANNEL,
             "resources/extras/cf1.png",
             caption="**0.0.6 Update Available**",
@@ -251,7 +251,7 @@ async def get_user_id(ids):
     if str(ids).isdigit():
         userid = int(ids)
     else:
-        userid = (await infinato_bot.get_entity(ids)).id
+        userid = (await ultroid_bot.get_entity(ids)).id
     return userid
 
 
@@ -515,12 +515,12 @@ async def create_token_file(token_file, event):
         redirect_uri=REDIRECT_URI,
     )
     authorize_url = flow.step1_get_authorize_url()
-    async with infinato_bot.asst.conversation(infinato_bot.uid) as conv:
+    async with ultroid_bot.asst.conversation(ultroid_bot.uid) as conv:
         await event.edit(
             f"Go to the following link in your browser: [Authorization Link]({authorize_url}) and reply the code",
             link_preview=False,
         )
-        response = conv.wait_event(events.NewMessage(from_users=infinato_bot.uid))
+        response = conv.wait_event(events.NewMessage(from_users=ultroid_bot.uid))
         response = await response
         code = response.message.message.strip()
         credentials = flow.step2_exchange(code)
@@ -616,7 +616,7 @@ def un_plug(shortname):
     try:
         try:
             for i in LOADED[shortname]:
-                infinato_bot.remove_event_handler(i)
+                ultroid_bot.remove_event_handler(i)
             try:
                 del LOADED[shortname]
                 del LIST[shortname]
@@ -627,10 +627,10 @@ def un_plug(shortname):
         except BaseException:
             name = f"addons.{shortname}"
 
-            for i in reversed(range(len(infinato_bot._event_builders))):
-                ev, cb = infinato_bot._event_builders[i]
+            for i in reversed(range(len(ultroid_bot._event_builders))):
+                ev, cb = ultroid_bot._event_builders[i]
                 if cb.__module__ == name:
-                    del infinato_bot._event_builders[i]
+                    del ultroid_bot._event_builders[i]
                     try:
                         del LOADED[shortname]
                         del LIST[shortname]
@@ -926,10 +926,10 @@ async def get_chatinfo(event):
         else:
             chat = event.chat_id
     try:
-        chat_info = await infinato_bot(GetFullChatRequest(chat))
+        chat_info = await ultroid_bot(GetFullChatRequest(chat))
     except BaseException:
         try:
-            chat_info = await infinato_bot(GetFullChannelRequest(chat))
+            chat_info = await ultroid_bot(GetFullChannelRequest(chat))
         except ChannelInvalidError:
             await eor(event, "`Invalid channel/group`")
             return None
@@ -948,7 +948,7 @@ async def get_chatinfo(event):
 
 
 async def fetch_info(chat, event):
-    chat_obj_info = await infinato_bot.get_entity(chat.full_chat.id)
+    chat_obj_info = await ultroid_bot.get_entity(chat.full_chat.id)
     broadcast = (
         chat_obj_info.broadcast if hasattr(chat_obj_info, "broadcast") else False
     )
@@ -956,7 +956,7 @@ async def fetch_info(chat, event):
     chat_title = chat_obj_info.title
     warn_emoji = emojize(":warning:")
     try:
-        msg_info = await infinato_bot(
+        msg_info = await ultroid_bot(
             GetHistoryRequest(
                 peer=chat_obj_info.id,
                 offset_id=0,
@@ -1070,7 +1070,7 @@ async def fetch_info(chat, event):
 
     if admins is None:
         try:
-            participants_admins = await infinato_bot(
+            participants_admins = await ultroid_bot(
                 GetParticipantsRequest(
                     channel=chat.full_chat.id,
                     filter=ChannelParticipantsAdmins(),
@@ -1264,15 +1264,15 @@ def autopicsearch(query):
 
 async def randomchannel(tochat, channel, range1, range2, caption=None):
     do = random.randrange(range1, range2)
-    async for x in infinato_bot.iter_messages(channel, add_offset=do, limit=1):
+    async for x in ultroid_bot.iter_messages(channel, add_offset=do, limit=1):
         try:
             if x.media and caption:
-                await infinato_bot.send_file(tochat, file=x, caption=caption)
+                await ultroid_bot.send_file(tochat, file=x, caption=caption)
                 return
-            await infinato_bot.send_message(tochat, x)
+            await ultroid_bot.send_message(tochat, x)
         except BaseException:
             try:
-                await infinato_bot.send_file(tochat, x)
+                await ultroid_bot.send_file(tochat, x)
             except BaseException:
                 pass
 

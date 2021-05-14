@@ -34,8 +34,8 @@ afk_start = {}
 LOG = Var.LOG_CHANNEL
 
 
-@infinato_bot.on(events.NewMessage(outgoing=True))
-@infinato_bot.on(events.MessageEdited(outgoing=True))
+@ultroid_bot.on(events.NewMessage(outgoing=True))
+@ultroid_bot.on(events.MessageEdited(outgoing=True))
 async def set_not_afk(event):
     if event.is_private:
         if Redis("PMSETTING") == "True":
@@ -54,38 +54,38 @@ async def set_not_afk(event):
     if "afk" not in current_message and "yes" in USER_AFK:
         try:
             if pic.endswith((".tgs", ".webp")):
-                shite = await infinato_bot.send_message(event.chat_id, file=pic)
-                shites = await infinato_bot.send_message(
+                shite = await ultroid_bot.send_message(event.chat_id, file=pic)
+                shites = await ultroid_bot.send_message(
                     event.chat_id,
                     get_string("afk_1").format(total_afk_time),
                 )
             else:
-                shite = await infinato_bot.send_message(
+                shite = await ultroid_bot.send_message(
                     event.chat_id,
                     get_string("afk_1").format(total_afk_time),
                     file=pic,
                 )
         except BaseException:
-            shite = await infinato_bot.send_message(
+            shite = await ultroid_bot.send_message(
                 event.chat_id,
                 get_string("afk_1").format(total_afk_time),
             )
         try:
             try:
                 if pic.endswith((".tgs", ".webp")):
-                    await infinato_bot.send_message(LOG, file=pic)
-                    await infinato_bot.send_message(
+                    await ultroid_bot.send_message(LOG, file=pic)
+                    await ultroid_bot.send_message(
                         LOG,
                         get_string("afk_2").format(total_afk_time),
                     )
                 else:
-                    await infinato_bot.send_message(
+                    await ultroid_bot.send_message(
                         LOG,
                         get_string("afk_2").format(total_afk_time),
                         file=pic,
                     )
             except BaseException:
-                await infinato_bot.send_message(
+                await ultroid_bot.send_message(
                     LOG,
                     get_string("afk_2").format(total_afk_time),
                 )
@@ -101,7 +101,7 @@ async def set_not_afk(event):
         afk_time = None
 
 
-@infinato_bot.on(
+@ultroid_bot.on(
     events.NewMessage(incoming=True, func=lambda e: bool(e.mentioned or e.is_private)),
 )
 async def on_afk(event):
@@ -178,7 +178,7 @@ async def _(event):
     else:
         pic = None
     if not USER_AFK:
-        last_seen_status = await infinato_bot(
+        last_seen_status = await ultroid_bot(
             GetPrivacyRequest(InputPrivacyKeyStatusTimestamp()),
         )
         if isinstance(last_seen_status.rules, PrivacyValueAllowAll):
@@ -187,60 +187,60 @@ async def _(event):
         if reason:
             try:
                 if pic.endswith((".tgs", ".webp")):
-                    await infinato_bot.send_message(event.chat_id, file=pic)
-                    await infinato_bot.send_message(
+                    await ultroid_bot.send_message(event.chat_id, file=pic)
+                    await ultroid_bot.send_message(
                         event.chat_id,
                         get_string("afk_5").format(reason),
                     )
                 else:
-                    await infinato_bot.send_message(
+                    await ultroid_bot.send_message(
                         event.chat_id,
                         get_string("afk_5").format(reason),
                         file=pic,
                     )
             except BaseException:
-                await infinato_bot.send_message(
+                await ultroid_bot.send_message(
                     event.chat_id,
                     get_string("afk_5").format(reason),
                 )
         else:
             try:
                 if pic.endswith((".tgs", ".webp")):
-                    await infinato_bot.send_message(event.chat_id, file=pic)
-                    await infinato_bot.send_message(event.chat_id, get_string("afk_6"))
+                    await ultroid_bot.send_message(event.chat_id, file=pic)
+                    await ultroid_bot.send_message(event.chat_id, get_string("afk_6"))
                 else:
-                    await infinato_bot.send_message(
+                    await ultroid_bot.send_message(
                         event.chat_id,
                         get_string("afk_6"),
                         file=pic,
                     )
             except BaseException:
-                await infinato_bot.send_message(event.chat_id, get_string("afk_6"))
+                await ultroid_bot.send_message(event.chat_id, get_string("afk_6"))
         await event.delete()
         try:
             if reason and pic:
                 if pic.endswith((".tgs", ".webp")):
-                    await infinato_bot.send_message(LOG, file=pic)
-                    await infinato_bot.send_message(
+                    await ultroid_bot.send_message(LOG, file=pic)
+                    await ultroid_bot.send_message(
                         LOG,
                         get_string("afk_7").format(reason),
                     )
                 else:
-                    await infinato_bot.send_message(
+                    await ultroid_bot.send_message(
                         LOG,
                         get_string("afk_7").format(reason),
                         file=pic,
                     )
             elif reason:
-                await infinato_bot.send_message(LOG, get_string("afk_7").format(reason))
+                await ultroid_bot.send_message(LOG, get_string("afk_7").format(reason))
             elif pic:
                 if pic.endswith((".tgs", ".webp")):
-                    await infinato_bot.send_message(LOG, file=pic)
-                    await infinato_bot.send_message(LOG, get_string("afk_8"))
+                    await ultroid_bot.send_message(LOG, file=pic)
+                    await ultroid_bot.send_message(LOG, get_string("afk_8"))
                 else:
-                    await infinato_bot.send_message(LOG, get_string("afk_8"), file=pic)
+                    await ultroid_bot.send_message(LOG, get_string("afk_8"), file=pic)
             else:
-                await infinato_bot.send_message(LOG, get_string("afk_8"))
+                await ultroid_bot.send_message(LOG, get_string("afk_8"))
         except BaseException:
             pass
 

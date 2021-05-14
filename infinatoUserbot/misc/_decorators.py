@@ -42,9 +42,9 @@ else:
 on = udB["SUDO"] if udB["SUDO"] is not None else "False"
 
 if on == "True":
-    sed = [infinato_bot.uid, *sudos]
+    sed = [ultroid_bot.uid, *sudos]
 else:
-    sed = [infinato_bot.uid]
+    sed = [ultroid_bot.uid]
 
 hndlr = "\\" + HNDLR
 
@@ -77,7 +77,7 @@ def ultroid_cmd(allow_sudo=on, **args):
     #    args["from_users"] = sed
     #    args["incoming"] = True if str(file_test) in sudoplugs else False
     # elif allow_sudo == "False" and BOT_MODE:
-    #    args["from_users"] = [infinato_bot.uid]
+    #    args["from_users"] = [ultroid_bot.uid]
     # else:
     #    args["outgoing"] = True
 
@@ -145,12 +145,12 @@ def ultroid_cmd(allow_sudo=on, **args):
             except MessageNotModifiedError:
                 pass
             except FloodWaitError as fwerr:
-                await infinato_bot.asst.send_message(
+                await ultroid_bot.asst.send_message(
                     Var.LOG_CHANNEL,
                     f"`FloodWaitError:\n{str(fwerr)}\n\nSleeping for {tf((fwerr.seconds + 10)*1000)}`",
                 )
                 sleep(fwerr.seconds + 10)
-                await infinato_bot.asst.send_message(
+                await ultroid_bot.asst.send_message(
                     Var.LOG_CHANNEL,
                     "`Bot is working again`",
                 )
@@ -199,13 +199,13 @@ def ultroid_cmd(allow_sudo=on, **args):
                 if Var.LOG_CHANNEL:
                     Placetosend = Var.LOG_CHANNEL
                 else:
-                    Placetosend = infinato_bot.uid
-                await infinato_bot.asst.send_message(
+                    Placetosend = ultroid_bot.uid
+                await ultroid_bot.asst.send_message(
                     Placetosend,
                     ftext,
                 )
 
-        infinato_bot.add_event_handler(wrapper, events.NewMessage(**args))
+        ultroid_bot.add_event_handler(wrapper, events.NewMessage(**args))
         try:
             LOADED[file_test].append(wrapper)
         except Exception:

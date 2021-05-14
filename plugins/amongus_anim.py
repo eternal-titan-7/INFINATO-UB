@@ -6,12 +6,12 @@
 import asyncio
 from . import *
 
-DEFAULTUSER = infinato_bot.me.first_name
+DEFAULTUSER = ultroid_bot.me.first_name
 
 
 @ultroid_cmd(pattern="imp(|n) (.*)", outgoing=True)
 async def _(event):
-    infinato = infinato_bot.uid
+    infinato = ultroid_bot.uid
     USERNAME = f"tg://user?id={infinato}"
     name = event.pattern_match.group(2)
     cmd = event.pattern_match.group(1).lower()

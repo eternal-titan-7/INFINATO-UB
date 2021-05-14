@@ -78,7 +78,7 @@ async def lsnote(e):
         await eor(e, "No Snips Found Here")
 
 
-@infinato_bot.on(events.NewMessage(outgoing=True))
+@ultroid_bot.on(events.NewMessage(outgoing=True))
 async def notes(e):
     xx = (e.text).lower()
     if not xx.startswith("$"):
@@ -96,7 +96,7 @@ async def notes(e):
             if rep:
                 await rep.reply(msg, file=media)
             else:
-                await infinato_bot.send_message(e.chat_id, msg, file=media)
+                await ultroid_bot.send_message(e.chat_id, msg, file=media)
                 await e.delete()
 
 

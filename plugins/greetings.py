@@ -87,7 +87,7 @@ async def listwel(event):
     await event.delete()
 
 
-@infinato_bot.on(events.ChatAction())
+@ultroid_bot.on(events.ChatAction())
 async def _(event):
     wel = get_welcome(event.chat_id)
     if wel:
@@ -183,7 +183,7 @@ async def listgd(event):
     await event.delete()
 
 
-@infinato_bot.on(events.ChatAction())
+@ultroid_bot.on(events.ChatAction())
 async def _(event):
     wel = get_goodbye(event.chat_id)
     if wel:

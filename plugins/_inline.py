@@ -76,7 +76,7 @@ if asst.me is not None:
             result = builder.article(
                 title="Help Menu",
                 description="Help Menu - INFINATO",
-                url="https://t.me/Infinato_bot",
+                url="https://t.me/ultroid_bot",
                 thumb=InputWebDocument(ULTROID_PIC, 0, "image/jpeg", []),
                 text=get_string("inline_4").format(
                     OWNER_NAME,
@@ -326,7 +326,7 @@ if asst.me is not None:
             [
                 Button.url(
                     "⚙️Sᴇᴛᴛɪɴɢs⚙️",
-                    url=f"https://t.me/{bnn}?start={infinato_bot.me.id}",
+                    url=f"https://t.me/{bnn}?start={ultroid_bot.me.id}",
                 ),
             ],
             [Button.inline("••Cʟᴏꜱᴇ••", data="close")],

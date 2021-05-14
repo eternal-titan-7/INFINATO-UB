@@ -43,7 +43,7 @@ async def _(ult):
     ok = await eor(ult, "...")
     set = ult.pattern_match.group(1)
     try:
-        await infinato_bot(UpdateProfileRequest(about=set))
+        await ultroid_bot(UpdateProfileRequest(about=set))
         await ok.edit(f"Profile bio changed to\n`{set}`")
     except Exception as ex:
         await ok.edit("Error occured.\n`{}`".format(str(ex)))
@@ -65,7 +65,7 @@ async def _(ult):
     if "//" in names:
         first_name, last_name = names.split("//", 1)
     try:
-        await infinato_bot(
+        await ultroid_bot(
             UpdateProfileRequest(
                 first_name=first_name,
                 last_name=last_name,
@@ -92,15 +92,15 @@ async def _(ult):
         os.makedirs(TMP_DOWNLOAD_DIRECTORY)
     photo = None
     try:
-        photo = await infinato_bot.download_media(reply_message, TMP_DOWNLOAD_DIRECTORY)
+        photo = await ultroid_bot.download_media(reply_message, TMP_DOWNLOAD_DIRECTORY)
     except Exception as ex:
         await ok.edit("Error occured.\n`{}`".format(str(ex)))
     else:
         if photo:
             await ok.edit("`Uploading it to my profile...`")
-            file = await infinato_bot.upload_file(photo)
+            file = await ultroid_bot.upload_file(photo)
             try:
-                await infinato_bot(UploadProfilePhotoRequest(file))
+                await ultroid_bot(UploadProfilePhotoRequest(file))
             except Exception as ex:
                 await ok.edit("Error occured.\n`{}`".format(str(ex)))
             else:
@@ -128,7 +128,7 @@ async def remove_profilepic(delpfp):
         lim = int(group)
     else:
         lim = 1
-    pfplist = await infinato_bot(
+    pfplist = await ultroid_bot(
         GetUserPhotosRequest(user_id=delpfp.from_id, offset=0, max_id=0, limit=lim),
     )
     input_photos = []
@@ -140,7 +140,7 @@ async def remove_profilepic(delpfp):
                 file_reference=sep.file_reference,
             ),
         )
-    await infinato_bot(DeletePhotosRequest(id=input_photos))
+    await ultroid_bot(DeletePhotosRequest(id=input_photos))
     await ok.edit(f"`Successfully deleted {len(input_photos)} profile picture(s).`")
     await asyncio.sleep(10)
     await ok.delete()
@@ -154,13 +154,13 @@ async def gpoto(e):
         gs = await e.get_reply_message()
         ult = gs.sender_id
     try:
-        okla = await infinato_bot.download_profile_photo(
+        okla = await ultroid_bot.download_profile_photo(
             ult,
             "profile.jpg",
             download_big=True,
         )
         await a.delete()
-        await infinato_bot.send_message(e.chat_id, file=okla)
+        await ultroid_bot.send_message(e.chat_id, file=okla)
         os.remove(okla)
     except Exception as er:
         await eor(e, f"ERROR - {str(er)}")

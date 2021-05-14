@@ -112,7 +112,7 @@ async def _(e):
         return await eod(xx, "`Reply to some msg or add their id.`", tome=5)
     name = (await e.client.get_entity(userid)).first_name
     chats = 0
-    if userid == infinato_bot.uid:
+    if userid == ultroid_bot.uid:
         return await eod(xx, "`I can't gban myself.`", time=3)
     if str(userid) in DEVLIST:
         return await eod(xx, "`I can't gban my Developers.`", time=3)
@@ -151,12 +151,12 @@ async def gcast(event):
     kk = await eor(event, "`Globally Broadcasting Msg...`")
     er = 0
     done = 0
-    async for x in infinato_bot.iter_dialogs():
+    async for x in ultroid_bot.iter_dialogs():
         if x.is_group:
             chat = x.id
             try:
                 done += 1
-                await infinato_bot.send_message(chat, msg)
+                await ultroid_bot.send_message(chat, msg)
             except BaseException:
                 er += 1
     await kk.edit(f"Done in {done} chats, error in {er} chat(s)")
@@ -176,12 +176,12 @@ async def gucast(event):
     kk = await eor(event, "`Globally Broadcasting Msg...`")
     er = 0
     done = 0
-    async for x in infinato_bot.iter_dialogs():
+    async for x in ultroid_bot.iter_dialogs():
         if x.is_user and not x.entity.bot:
             chat = x.id
             try:
                 done += 1
-                await infinato_bot.send_message(chat, msg)
+                await ultroid_bot.send_message(chat, msg)
             except BaseException:
                 er += 1
     await kk.edit(f"Done in {done} chats, error in {er} chat(s)")
@@ -211,14 +211,14 @@ async def gkick(e):
         return await eod(xx, "`Reply to some msg or add their id.`", time=5)
     name = (await e.client.get_entity(userid)).first_name
     chats = 0
-    if userid == infinato_bot.uid:
+    if userid == ultroid_bot.uid:
         return await eod(xx, "`I can't gkick myself.`", time=3)
     if str(userid) in DEVLIST:
         return await eod(xx, "`I can't gkick my Developers.`", time=3)
     async for gkick in e.client.iter_dialogs():
         if gkick.is_group or gkick.is_channel:
             try:
-                await infinato_bot.kick_participant(gkick.id, userid)
+                await ultroid_bot.kick_participant(gkick.id, userid)
                 chats += 1
             except BaseException:
                 pass
@@ -249,7 +249,7 @@ async def _(e):
         return await eod(xx, "`Reply to some msg or add their id.`", tome=5)
     name = (await e.client.get_entity(userid)).first_name
     chats = 0
-    if userid == infinato_bot.uid:
+    if userid == ultroid_bot.uid:
         return await eod(xx, "`I can't gmute myself.`", time=3)
     if str(userid) in DEVLIST:
         return await eod(xx, "`I can't gmute my Developers.`", time=3)
@@ -303,7 +303,7 @@ async def _(e):
     await xx.edit(f"`Ungmuted` [{name}](tg://user?id={userid}) `in {chats} chats.`")
 
 
-@infinato_bot.on(events.ChatAction)
+@ultroid_bot.on(events.ChatAction)
 async def _(e):
     if e.user_joined or e.added_by:
         user = await e.get_user()

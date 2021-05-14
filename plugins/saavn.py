@@ -39,7 +39,7 @@ async def siesace(e):
     okk = await uploader(
         title + ".mp3", title + ".mp3", hmm, lol, "Uploading " + title + "..."
     )
-    await infinato_bot.send_file(
+    await ultroid_bot.send_file(
         e.chat_id,
         okk,
         attributes=[

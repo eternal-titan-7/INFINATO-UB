@@ -7,7 +7,7 @@ import re
 
 # taglogger
 
-@infinato_bot.on(
+@ultroid_bot.on(
     events.NewMessage(
         incoming=True,
         func=lambda e: (e.mentioned),
@@ -19,14 +19,14 @@ async def all_messages_catcher(e):
             NEEDTOLOG = int(udB.get("TAG_LOG"))
         except Exception:
             return LOGS.warning("you given Wrong Grp/Channel ID in TAG_LOG.")
-        x = await infinato_bot.get_entity(e.sender_id)
+        x = await ultroid_bot.get_entity(e.sender_id)
         if x.bot or x.verified:
             return
-        y = await infinato_bot.get_entity(e.chat_id)
+        y = await ultroid_bot.get_entity(e.chat_id)
         where_n = get_display_name(y)
         who_n = get_display_name(x)
         where_l = f"https://t.me/c/{y.id}/{e.id}"
-        send = await infinato_bot.get_messages(e.chat_id, ids=e.id)
+        send = await ultroid_bot.get_messages(e.chat_id, ids=e.id)
         try:
             if x.username:
                 who_l = f"https://t.me/{x.username}"
@@ -57,7 +57,7 @@ async def all_messages_catcher(e):
                 )
         except Exception as er:
             LOGS.info(str(er))
-            await infinato_bot.send_message(NEEDTOLOG, f"Please Add Your Assistant Bot - @{asst.me.username} as admin here.")
+            await ultroid_bot.send_message(NEEDTOLOG, f"Please Add Your Assistant Bot - @{asst.me.username} as admin here.")
     else:
         return
 
@@ -65,7 +65,7 @@ async def all_messages_catcher(e):
 @callback(re.compile(b"who(.*)"))
 async def _(e):
     wah = e.pattern_match.group(1).decode("UTF-8")
-    y = await infinato_bot.get_entity(int(wah))
+    y = await ultroid_bot.get_entity(int(wah))
     who = f"[{get_display_name(y)}](tg://user?id={y.id})"
     x = await e.reply(f"Mention By user : {who}")
     await asyncio.sleep(6)

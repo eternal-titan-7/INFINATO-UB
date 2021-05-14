@@ -43,7 +43,7 @@ async def mean(event):
     if len(x) > 4096:
         with io.BytesIO(str.encode(x)) as fle:
             fle.name = f"{wrd}-meanings.txt"
-            await infinato_bot.send_file(
+            await ultroid_bot.send_file(
                 event.chat_id,
                 out_file,
                 force_document=True,
@@ -73,7 +73,7 @@ async def mean(event):
         if len(x) > 4096:
             with io.BytesIO(str.encode(x)) as fle:
                 fle.name = f"{wrd}-synonyms.txt"
-                await infinato_bot.send_file(
+                await ultroid_bot.send_file(
                     event.chat_id,
                     out_file,
                     force_document=True,
@@ -105,7 +105,7 @@ async def mean(event):
         if len(x) > 4096:
             with io.BytesIO(str.encode(x)) as fle:
                 fle.name = f"{wrd}-antonyms.txt"
-                await infinato_bot.send_file(
+                await ultroid_bot.send_file(
                     event.chat_id,
                     out_file,
                     force_document=True,

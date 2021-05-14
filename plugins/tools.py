@@ -156,12 +156,12 @@ async def _(ult):
     else:
         mentions = f"**Bots in **{input_str}: \n"
         try:
-            chat = await infinato_bot.get_entity(input_str)
+            chat = await ultroid_bot.get_entity(input_str)
         except Exception as e:
             await eor(ult, str(e))
             return None
     try:
-        async for x in infinato_bot.iter_participants(
+        async for x in ultroid_bot.iter_participants(
             chat,
             filter=ChannelParticipantsBots,
         ):
@@ -496,7 +496,7 @@ async def _(event):
         ultd = final_output.replace("`", "").replace("*", "").replace("_", "")
         with io.BytesIO(str.encode(ultd)) as out_file:
             out_file.name = "eval.txt"
-            await infinato_bot.send_file(
+            await ultroid_bot.send_file(
                 event.chat_id,
                 out_file,
                 force_document=True,
@@ -539,12 +539,12 @@ async def lastname(steal):
         user_id = message.sender.id
     chat = "@SangMataInfo_bot"
     id = f"/search_id {user_id}"
-    check = await infinato_bot.get_entity(user_id)
+    check = await ultroid_bot.get_entity(user_id)
     if not isinstance(check, User) or check.bot:
         return await eor(steal, "Reply to Actual User's Message !")
     lol = await eor(steal, "`Processing !...`")
     try:
-        async with infinato_bot.conversation(chat) as conv:
+        async with ultroid_bot.conversation(chat) as conv:
             try:
                 msg = await conv.send_message(id)
                 response = await conv.get_response()

@@ -34,7 +34,7 @@ async def _(event):
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
         if previous_message.media:
-            downloaded_file_name = await infinato_bot.download_media(
+            downloaded_file_name = await ultroid_bot.download_media(
                 previous_message,
                 "fedlist",
             )
@@ -80,7 +80,7 @@ async def _(event):
             return
         elif isinstance(FBAN, str):
             try:
-                x = await infinato_bot(GetFullUserRequest(FBAN))
+                x = await ultroid_bot(GetFullUserRequest(FBAN))
                 uid = x.user.id
                 if str(uid) in DEVLIST:
                     await msg.edit("You can't ban my dev you noob!!")
@@ -97,7 +97,7 @@ async def _(event):
         chat = await event.get_chat()
     if not len(fedList):
         for a in range(3):
-            async with infinato_bot.conversation("@MissRose_bot") as bot_conv:
+            async with ultroid_bot.conversation("@MissRose_bot") as bot_conv:
                 await bot_conv.send_message("/start")
                 await asyncio.sleep(3)
                 await bot_conv.send_message("/myfeds")
@@ -115,7 +115,7 @@ async def _(event):
                     fedfile = await bot_conv.get_response()
                     await asyncio.sleep(3)
                     if fedfile.media:
-                        downloaded_file_name = await infinato_bot.download_media(
+                        downloaded_file_name = await ultroid_bot.download_media(
                             fedfile,
                             "fedlist",
                         )
@@ -157,7 +157,7 @@ async def _(event):
             return
     await msg.edit(f"FBaning in {len(fedList)} feds.")
     try:
-        await infinato_bot.send_message(chat, f"/start")
+        await ultroid_bot.send_message(chat, f"/start")
     except BaseException:
         await msg.edit("Specified FBan Group ID is incorrect.")
         return
@@ -169,12 +169,12 @@ async def _(event):
     exCount = 0
     for fed in fedList:
         if udB.get("EXCLUDE_FED") and fed in excludeFed:
-            await infinato_bot.send_message(chat, f"{fed} Excluded.")
+            await ultroid_bot.send_message(chat, f"{fed} Excluded.")
             exCount += 1
             continue
-        await infinato_bot.send_message(chat, f"/joinfed {fed}")
+        await ultroid_bot.send_message(chat, f"/joinfed {fed}")
         await asyncio.sleep(3)
-        await infinato_bot.send_message(chat, f"/fban {FBAN} {REASON}")
+        await ultroid_bot.send_message(chat, f"/fban {FBAN} {REASON}")
         await asyncio.sleep(3)
     try:
         os.remove("fedlist")
@@ -192,7 +192,7 @@ async def _(event):
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
         if previous_message.media:
-            downloaded_file_name = await infinato_bot.download_media(
+            downloaded_file_name = await ultroid_bot.download_media(
                 previous_message,
                 "fedlist",
             )
@@ -245,7 +245,7 @@ async def _(event):
         chat = await event.get_chat()
     if not len(fedList):
         for a in range(3):
-            async with infinato_bot.conversation("@MissRose_bot") as bot_conv:
+            async with ultroid_bot.conversation("@MissRose_bot") as bot_conv:
                 await bot_conv.send_message("/start")
                 await asyncio.sleep(3)
                 await bot_conv.send_message("/myfeds")
@@ -263,7 +263,7 @@ async def _(event):
                     fedfile = await bot_conv.get_response()
                     await asyncio.sleep(3)
                     if fedfile.media:
-                        downloaded_file_name = await infinato_bot.download_media(
+                        downloaded_file_name = await ultroid_bot.download_media(
                             fedfile,
                             "fedlist",
                         )
@@ -305,7 +305,7 @@ async def _(event):
             return
     await msg.edit(f"UnFBaning in {len(fedList)} feds.")
     try:
-        await infinato_bot.send_message(chat, f"/start")
+        await ultroid_bot.send_message(chat, f"/start")
     except BaseException:
         await msg.edit("Specified FBan Group ID is incorrect.")
         return
@@ -317,12 +317,12 @@ async def _(event):
     exCount = 0
     for fed in fedList:
         if udB.get("EXCLUDE_FED") and fed in excludeFed:
-            await infinato_bot.send_message(chat, f"{fed} Excluded.")
+            await ultroid_bot.send_message(chat, f"{fed} Excluded.")
             exCount += 1
             continue
-        await infinato_bot.send_message(chat, f"/joinfed {fed}")
+        await ultroid_bot.send_message(chat, f"/joinfed {fed}")
         await asyncio.sleep(3)
-        await infinato_bot.send_message(chat, f"/unfban {FBAN} {REASON}")
+        await ultroid_bot.send_message(chat, f"/unfban {FBAN} {REASON}")
         await asyncio.sleep(3)
     try:
         os.remove("fedlist")

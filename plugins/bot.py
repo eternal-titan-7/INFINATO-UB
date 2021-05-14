@@ -76,7 +76,7 @@ async def lol(ult):
         return await eor(ult, als)
     elif pic is not None and "telegra" in pic:
         try:
-            await infinato_bot.send_message(
+            await ultroid_bot.send_message(
                 ult.chat_id, als, file=pic, link_preview=False
             )
             await ult.delete()
@@ -84,8 +84,8 @@ async def lol(ult):
             await eor(ult, als, link_preview=False)
     else:
         try:
-            await infinato_bot.send_message(ult.chat_id, file=pic)
-            await infinato_bot.send_message(ult.chat_id, als, link_preview=False)
+            await ultroid_bot.send_message(ult.chat_id, file=pic)
+            await ultroid_bot.send_message(ult.chat_id, als, link_preview=False)
             await ult.delete()
         except ChatSendMediaForbiddenError:
             await eor(ult, als, link_preview=False)

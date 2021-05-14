@@ -1,5 +1,5 @@
 
-from .. import BOT_MODE, udB, infinato_bot
+from .. import BOT_MODE, udB, ultroid_bot
 
 
 def str_to_list(text):  # Returns List
@@ -75,7 +75,7 @@ def is_fullsudo(id):
         if id == int(udB.get("OWNER_ID")):
             return True
     else:
-        if id == infinato_bot.uid:
+        if id == ultroid_bot.uid:
             return True
     id = str(id)
     x = udB.get("FULLSUDO")

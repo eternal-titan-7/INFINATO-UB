@@ -37,7 +37,7 @@ from infinatoUserbot.functions.ch_db import *
 from . import *
 
 
-@infinato_bot.on(events.NewMessage())
+@ultroid_bot.on(events.NewMessage())
 async def _(e):
     if not udB.get("AUTOPOST") == "True":
         return
@@ -50,13 +50,13 @@ async def _(e):
     for ys in y:
         try:
             if e.text and not e.media:
-                await infinato_bot.send_message(int(ys), e.text)
+                await ultroid_bot.send_message(int(ys), e.text)
             elif e.media and e.text:
-                await infinato_bot.send_file(int(ys), e.media, caption=e.text)
+                await ultroid_bot.send_file(int(ys), e.media, caption=e.text)
             else:
-                await infinato_bot.send_file(int(ys), e.media)
+                await ultroid_bot.send_file(int(ys), e.media)
         except Exception as e:
-            await infinato_bot.send_message(bot.me.id, str(e))
+            await ultroid_bot.send_message(bot.me.id, str(e))
 
 
 @ultroid_cmd(pattern="shift (.*)")
@@ -68,7 +68,7 @@ async def _(e):
         c = int(a)
     except Exception:
         try:
-            c = (await infinato_bot.get_entity(a)).id
+            c = (await ultroid_bot.get_entity(a)).id
         except Exception:
             await z.edit("invalid Channel given")
             return
@@ -76,14 +76,14 @@ async def _(e):
         d = int(b)
     except Exception:
         try:
-            d = (await infinato_bot.get_entity(b)).id
+            d = (await ultroid_bot.get_entity(b)).id
         except Exception:
             await z.edit("invalid Channel given")
             return
-    async for msg in infinato_bot.iter_messages(int(c), reverse=True):
+    async for msg in ultroid_bot.iter_messages(int(c), reverse=True):
         try:
             await asyncio.sleep(1)
-            await infinato_bot.send_message(int(d), msg)
+            await ultroid_bot.send_message(int(d), msg)
         except BaseException:
             pass
     await z.edit("Done")
@@ -160,7 +160,7 @@ async def list_all(event):
         MSG = msg.replace("*", "").replace("`", "")
         with io.BytesIO(str.encode(MSG)) as out_file:
             out_file.name = "channels.txt"
-            await infinato_bot.send_file(
+            await ultroid_bot.send_file(
                 event.chat_id,
                 out_file,
                 force_document=True,
@@ -244,7 +244,7 @@ async def list_all(event):
         MSG = msg.replace("*", "").replace("`", "")
         with io.BytesIO(str.encode(MSG)) as out_file:
             out_file.name = "channels.txt"
-            await infinato_bot.send_file(
+            await ultroid_bot.send_file(
                 event.chat_id,
                 out_file,
                 force_document=True,

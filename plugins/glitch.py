@@ -25,7 +25,7 @@ async def _(e):
     ok = await bot.download_media(reply.media)
     cmd = f"glitch_me gif --line_count 200 -f 10 -d 50 '{ok}' ult.gif"
     stdout, stderr = await bash(cmd)
-    await infinato_bot.send_file(
+    await ultroid_bot.send_file(
         e.chat_id, "ult.gif", force_document=False, reply_to=reply
     )
     await xx.delete()

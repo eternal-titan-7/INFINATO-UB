@@ -156,7 +156,7 @@ async def _(e):
         + "4. Copy link of that folder.\n"
         + "5. Send all characters which is after id= .",
     )
-    async with infinato_bot.asst.conversation(e.sender_id) as conv:
+    async with ultroid_bot.asst.conversation(e.sender_id) as conv:
         reply = conv.wait_event(events.NewMessage(from_users=e.sender_id))
         repl = await reply
         udB.set("GDRIVE_FOLDER_ID", repl.text)
@@ -172,7 +172,7 @@ async def _(e):
     if not e.is_private:
         return
     await e.edit("Send your CLIENT SECRET")
-    async with infinato_bot.asst.conversation(e.sender_id) as conv:
+    async with ultroid_bot.asst.conversation(e.sender_id) as conv:
         reply = conv.wait_event(events.NewMessage(from_users=e.sender_id))
         repl = await reply
         udB.set("GDRIVE_CLIENT_SECRET", repl.text)
@@ -188,7 +188,7 @@ async def _(e):
     if not e.is_private:
         return
     await e.edit("Send your CLIENT ID ending with .com")
-    async with infinato_bot.asst.conversation(e.sender_id) as conv:
+    async with ultroid_bot.asst.conversation(e.sender_id) as conv:
         reply = conv.wait_event(events.NewMessage(from_users=e.sender_id))
         repl = await reply
         if not repl.text.endswith(".com"):

@@ -63,21 +63,21 @@ if websocket:
 
 
 async def istart(ult):
-    await infinato_bot.start(ult)
-    infinato_bot.me = await infinato_bot.get_me()
-    infinato_bot.uid = telethon.utils.get_peer_id(infinato_bot.me)
-    infinato_bot.first_name = infinato_bot.me.first_name
-    if not infinato_bot.me.bot:
-        udB.set("OWNER_ID", infinato_bot.uid)
+    await ultroid_bot.start(ult)
+    ultroid_bot.me = await ultroid_bot.get_me()
+    ultroid_bot.uid = telethon.utils.get_peer_id(ultroid_bot.me)
+    ultroid_bot.first_name = ultroid_bot.me.first_name
+    if not ultroid_bot.me.bot:
+        udB.set("OWNER_ID", ultroid_bot.uid)
     if str(BOT_MODE) == "True":
-        OWNER = await infinato_bot.get_entity(int(udB.get("OWNER_ID")))
-        infinato_bot.me = OWNER
+        OWNER = await ultroid_bot.get_entity(int(udB.get("OWNER_ID")))
+        ultroid_bot.me = OWNER
         asst.me = OWNER
-        infinato_bot.uid = OWNER.id
-        infinato_bot.first_name = OWNER.first_name
+        ultroid_bot.uid = OWNER.id
+        ultroid_bot.first_name = OWNER.first_name
 
 
-infinato_bot.asst = None
+ultroid_bot.asst = None
 
 
 async def bot_info(asst):
@@ -109,12 +109,12 @@ else:
 if Var.BOT_TOKEN:
     LOGS.info("Starting INFINATO...")
     try:
-        infinato_bot.asst = TelegramClient(
+        ultroid_bot.asst = TelegramClient(
             "infinato", api_id=Var.API_ID, api_hash=Var.API_HASH
         ).start(bot_token=Var.BOT_TOKEN)
-        asst = infinato_bot.asst
-        infinato_bot.loop.run_until_complete(istart(asst))
-        infinato_bot.loop.run_until_complete(bot_info(asst))
+        asst = ultroid_bot.asst
+        ultroid_bot.loop.run_until_complete(istart(asst))
+        ultroid_bot.loop.run_until_complete(bot_info(asst))
         LOGS.info("Done, startup completed")
         LOGS.info(mode)
     except AuthKeyDuplicatedError:
@@ -127,7 +127,7 @@ if Var.BOT_TOKEN:
         exit(1)
 else:
     LOGS.info(mode)
-    infinato_bot.start()
+    ultroid_bot.start()
 
 BOTINVALID_PLUGINS = [
     "globaltools",
@@ -229,11 +229,11 @@ if Plug_channel:
                     chat = int(Plug_channel)
                 except BaseException:
                     return
-            async for x in infinato_bot.iter_messages(
+            async for x in ultroid_bot.iter_messages(
                 chat, search=".py", filter=InputMessagesFilterDocument
             ):
                 await asyncio.sleep(0.6)
-                files = await infinato_bot.download_media(x.media, "./addons/")
+                files = await ultroid_bot.download_media(x.media, "./addons/")
                 file = Path(files)
                 plugin = file.stem
                 if "(" not in files:
@@ -267,50 +267,50 @@ if pmbot == "True":
 
 async def semxy():
     try:
-        xx = await infinato_bot.get_entity(asst.me.username)
+        xx = await ultroid_bot.get_entity(asst.me.username)
         if xx.photo is None:
             LOGS.info("Customising Ur Assistant Bot in @BOTFATHER")
             UL = f"@{asst.me.username}"
-            if (infinato_bot.me.username) is None:
-                sir = infinato_bot.me.first_name
+            if (ultroid_bot.me.username) is None:
+                sir = ultroid_bot.me.first_name
             else:
-                sir = f"@{infinato_bot.me.username}"
-            await infinato_bot.send_message(
+                sir = f"@{ultroid_bot.me.username}"
+            await ultroid_bot.send_message(
                 Var.LOG_CHANNEL, "Auto Customisation Started on @botfather"
             )
             await asyncio.sleep(1)
-            await infinato_bot.send_message("botfather", "/cancel")
+            await ultroid_bot.send_message("botfather", "/cancel")
             await asyncio.sleep(1)
-            await infinato_bot.send_message("botfather", "/start")
+            await ultroid_bot.send_message("botfather", "/start")
             await asyncio.sleep(1)
-            await infinato_bot.send_message("botfather", "/setuserpic")
+            await ultroid_bot.send_message("botfather", "/setuserpic")
             await asyncio.sleep(1)
-            await infinato_bot.send_message("botfather", UL)
+            await ultroid_bot.send_message("botfather", UL)
             await asyncio.sleep(1)
-            await infinato_bot.send_file(
+            await ultroid_bot.send_file(
                 "botfather", "resources/extras/aassistant.jpg"
             )
             await asyncio.sleep(2)
-            await infinato_bot.send_message("botfather", "/setabouttext")
+            await ultroid_bot.send_message("botfather", "/setabouttext")
             await asyncio.sleep(1)
-            await infinato_bot.send_message("botfather", UL)
+            await ultroid_bot.send_message("botfather", UL)
             await asyncio.sleep(1)
-            await infinato_bot.send_message(
+            await ultroid_bot.send_message(
                 "botfather", f"✨ Hello ✨!! I'm Assistant Bot of {sir}"
             )
             await asyncio.sleep(2)
-            await infinato_bot.send_message("botfather", "/setdescription")
+            await ultroid_bot.send_message("botfather", "/setdescription")
             await asyncio.sleep(1)
-            await infinato_bot.send_message("botfather", UL)
+            await ultroid_bot.send_message("botfather", UL)
             await asyncio.sleep(1)
-            await infinato_bot.send_message(
+            await ultroid_bot.send_message(
                 "botfather",
                 f"✨PowerFull INFINATO Assistant Bot✨\n✨Master ~ {sir} ✨",
             )
             await asyncio.sleep(2)
-            await infinato_bot.send_message("botfather", "/start")
+            await ultroid_bot.send_message("botfather", "/start")
             await asyncio.sleep(1)
-            await infinato_bot.send_message(
+            await ultroid_bot.send_message(
                 Var.LOG_CHANNEL, "**Auto Customisation** Done at @BotFather"
             )
             LOGS.info("Customisation Done")
@@ -323,7 +323,7 @@ async def hehe():
     if Var.LOG_CHANNEL:
         try:
             try:
-                await infinato_bot(
+                await ultroid_bot(
                     AddChatUserRequest(
                         chat_id=Var.LOG_CHANNEL,
                         user_id=asst.me.username,
@@ -332,7 +332,7 @@ async def hehe():
                 )
             except BaseException:
                 try:
-                    await infinato_bot(
+                    await ultroid_bot(
                         InviteToChannelRequest(
                             channel=Var.LOG_CHANNEL, users=[asst.me.username]
                         )
@@ -341,16 +341,16 @@ async def hehe():
                     LOGS.warning("WRONG CHANNEL/GROUP ID in LOG_CHANNEL Var")
                 except BaseException as ep:
                     LOGS.info(ep)
-            MSG = f"**INFINATO has been deployed!**\n➖➖➖➖➖➖➖➖➖\n**UserMode**: [{infinato_bot.me.first_name}](tg://user?id={infinato_bot.me.id})\n**Assistant**: @{asst.me.username}\n➖➖➖➖➖➖➖➖➖"
+            MSG = f"**INFINATO has been deployed!**\n➖➖➖➖➖➖➖➖➖\n**UserMode**: [{ultroid_bot.me.first_name}](tg://user?id={ultroid_bot.me.id})\n**Assistant**: @{asst.me.username}\n➖➖➖➖➖➖➖➖➖"
             BTTS = None
             updava = await AreUpdatesAvailable()
             if updava:
                 BTTS = [[Button.inline(text="Update Available", data="updtavail")]]
-            await infinato_bot.asst.send_message(Var.LOG_CHANNEL, MSG, buttons=BTTS)
+            await ultroid_bot.asst.send_message(Var.LOG_CHANNEL, MSG, buttons=BTTS)
         except BaseException:
             try:
-                MSG = f"**INFINATO has been deployed!**\n➖➖➖➖➖➖➖➖➖\n**UserMode**: [{infinato_bot.me.first_name}](tg://user?id={infinato_bot.me.id})\n**Assistant**: @{asst.me.username}\n➖➖➖➖➖➖➖➖➖"
-                await infinato_bot.send_message(Var.LOG_CHANNEL, MSG)
+                MSG = f"**INFINATO has been deployed!**\n➖➖➖➖➖➖➖➖➖\n**UserMode**: [{ultroid_bot.me.first_name}](tg://user?id={ultroid_bot.me.id})\n**Assistant**: @{asst.me.username}\n➖➖➖➖➖➖➖➖➖"
+                await ultroid_bot.send_message(Var.LOG_CHANNEL, MSG)
             except PeerIdInvalidError:
                 LOGS.warning("WRONG CHANNEL/GROUP ID in LOG_CHANNEL Var")
             except BaseException as ef:
@@ -358,10 +358,10 @@ async def hehe():
 
 
 if str(BOT_MODE) != "True":
-    infinato_bot.loop.run_until_complete(semxy())
+    ultroid_bot.loop.run_until_complete(semxy())
     if Plug_channel:
-        infinato_bot.loop.run_until_complete(plug())
-infinato_bot.loop.run_until_complete(hehe())
+        ultroid_bot.loop.run_until_complete(plug())
+ultroid_bot.loop.run_until_complete(hehe())
 
 LOGS.info(
     """
@@ -372,4 +372,4 @@ LOGS.info(
 )
 
 if __name__ == "__main__":
-    infinato_bot.run_until_disconnected()
+    ultroid_bot.run_until_disconnected()

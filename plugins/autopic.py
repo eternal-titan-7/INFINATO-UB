@@ -37,9 +37,9 @@ async def autopic(e):
             if not ge == "True":
                 return
             au = "https://unsplash.com" + lie["href"]
-            et = await infinato_bot(getweb(au))
+            et = await ultroid_bot(getweb(au))
             try:
-                kar = await infinato_bot.download_media(et.webpage.photo)
+                kar = await ultroid_bot.download_media(et.webpage.photo)
             except AttributeError:
                 ct = r.get(au).content
                 bsc = bs(ct, "html.parser", from_encoding="utf-8")
@@ -47,8 +47,8 @@ async def autopic(e):
                 li = ft[0]["src"]
                 kar = "autopic.png"
                 urllib.request.urlretrieve(li, kar)
-            file = await infinato_bot.upload_file(kar)
-            await infinato_bot(UploadProfilePhotoRequest(file))
+            file = await ultroid_bot.upload_file(kar)
+            await ultroid_bot(UploadProfilePhotoRequest(file))
             os.remove(kar)
             await asyncio.sleep(1111)
 

@@ -22,14 +22,14 @@ async def dm(e):
     msg = ""
     masg = await e.get_reply_message()
     if e.reply_to_msg_id:
-        await infinato_bot.send_message(chat_id, masg)
+        await ultroid_bot.send_message(chat_id, masg)
         await eod(e, "`⚜️Message Delivered!`", time=4)
     for i in c[1:]:
         msg += i + " "
     if msg == "":
         return
     try:
-        await infinato_bot.send_message(chat_id, msg)
+        await ultroid_bot.send_message(chat_id, msg)
         await eod(e, "`⚜️Message Delivered!⚜️`", time=4)
     except BaseException:
         await eod(

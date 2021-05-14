@@ -80,7 +80,7 @@ async def waifu(animu):
     waifus = [32, 33, 37, 40, 41, 42, 58, 20]
     finalcall = "#" + (str(random.choice(waifus)))
     try:
-        sticcers = await infinato_bot.inline_query(
+        sticcers = await ultroid_bot.inline_query(
             "stickerizerbot",
             f"{finalcall}{(deEmojify(text))}",
         )
@@ -138,7 +138,7 @@ async def uconverter(event):
 )
 async def hehe(args):
     xx = await eor(args, "`Processing...`")
-    user = await infinato_bot.get_me()
+    user = await ultroid_bot.get_me()
     if not user.username:
         user.username = user.first_name
     message = await args.get_reply_message()
@@ -150,11 +150,11 @@ async def hehe(args):
         if isinstance(message.media, MessageMediaPhoto):
             await xx.edit(f"`{random.choice(KANGING_STR)}`")
             photo = io.BytesIO()
-            photo = await infinato_bot.download_media(message.photo, photo)
+            photo = await ultroid_bot.download_media(message.photo, photo)
         elif "image" in message.media.document.mime_type.split("/"):
             await xx.edit(f"`{random.choice(KANGING_STR)}`")
             photo = io.BytesIO()
-            await infinato_bot.download_file(message.media.document, photo)
+            await ultroid_bot.download_file(message.media.document, photo)
             if (
                 DocumentAttributeFilename(file_name="sticker.webp")
                 in message.media.document.attributes
@@ -170,7 +170,7 @@ async def hehe(args):
             photo = "ult.webp"
         elif "tgsticker" in message.media.document.mime_type:
             await xx.edit(f"`{random.choice(KANGING_STR)}`")
-            await infinato_bot.download_file(
+            await ultroid_bot.download_file(
                 message.media.document,
                 "AnimatedSticker.tgs",
             )
@@ -196,7 +196,7 @@ async def hehe(args):
             emoji = "🔰"
         pack = 1
         if len(splat) == 3:
-            pack = splat[2]  # User sent infinato_both
+            pack = splat[2]  # User sent ultroid_both
             emoji = splat[1]
         elif len(splat) == 2:
             if splat[1].isnumeric():
@@ -227,10 +227,10 @@ async def hehe(args):
             "  A <strong>Telegram</strong> user has created the <strong>Sticker&nbsp;Set</strong>."
             not in htmlstr
         ):
-            async with infinato_bot.conversation("@Stickers") as conv:
+            async with ultroid_bot.conversation("@Stickers") as conv:
                 await conv.send_message("/addsticker")
                 await conv.get_response()
-                await infinato_bot.send_read_acknowledge(conv.chat_id)
+                await ultroid_bot.send_read_acknowledge(conv.chat_id)
                 await conv.send_message(packname)
                 x = await conv.get_response()
                 while "120" in x.text:
@@ -247,10 +247,10 @@ async def hehe(args):
                     if x.text == "Invalid pack selected.":
                         await conv.send_message(cmd)
                         await conv.get_response()
-                        await infinato_bot.send_read_acknowledge(conv.chat_id)
+                        await ultroid_bot.send_read_acknowledge(conv.chat_id)
                         await conv.send_message(packnick)
                         await conv.get_response()
-                        await infinato_bot.send_read_acknowledge(conv.chat_id)
+                        await ultroid_bot.send_read_acknowledge(conv.chat_id)
                         if is_anim:
                             await conv.send_file("AnimatedSticker.tgs")
                             remove("AnimatedSticker.tgs")
@@ -259,21 +259,21 @@ async def hehe(args):
                             await conv.send_file(file, force_document=True)
                         await conv.get_response()
                         await conv.send_message(emoji)
-                        await infinato_bot.send_read_acknowledge(conv.chat_id)
+                        await ultroid_bot.send_read_acknowledge(conv.chat_id)
                         await conv.get_response()
                         await conv.send_message("/publish")
                         if is_anim:
                             await conv.get_response()
                             await conv.send_message(f"<{packnick}>")
                         await conv.get_response()
-                        await infinato_bot.send_read_acknowledge(conv.chat_id)
+                        await ultroid_bot.send_read_acknowledge(conv.chat_id)
                         await conv.send_message("/skip")
-                        await infinato_bot.send_read_acknowledge(conv.chat_id)
+                        await ultroid_bot.send_read_acknowledge(conv.chat_id)
                         await conv.get_response()
                         await conv.send_message(packname)
-                        await infinato_bot.send_read_acknowledge(conv.chat_id)
+                        await ultroid_bot.send_read_acknowledge(conv.chat_id)
                         await conv.get_response()
-                        await infinato_bot.send_read_acknowledge(conv.chat_id)
+                        await ultroid_bot.send_read_acknowledge(conv.chat_id)
                         await xx.edit(
                             f"`Sticker added in a Different Pack !\
                             \nThis Pack is Newly created!\
@@ -294,20 +294,20 @@ async def hehe(args):
                     )
                     return
                 await conv.send_message(emoji)
-                await infinato_bot.send_read_acknowledge(conv.chat_id)
+                await ultroid_bot.send_read_acknowledge(conv.chat_id)
                 await conv.get_response()
                 await conv.send_message("/done")
                 await conv.get_response()
-                await infinato_bot.send_read_acknowledge(conv.chat_id)
+                await ultroid_bot.send_read_acknowledge(conv.chat_id)
         else:
             await xx.edit("`Brewing a new Pack...`")
-            async with infinato_bot.conversation("Stickers") as conv:
+            async with ultroid_bot.conversation("Stickers") as conv:
                 await conv.send_message(cmd)
                 await conv.get_response()
-                await infinato_bot.send_read_acknowledge(conv.chat_id)
+                await ultroid_bot.send_read_acknowledge(conv.chat_id)
                 await conv.send_message(packnick)
                 await conv.get_response()
-                await infinato_bot.send_read_acknowledge(conv.chat_id)
+                await ultroid_bot.send_read_acknowledge(conv.chat_id)
                 if is_anim:
                     await conv.send_file("AnimatedSticker.tgs")
                     remove("AnimatedSticker.tgs")
@@ -321,7 +321,7 @@ async def hehe(args):
                     )
                     return
                 await conv.send_message(emoji)
-                await infinato_bot.send_read_acknowledge(conv.chat_id)
+                await ultroid_bot.send_read_acknowledge(conv.chat_id)
                 await conv.get_response()
                 await conv.send_message("/publish")
                 if is_anim:
@@ -329,14 +329,14 @@ async def hehe(args):
                     await conv.send_message(f"<{packnick}>")
 
                 await conv.get_response()
-                await infinato_bot.send_read_acknowledge(conv.chat_id)
+                await ultroid_bot.send_read_acknowledge(conv.chat_id)
                 await conv.send_message("/skip")
-                await infinato_bot.send_read_acknowledge(conv.chat_id)
+                await ultroid_bot.send_read_acknowledge(conv.chat_id)
                 await conv.get_response()
                 await conv.send_message(packname)
-                await infinato_bot.send_read_acknowledge(conv.chat_id)
+                await ultroid_bot.send_read_acknowledge(conv.chat_id)
                 await conv.get_response()
-                await infinato_bot.send_read_acknowledge(conv.chat_id)
+                await ultroid_bot.send_read_acknowledge(conv.chat_id)
         await xx.edit(
             f"`Kanged!`\
             \n`Emoji` - {emoji}\
@@ -452,7 +452,7 @@ async def ultiny(event):
         await eor(event, "`Reply To Media`")
         return
     xx = await eor(event, "`processing...`")
-    ik = await infinato_bot.download_media(reply)
+    ik = await ultroid_bot.download_media(reply)
     im1 = Image.open("resources/extras/blank.png")
     if ik.endswith(".tgs"):
         await event.client.download_media(reply, "ult.tgs")

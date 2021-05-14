@@ -90,7 +90,7 @@ async def lsnote(e):
         await eor(e, "No Notes Found Here")
 
 
-@infinato_bot.on(events.NewMessage())
+@ultroid_bot.on(events.NewMessage())
 async def notes(e):
     xx = e.text
     if not xx.startswith("#"):

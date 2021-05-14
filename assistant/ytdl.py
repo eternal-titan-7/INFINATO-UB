@@ -124,8 +124,8 @@ async def _(sur):
         )
         MSG = f"**{ytdl_data['title']}** Uploaded Successfully !"
         chat = sur.chat_id
-        whome = infinato_bot
-        if sur.is_private and sur.sender_id != infinato_bot.uid:
+        whome = ultroid_bot
+        if sur.is_private and sur.sender_id != ultroid_bot.uid:
             chat = sur.sender_id
             whome = asst
             MSG += f"\nGet at {asst.me.username}"
@@ -207,8 +207,8 @@ async def _(fuk):
         )
         MSG = f"**{ytdl_data['title']}** Uploaded Successfully !"
         chat = fuk.chat_id
-        whome = infinato_bot
-        if event.is_private and event.sender_id != infinato_bot.uid:
+        whome = ultroid_bot
+        if event.is_private and event.sender_id != ultroid_bot.uid:
             chat = fuk.sender_id
             whome = asst
             MSG += f"\nGet at {asst.me.username}"

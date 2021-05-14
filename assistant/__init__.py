@@ -6,8 +6,8 @@ from telethon import Button, custom
 
 from strings import get_languages, get_string
 
-OWNER_NAME = infinato_bot.me.first_name
-OWNER_ID = infinato_bot.me.id
+OWNER_NAME = ultroid_bot.me.first_name
+OWNER_ID = ultroid_bot.me.id
 
 
 async def setit(event, name, value):

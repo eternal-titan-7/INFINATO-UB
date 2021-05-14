@@ -40,28 +40,28 @@ async def assistant(event):
                 ok = "You can contact my master using this bot!!\n\nSend your Message, I will Deliver it To Master."
             try:
                 await event.reply(
-                f"Hey there [{get_display_name(u)}](tg://user?id={u.id}), this is Assistant of [{infinato_bot.me.first_name}](tg://user?id={infinato_bot.uid})!\n\n{ok}",
-                buttons=[Button.url("MY MASTER", url=f"https://t.me/{infinato_bot.me.username}")],
+                f"Hey there [{get_display_name(u)}](tg://user?id={u.id}), this is Assistant of [{ultroid_bot.me.first_name}](tg://user?id={ultroid_bot.uid})!\n\n{ok}",
+                buttons=[Button.url("MY MASTER", url=f"https://t.me/{ultroid_bot.me.username}")],
                 file="https://telegra.ph/file/1f1c492188821df1112e6.mp4"
                 )
             except:
                 await event.reply(
-                    f"Hey there [{get_display_name(u)}](tg://user?id={u.id}), this is Assistant of [{infinato_bot.me.first_name}](tg://user?id={infinato_bot.uid})!\n\n{ok}",
-                    buttons=[Button.url("MY MASTER", url=f"https://t.me/{infinato_bot.me.username}")],
+                    f"Hey there [{get_display_name(u)}](tg://user?id={u.id}), this is Assistant of [{ultroid_bot.me.first_name}](tg://user?id={ultroid_bot.uid})!\n\n{ok}",
+                    buttons=[Button.url("MY MASTER", url=f"https://t.me/{ultroid_bot.me.username}")],
                 )
         else:
-            me = f"[{infinato_bot.me.first_name}](tg://user?id={infinato_bot.uid})"
+            me = f"[{ultroid_bot.me.first_name}](tg://user?id={ultroid_bot.uid})"
             mention = f"[{get_display_name(u)}](tg://user?id={u.id})"
             try:
                 await event.reply(
                     Redis("STARTMSG").format(me=me, mention=mention),
-                    buttons=[Button.url("MY MASTER", url=f"https://t.me/{infinato_bot.me.username}")],
+                    buttons=[Button.url("MY MASTER", url=f"https://t.me/{ultroid_bot.me.username}")],
                     file="https://telegra.ph/file/1f1c492188821df1112e6.mp4"
                 )
             except:
                 await event.reply(
                     Redis("STARTMSG").format(me=me, mention=mention),
-                    buttons=[Button.url("MY MASTER", url=f"https://t.me/{infinato_bot.me.username}")],
+                    buttons=[Button.url("MY MASTER", url=f"https://t.me/{ultroid_bot.me.username}")],
                 )
 
 

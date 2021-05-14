@@ -42,7 +42,7 @@ async def _(e):
     r = await e.get_reply_message()
     if not (r and r.media):
         return await eor(e, "`Reply to img`")
-    dl = await infinato_bot.download_media(r.media)
+    dl = await ultroid_bot.download_media(r.media)
     variable = uf(dl)
     os.remove(dl)
     nn = "https://telegra.ph" + variable[0]
@@ -78,7 +78,7 @@ async def imak(event):
         )
     k = time.time()
     xxx = await uploader(inp, inp, k, xx, "Uploading...")
-    await infinato_bot.send_file(
+    await ultroid_bot.send_file(
         event.chat_id,
         xxx,
         force_document=True,
@@ -97,7 +97,7 @@ async def imak(event):
         await eor(event, "Reply to any media.")
         return
     xx = await eor(event, "`Processing...`")
-    image = await infinato_bot.download_media(reply)
+    image = await ultroid_bot.download_media(reply)
     file = "ult.png"
     if image.endswith((".webp", ".png")):
         c = Image.open(image)
@@ -106,7 +106,7 @@ async def imak(event):
         img = cv2.VideoCapture(image)
         ult, roid = img.read()
         cv2.imwrite(file, roid)
-    await infinato_bot.send_file(event.chat_id, file, reply_to=reply)
+    await ultroid_bot.send_file(event.chat_id, file, reply_to=reply)
     await xx.delete()
     os.remove(file)
     os.remove(image)
@@ -119,7 +119,7 @@ async def smak(event):
         await eor(event, "Reply to any media.")
         return
     xx = await eor(event, "`Processing...`")
-    image = await infinato_bot.download_media(reply)
+    image = await ultroid_bot.download_media(reply)
     file = "ult.webp"
     if image.endswith((".webp", ".png", ".jpg")):
         c = Image.open(image)
@@ -128,7 +128,7 @@ async def smak(event):
         img = cv2.VideoCapture(image)
         ult, roid = img.read()
         cv2.imwrite(file, roid)
-    await infinato_bot.send_file(event.chat_id, file, reply_to=reply)
+    await ultroid_bot.send_file(event.chat_id, file, reply_to=reply)
     await xx.delete()
     os.remove(file)
     os.remove(image)

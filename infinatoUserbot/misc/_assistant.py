@@ -11,13 +11,13 @@ from ..dB.core import *
 from ..utils import *
 from ._decorators import sed
 
-OWNER_NAME = infinato_bot.me.first_name
-OWNER_ID = infinato_bot.me.id
+OWNER_NAME = ultroid_bot.me.first_name
+OWNER_ID = ultroid_bot.me.id
 INFINATO_PIC = "https://telegra.ph/file/9c22477daacf4ca4a2914.png"
 MSG = f"""
 **INFINATO BOT**
 ➖➖➖➖➖➖➖➖➖➖
-**Owner**: [{get_display_name(infinato_bot.me)}](tg://user?id={infinato_bot.me.id})
+**Owner**: [{get_display_name(ultroid_bot.me)}](tg://user?id={ultroid_bot.me.id})
 ➖➖➖➖➖➖➖➖➖➖
 """
 
@@ -41,7 +41,7 @@ def inline_owner():
 def asst_cmd(dec):
     def ult(func):
         pattern = "^/" + dec  # todo - handlers for assistant?
-        infinato_bot.asst.add_event_handler(
+        ultroid_bot.asst.add_event_handler(
             func, events.NewMessage(incoming=True, pattern=pattern)
         )
 
@@ -51,7 +51,7 @@ def asst_cmd(dec):
 def callback(sed):
     def ultr(func):
         data = sed
-        infinato_bot.asst.add_event_handler(
+        ultroid_bot.asst.add_event_handler(
             func, events.callbackquery.CallbackQuery(data=data)
         )
 
@@ -60,7 +60,7 @@ def callback(sed):
 
 def inline():
     def ultr(func):
-        infinato_bot.asst.add_event_handler(func, events.InlineQuery)
+        ultroid_bot.asst.add_event_handler(func, events.InlineQuery)
 
     return ultr
 
@@ -68,7 +68,7 @@ def inline():
 def in_pattern(pat):
     def don(func):
         pattern = pat
-        infinato_bot.asst.add_event_handler(func, events.InlineQuery(pattern=pattern))
+        ultroid_bot.asst.add_event_handler(func, events.InlineQuery(pattern=pattern))
 
     return don
 

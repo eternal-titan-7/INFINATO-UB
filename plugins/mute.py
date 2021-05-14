@@ -29,7 +29,7 @@ from telethon import events
 from . import *
 
 
-@infinato_bot.on(events.NewMessage(incoming=True))
+@ultroid_bot.on(events.NewMessage(incoming=True))
 async def watcher(event):
     if is_muted(f"{event.sender_id}_{event.chat_id}"):
         await event.delete()
@@ -144,7 +144,7 @@ async def _(e):
             name = (await event.client.get_entity(userid)).first_name
     else:
         return await eod(xx, "`Reply to someone or use its id...`", time=3)
-    if userid == infinato_bot.uid:
+    if userid == ultroid_bot.uid:
         return await eod(xx, "`I can't mute myself.`", time=3)
     try:
         bun = await ban_time(xx, tme)
@@ -225,7 +225,7 @@ async def _(e):
             name = (await e.client.get_entity(userid)).first_name
     else:
         return await eod(xx, "`Reply to someone or use its id...`", time=3)
-    if userid == infinato_bot.uid:
+    if userid == ultroid_bot.uid:
         return await eod(xx, "`I can't mute myself.`", time=3)
     try:
         await e.client.edit_permissions(

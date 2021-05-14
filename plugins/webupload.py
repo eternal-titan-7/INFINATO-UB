@@ -46,7 +46,7 @@ async def _(event):
         else:
             return await eod(xx, "`Reply to media file`", time=5)
     try:
-        results = await infinato_bot.inline_query(
+        results = await ultroid_bot.inline_query(
             asst.me.username,
             f"fl2lnk {file_name}",
         )

@@ -38,8 +38,8 @@ async def mobs(e):
             ty = fp.findNext()
             out += f"- **{ty.text}** - `{ty.findNext().text}`\n"
         out += "_"
-        await infinato_bot.send_file(e.chat_id, file=imu, caption=out)
-        if e.sender_id == infinato_bot.uid:
+        await ultroid_bot.send_file(e.chat_id, file=imu, caption=out)
+        if e.sender_id == ultroid_bot.uid:
             await bt.delete()
     except Exception as a:
         print(a)

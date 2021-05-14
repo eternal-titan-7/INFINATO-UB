@@ -70,7 +70,7 @@ async def prmte(ult):
     if not user:
         return await xx.edit("`Reply to a user to promote him!`")
     try:
-        await infinato_bot(
+        await ultroid_bot(
             EditAdminRequest(
                 ult.chat_id,
                 user.id,
@@ -108,7 +108,7 @@ async def dmote(ult):
     if not user:
         return await xx.edit("`Reply to a user to demote him!`")
     try:
-        await infinato_bot(
+        await ultroid_bot(
             EditAdminRequest(
                 ult.chat_id,
                 user.id,
@@ -146,7 +146,7 @@ async def bban(ult):
     if str(user.id) in DEVLIST:
         return await xx.edit(" `LoL, I can't Ban my Developer 😂`")
     try:
-        await infinato_bot.edit_permissions(ult.chat_id, user.id, view_messages=False)
+        await ultroid_bot.edit_permissions(ult.chat_id, user.id, view_messages=False)
     except BadRequestError:
         return await xx.edit("`I don't have the right to ban a user.`")
     except UserIdInvalidError:
@@ -181,7 +181,7 @@ async def uunban(ult):
     if not user:
         return await xx.edit("`Reply to a user or give username to unban him!`")
     try:
-        await infinato_bot.edit_permissions(ult.chat_id, user.id, view_messages=True)
+        await ultroid_bot.edit_permissions(ult.chat_id, user.id, view_messages=True)
     except BadRequestError:
         return await xx.edit("`I don't have the right to unban a user.`")
     except UserIdInvalidError:
@@ -211,10 +211,10 @@ async def kck(ult):
         return await xx.edit("`Kick? Whom? I couldn't get his info...`")
     if str(user.id) in DEVLIST:
         return await xx.edit(" `Lol, I can't Kick my Developer`😂")
-    if user.id == infinato_bot.uid:
+    if user.id == ultroid_bot.uid:
         return await xx.edit("`You Can't kick urself`")
     try:
-        await infinato_bot.kick_participant(ult.chat_id, user.id)
+        await ultroid_bot.kick_participant(ult.chat_id, user.id)
         await asyncio.sleep(0.5)
     except BadRequestError:
         return await xx.edit("`I don't have the right to kick a user.`")
@@ -239,7 +239,7 @@ async def pin(msg):
     if not msg.is_private:
         # for pin(s) in private messages
         await msg.get_chat()
-    cht = await infinato_bot.get_entity(msg.chat_id)
+    cht = await ultroid_bot.get_entity(msg.chat_id)
     xx = msg.reply_to_msg_id
     tt = msg.text
     try:
@@ -255,7 +255,7 @@ async def pin(msg):
         slnt = True
         x = await eor(msg, get_string("com_1"))
         try:
-            await infinato_bot.pin_message(msg.chat_id, xx, notify=slnt)
+            await ultroid_bot.pin_message(msg.chat_id, xx, notify=slnt)
         except BadRequestError:
             return await x.edit("`Hmm, I'm have no rights here...`")
         except Exception as e:
@@ -263,7 +263,7 @@ async def pin(msg):
         await x.edit(f"`Pinned` [this message](https://t.me/c/{cht.id}/{xx})!")
     else:
         try:
-            await infinato_bot.pin_message(msg.chat_id, xx, notify=False)
+            await ultroid_bot.pin_message(msg.chat_id, xx, notify=False)
         except BadRequestError:
             return await eor(msg, "`Hmm, I'm have no rights here...`")
         except Exception as e:
@@ -286,14 +286,14 @@ async def unp(ult):
     msg = ult.reply_to_msg_id
     if msg and not ch:
         try:
-            await infinato_bot.unpin_message(ult.chat_id, msg)
+            await ultroid_bot.unpin_message(ult.chat_id, msg)
         except BadRequestError:
             return await xx.edit("`Hmm, I'm have no rights here...`")
         except Exception as e:
             return await xx.edit(f"**ERROR:**\n`{str(e)}`")
     elif ch == "all":
         try:
-            await infinato_bot.unpin_message(ult.chat_id)
+            await ultroid_bot.unpin_message(ult.chat_id)
         except BadRequestError:
             return await xx.edit("`Hmm, I'm have no rights here...`")
         except Exception as e:
@@ -313,7 +313,7 @@ async def fastpurger(purg):
     match = purg.pattern_match.group(1)
     if match and purg.text[6] == " ":
         p = 0
-        async for msg in infinato_bot.iter_messages(purg.chat_id, limit=int(match)):
+        async for msg in ultroid_bot.iter_messages(purg.chat_id, limit=int(match)):
             await msg.delete()
             p += 0
         return await eod(purg, f"Purged {p} Messages! ")
@@ -321,17 +321,17 @@ async def fastpurger(purg):
     count = 0
     if not (purg.reply_to_msg_id or match):
         return await eod(purg, "`Reply to a message to purge from.`", time=10)
-    async for msg in infinato_bot.iter_messages(chat, min_id=purg.reply_to_msg_id):
+    async for msg in ultroid_bot.iter_messages(chat, min_id=purg.reply_to_msg_id):
         msgs.append(msg)
         count = count + 1
         msgs.append(purg.reply_to_msg_id)
         if len(msgs) == 100:
-            await infinato_bot.delete_messages(chat, msgs)
+            await ultroid_bot.delete_messages(chat, msgs)
             msgs = []
 
     if msgs:
-        await infinato_bot.delete_messages(chat, msgs)
-    done = await infinato_bot.send_message(
+        await ultroid_bot.delete_messages(chat, msgs)
+    done = await ultroid_bot.send_message(
         purg.chat_id,
         "__Fast purge complete!__\n**Purged** `"
         + str(len(msgs))
@@ -355,7 +355,7 @@ async def fastpurgerme(purg):
             await eod(purg, "`Give a Valid Input.. `")
             return
         mp = 0
-        async for mm in infinato_bot.iter_messages(
+        async for mm in ultroid_bot.iter_messages(
             purg.chat_id, limit=nnt, from_user="me"
         ):
             await mm.delete()
@@ -371,7 +371,7 @@ async def fastpurgerme(purg):
             "`Reply to a message to purge from or use it like ``purgeme <num>`",
             time=10,
         )
-    async for msg in infinato_bot.iter_messages(
+    async for msg in ultroid_bot.iter_messages(
         chat,
         from_user="me",
         min_id=purg.reply_to_msg_id,
@@ -380,12 +380,12 @@ async def fastpurgerme(purg):
         count = count + 1
         msgs.append(purg.reply_to_msg_id)
         if len(msgs) == 100:
-            await infinato_bot.delete_messages(chat, msgs)
+            await ultroid_bot.delete_messages(chat, msgs)
             msgs = []
 
     if msgs:
-        await infinato_bot.delete_messages(chat, msgs)
-    done = await infinato_bot.send_message(
+        await ultroid_bot.delete_messages(chat, msgs)
+    done = await ultroid_bot.send_message(
         purg.chat_id,
         "__Fast purge complete!__\n**Purged** `" + str(count) + "` **messages.**",
     )
@@ -442,10 +442,10 @@ async def delete_it(delme):
 async def editer(edit):
     message = edit.text
     chat = await edit.get_input_chat()
-    self_id = await infinato_bot.get_peer_id("me")
+    self_id = await ultroid_bot.get_peer_id("me")
     string = str(message[6:])
     i = 1
-    async for message in infinato_bot.iter_messages(chat, self_id):
+    async for message in ultroid_bot.iter_messages(chat, self_id):
         if i == 2:
             await message.edit(string)
             await edit.delete()

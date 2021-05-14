@@ -26,7 +26,7 @@ async def _(e):
     if e.reply_to_msg_id:
         okk = (await e.get_reply_message()).sender_id
         try:
-            zyx = await infinato_bot(gu(id=okk))
+            zyx = await ultroid_bot(gu(id=okk))
             put = zyx.user.username
         except ValueError as ex:
             return await eor(e, str(ex))
@@ -36,7 +36,7 @@ async def _(e):
         put = e.pattern_match.group(1)
     if put:
         try:
-            results = await infinato_bot.inline_query(asst.me.username, f"msg {put}")
+            results = await ultroid_bot.inline_query(asst.me.username, f"msg {put}")
         except rep:
             return await eor(
                 e,
@@ -67,7 +67,7 @@ async def _(e):
         desc = "Touch me"
     if "wspr" not in vvv:
         try:
-            logi = await infinato_bot(gu(id=query))
+            logi = await ultroid_bot(gu(id=query))
             name = logi.user.first_name
             ids = logi.user.id
             username = logi.user.username
@@ -112,7 +112,7 @@ async def _(e):
             )
     else:
         try:
-            logi = await infinato_bot.get_entity(query)
+            logi = await ultroid_bot.get_entity(query)
             button = [
                 Button.inline("Secret Msg", data=f"dd_{logi.id}"),
                 Button.inline("Delete Msg", data=f"del"),

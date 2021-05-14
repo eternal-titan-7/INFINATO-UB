@@ -95,7 +95,7 @@ async def _(event):
     if not reply.media:
         return await eor(event, "`Reply To a Black nd White Image`")
     xx = await eor(event, "`Coloring image 🎨🖌️...`")
-    image = await infinato_bot.download_media(reply.media)
+    image = await ultroid_bot.download_media(reply.media)
     img = cv2.VideoCapture(image)
     ret, frame = img.read()
     cv2.imwrite("ult.jpg", frame)
@@ -115,7 +115,7 @@ async def _(event):
             r.json()["status"] + "\nGet api nd set `{i}setredis DEEP_API key`"
         )
     r_json = r.json()["output_url"]
-    await infinato_bot.send_file(event.chat_id, r_json, reply_to=reply)
+    await ultroid_bot.send_file(event.chat_id, r_json, reply_to=reply)
     await xx.delete()
 
 

@@ -73,7 +73,7 @@ async def lsnote(e):
         await eor(e, "No Filters Found Here")
 
 
-@infinato_bot.on(events.NewMessage())
+@ultroid_bot.on(events.NewMessage())
 async def fl(e):
     xx = (e.text).lower()
     chat = e.chat_id

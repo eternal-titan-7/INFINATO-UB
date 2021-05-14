@@ -66,7 +66,7 @@ async def lsnote(e):
         await eor(e, "No Blacklist word Found Here")
 
 
-@infinato_bot.on(events.NewMessage(incoming=True))
+@ultroid_bot.on(events.NewMessage(incoming=True))
 async def bl(e):
     chat = e.chat_id
     x = get_blacklist(int(chat))

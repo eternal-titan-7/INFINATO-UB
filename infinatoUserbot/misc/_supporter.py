@@ -19,15 +19,15 @@ from ..dB.database import Var
 from ..functions.sudos import *
 from ..utils import *
 
-ALIVE_NAME = infinato_bot.me.first_name
+ALIVE_NAME = ultroid_bot.me.first_name
 BOTLOG = Var.LOG_CHANNEL
 BOTLOG_CHATID = Var.LOG_CHANNEL
 
 
-bot = infinato_bot
-borg = infinato_bot
-friday = infinato_bot
-jarvis = infinato_bot
+bot = ultroid_bot
+borg = ultroid_bot
+friday = ultroid_bot
+jarvis = ultroid_bot
 
 ok = udB.get("SUDOS")
 if ok:
@@ -114,7 +114,7 @@ def sudo():
     def decorator(function):
         @functools.wraps(function)
         async def wrapper(event):
-            if event.sender_id == infinato_bot.uid or is_sudo(event.sender_id):
+            if event.sender_id == ultroid_bot.uid or is_sudo(event.sender_id):
                 await function(event)
             else:
                 pass

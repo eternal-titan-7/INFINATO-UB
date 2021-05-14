@@ -53,7 +53,7 @@ async def gitsearch(event):
 **Following** - {ufollowing}
 """
     await xx.delete()
-    await infinato_bot.send_file(
+    await ultroid_bot.send_file(
         event.chat_id,
         upic,
         caption=fullusr,

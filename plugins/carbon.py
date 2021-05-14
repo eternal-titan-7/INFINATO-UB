@@ -175,7 +175,7 @@ async def crbn(event):
     if event.reply_to_msg_id:
         temp = await event.get_reply_message()
         if temp.media:
-            b = await infinato_bot.download_media(temp)
+            b = await ultroid_bot.download_media(temp)
             a = open(b)
             code = a.read()
             a.close()
@@ -187,7 +187,7 @@ async def crbn(event):
     carbon = Carbon(code=code)
     xx = await carbon.save("infinato_carbon")
     await xxxx.delete()
-    await infinato_bot.send_file(
+    await ultroid_bot.send_file(
         event.chat_id,
         xx,
         caption=f"Carbonised by [{OWNER_NAME}](tg://user?id={OWNER_ID})",
@@ -204,7 +204,7 @@ async def crbn(event):
     if event.reply_to_msg_id:
         temp = await event.get_reply_message()
         if temp.media:
-            b = await infinato_bot.download_media(temp)
+            b = await ultroid_bot.download_media(temp)
             a = open(b)
             code = a.read()
             a.close()
@@ -217,7 +217,7 @@ async def crbn(event):
     carbon = Carbon(code=code, background=col)
     xx = await carbon.save("infinato_carbon")
     await xxxx.delete()
-    await infinato_bot.send_file(
+    await ultroid_bot.send_file(
         event.chat_id,
         xx,
         caption=f"Carbonised by [{OWNER_NAME}](tg://user?id={OWNER_ID})",

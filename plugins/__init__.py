@@ -24,8 +24,8 @@ except ModuleNotFoundError:
 
 start_time = time.time()
 infinato_version = "v0.0.6"
-OWNER_NAME = infinato_bot.me.first_name
-OWNER_ID = infinato_bot.me.id
+OWNER_NAME = ultroid_bot.me.first_name
+OWNER_ID = ultroid_bot.me.id
 
 List = []
 Dict = {}

@@ -134,7 +134,7 @@ async def list_all(event):
         MSG = msg.replace("*", "").replace("`", "")
         with io.BytesIO(str.encode(MSG)) as out_file:
             out_file.name = "channels.txt"
-            await infinato_bot.send_file(
+            await ultroid_bot.send_file(
                 event.chat_id,
                 out_file,
                 force_document=True,
@@ -163,14 +163,14 @@ async def forw(event):
     error_count = 0
     for channel in channels:
         try:
-            await infinato_bot.forward_messages(int(channel), previous_message)
+            await ultroid_bot.forward_messages(int(channel), previous_message)
             sent_count += 1
             await x.edit(
                 f"Sent : {sent_count}\nError : {error_count}\nTotal : {len(channels)}",
             )
         except Exception:
             try:
-                await infinato_bot.send_message(
+                await ultroid_bot.send_message(
                     Var.LOG_CHANNEL,
                     f"Error in sending at {channel}.",
                 )
@@ -183,7 +183,7 @@ async def forw(event):
     await x.edit(f"{sent_count} messages sent with {error_count} errors.")
     if error_count > 0:
         try:
-            await infinato_bot.send_message(Var.LOG_CHANNEL, f"{error_count} Errors")
+            await ultroid_bot.send_message(Var.LOG_CHANNEL, f"{error_count} Errors")
         except BaseException:
             await x.edit("Set up log channel for checking errors.")
 
@@ -206,14 +206,14 @@ async def sending(event):
         if previous_message:
             for channel in channels:
                 try:
-                    await infinato_bot.send_message(int(channel), previous_message)
+                    await ultroid_bot.send_message(int(channel), previous_message)
                     sent_count += 1
                     await x.edit(
                         f"Sent : {sent_count}\nError : {error_count}\nTotal : {len(channels)}",
                     )
                 except Exception as error:
                     try:
-                        await infinato_bot.send_message(
+                        await ultroid_bot.send_message(
                             Var.LOG_CHANNEL,
                             f"Error in sending at {channel}.\n\n{error}",
                         )
@@ -226,7 +226,7 @@ async def sending(event):
             await x.edit(f"{sent_count} messages sent with {error_count} errors.")
             if error_count > 0:
                 try:
-                    await infinato_bot.send_message(
+                    await ultroid_bot.send_message(
                         Var.LOG_CHANNEL,
                         f"{error_count} Errors",
                     )

@@ -30,7 +30,7 @@ async def _(ult):
         except BaseException:
             pass
     else:
-        if ult.sender_id != infinato_bot.uid:
+        if ult.sender_id != ultroid_bot.uid:
             return await eod(ult, "`Sudo users can't add new sudos!`", time=10)
     ok = await eor(ult, "`Updating SUDO Users List ...`")
     if ult.reply_to_msg_id:
@@ -39,7 +39,7 @@ async def _(ult):
         name = (await ult.client.get_entity(int(id))).first_name
         sed.append(id)
         mmm = ""
-        if id == infinato_bot.me.id:
+        if id == ultroid_bot.me.id:
             mmm += "You cant add yourself as Sudo User..."
         elif is_sudo(id):
             mmm += f"[{name}](tg://user?id={id}) `is already a SUDO User ...`"
@@ -58,7 +58,7 @@ async def _(ult):
             name = ""
         sed.append(id)
         mmm = ""
-        if id == infinato_bot.me.id:
+        if id == ultroid_bot.me.id:
             mmm += "You cant add yourself as Sudo User..."
         elif is_sudo(id):
             if name != "":
@@ -94,7 +94,7 @@ async def _(ult):
         except BaseException:
             pass
     else:
-        if ult.sender_id != infinato_bot.uid:
+        if ult.sender_id != ultroid_bot.uid:
             return await eor(ult, "You are sudo user, You cant add other sudo user.")
     ok = await eor(ult, "`Updating SUDO Users List ...`")
     if ult.reply_to_msg_id:

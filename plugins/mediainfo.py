@@ -41,7 +41,7 @@ async def mi(e):
         )
         naam = dl.name
     else:
-        naam = await infinato_bot.download_media(r.media)
+        naam = await ultroid_bot.download_media(r.media)
     out, er = await bash(f"mediainfo '{naam}' --Output=HTML")
     urll = make_html_telegraph("Mediainfo", "INFINATO", out)
     if er:

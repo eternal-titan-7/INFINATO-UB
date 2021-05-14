@@ -140,7 +140,7 @@ async def who(event):
     if not message_id_to_reply:
         message_id_to_reply = None
     try:
-        await infinato_bot.send_file(
+        await ultroid_bot.send_file(
             event.chat_id,
             photo,
             caption=caption,
