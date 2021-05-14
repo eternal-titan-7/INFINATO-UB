@@ -1,3 +1,5 @@
+from telethon.tl.custom import Message
+
 from . import *
 
 
@@ -9,6 +11,18 @@ async def unlimitedspam(ult):
     while x == None:
         x = Redis("USPAM")
         await ult.respond(input)
+
+
+@ultroid_cmd(pattern="resend")
+async def _(ult: Message):
+    try:
+        await ult.delete()
+    except Exception as ex:
+        LOGS.info(ex)
+    if ult.reply_to_msg_id:
+        m = ult.get_reply_message()
+        if m:
+            await ult.respond(m)
 
 
 @ultroid_cmd(pattern="stopuspam$")
