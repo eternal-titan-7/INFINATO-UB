@@ -26,9 +26,6 @@ from . import *
 
 @ultroid_cmd(pattern="addnote ?(.*)")
 async def an(e):
-    if e.is_group:
-        if not e._chat.admin_rights:
-            return await eod(e, "`You Are Not Admin Here.", time=5)
     wrd = (e.pattern_match.group(1)).lower()
     wt = await e.get_reply_message()
     chat = e.chat_id
