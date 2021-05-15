@@ -311,36 +311,37 @@ async def unp(ult):
 async def fastpurger(purg):
     chat = await purg.get_input_chat()
     match = purg.pattern_match.group(1)
-    if match and purg.text[6] == " ":
-        p = 0
-        async for msg in ultroid_bot.iter_messages(purg.chat_id, limit=int(match)):
-            await msg.delete()
-            p += 0
-        return await eod(purg, f"Purged {p} Messages! ")
-    msgs = []
-    count = 0
-    if not (purg.reply_to_msg_id or match):
-        return await eod(purg, "`Reply to a message to purge from.`", time=10)
-    async for msg in ultroid_bot.iter_messages(chat, min_id=purg.reply_to_msg_id):
-        msgs.append(msg)
-        count = count + 1
-        msgs.append(purg.reply_to_msg_id)
-        if len(msgs) == 100:
-            await ultroid_bot.delete_messages(chat, msgs)
-            msgs = []
+    if purg.text[1:8] != "purgeme":
+        if match and purg.text[6] == " ":
+            p = 0
+            async for msg in ultroid_bot.iter_messages(purg.chat_id, limit=int(match)):
+                await msg.delete()
+                p += 0
+            return await eod(purg, f"Purged {p} Messages! ")
+        msgs = []
+        count = 0
+        if not (purg.reply_to_msg_id or match):
+            return await eod(purg, "`Reply to a message to purge from.`", time=10)
+        async for msg in ultroid_bot.iter_messages(chat, min_id=purg.reply_to_msg_id):
+            msgs.append(msg)
+            count = count + 1
+            msgs.append(purg.reply_to_msg_id)
+            if len(msgs) == 100:
+                await ultroid_bot.delete_messages(chat, msgs)
+                msgs = []
 
-    if msgs:
-        await ultroid_bot.delete_messages(chat, msgs)
-    done = await ultroid_bot.send_message(
-        purg.chat_id,
-        "__Fast purge complete!__\n**Purged** `"
-        + str(len(msgs))
-        + "` **of** `"
-        + str(count)
-        + "` **messages.**",
-    )
-    await asyncio.sleep(5)
-    await done.delete()
+        if msgs:
+            await ultroid_bot.delete_messages(chat, msgs)
+        done = await ultroid_bot.send_message(
+            purg.chat_id,
+            "__Fast purge complete!__\n**Purged** `"
+            + str(len(msgs))
+            + "` **of** `"
+            + str(count)
+            + "` **messages.**",
+        )
+        await asyncio.sleep(5)
+        await done.delete()
 
 
 @ultroid_cmd(
