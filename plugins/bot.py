@@ -171,7 +171,7 @@ async def heroku_logs(event):
         .get("key")
     )
     url = f"https://nekobin.com/{key}"
-    await ultroid.send_file(
+    await ultroid_bot.send_file(
         event.chat_id,
         file="infinato-heroku.log",
         thumb="resources/extras/logo_rdm.png",
@@ -191,7 +191,7 @@ async def def_logs(ult):
         .get("key")
     )
     url = f"https://nekobin.com/{key}"
-    await ultroid.send_file(
+    await ultroid_bot.send_file(
         ult.chat_id,
         file="infinato.log",
         thumb="resources/extras/cf1.png",

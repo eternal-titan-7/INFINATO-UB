@@ -351,7 +351,7 @@ async def _(event):
         )
         return
     else:
-        async with ultroid.conversation(bot) as conv:
+        async with ultroid_bot.conversation(bot) as conv:
             try:
                 await conv.send_message("/start")
                 await conv.get_response()
@@ -365,7 +365,7 @@ async def _(event):
                     await audio.click(0)
                     await asyncio.sleep(2)
                     audio = await conv.get_response()
-                    await ultroid.send_file(
+                    await ultroid_bot.send_file(
                         event.chat_id,
                         audio,
                         caption=f"List of feds {user} has been banned in.\n\nCollected using Ultroid.",
@@ -375,7 +375,7 @@ async def _(event):
                 else:
                     okk = await conv.get_edit()
                     await ok.edit(okk.message)
-                await ultroid.send_read_acknowledge(bot)
+                await ultroid_bot.send_read_acknowledge(bot)
             except YouBlockedUserError:
                 await ok.edit("**Error**\n `Unblock` @MissRose_Bot `and try again!")
 
@@ -384,13 +384,13 @@ async def _(event):
 async def _(event):
     ok = await event.edit("`Extracting information...`")
     sysarg = event.pattern_match.group(1)
-    async with ultroid.conversation(bot) as conv:
+    async with ultroid_bot.conversation(bot) as conv:
         try:
             await conv.send_message("/start")
             await conv.get_response()
             await conv.send_message("/fedinfo " + sysarg)
             audio = await conv.get_response()
-            await ultroid.send_read_acknowledge(bot)
+            await ultroid_bot.send_read_acknowledge(bot)
             await ok.edit(audio.text + "\n\nFedInfo Extracted by Ultroid")
         except YouBlockedUserError:
             await ok.edit("**Error**\n `Unblock` @MissRose_Bot `and try again!")

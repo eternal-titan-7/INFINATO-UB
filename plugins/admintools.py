@@ -462,7 +462,7 @@ async def get_pinned(event):
     tem = ""
     c = 0
 
-    async for i in ultroid.iter_messages(
+    async for i in ultroid_bot.iter_messages(
         event.chat_id, filter=InputMessagesFilterPinned
     ):
         c += 1
@@ -481,7 +481,7 @@ async def get_all_pinned(event):
     chat_name = (await event.get_chat()).title
     a = ""
     c = 1
-    async for i in ultroid.iter_messages(
+    async for i in ultroid_bot.iter_messages(
         event.chat_id, filter=InputMessagesFilterPinned
     ):
         a += f"{c}. <a href=https://t.me/c/{chat_id}/{i.id}>Go to message.</a>\n"

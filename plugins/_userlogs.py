@@ -96,7 +96,7 @@ async def when_asst_added_to_chat(event):
 # log for user's new joins
 
 
-@ultroid.on(events.ChatAction)
+@ultroid_bot.on(events.ChatAction)
 async def when_ultd_added_to_chat(event):
     if event.user_added:
         user = await event.get_user()
@@ -131,6 +131,6 @@ async def leave_ch_at(event):
     if client == "bot":
         await asst.delete_dialog(ch_id)
     elif client == "user":
-        await ultroid.delete_dialog(ch_id)
+        await ultroid_bot.delete_dialog(ch_id)
     await event.edit(f"Left `{ch_id}`")
 """

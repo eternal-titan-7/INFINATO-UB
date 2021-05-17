@@ -335,7 +335,7 @@ async def list_gengbanned(event):
         return await x.edit("`You haven't GBanned anyone!`")
     for i in users:
         try:
-            name = (await ultroid.get_entity(int(i))).first_name
+            name = (await ultroid_bot.get_entity(int(i))).first_name
         except BaseException:
             name = i
         msg += "**User**: " + name + "\n"

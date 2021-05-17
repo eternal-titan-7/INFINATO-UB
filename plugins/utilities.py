@@ -557,7 +557,7 @@ async def sugg(event):
     if await event.get_reply_message():
         msgid = (await event.get_reply_message()).id
         try:
-            await ultroid.send_message(
+            await ultroid_bot.send_message(
                 event.chat_id,
                 file=InputMediaPoll(
                     poll=Poll(

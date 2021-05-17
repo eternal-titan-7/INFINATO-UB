@@ -199,7 +199,7 @@ if sett == "True" and sett != "False":
                         ],
                     )
                 except BaseException:
-                    await ultroid.send_message(
+                    await ultroid_bot.send_message(
                         Var.LOG_CHANNEL, f"Incoming PM from {mention}!"
                     )
                 wrn = 1
@@ -489,7 +489,7 @@ async def apr_in(event):
     if not is_approved(uid):
         approve_user(uid)
         try:
-            user_name = (await ultroid.get_entity(uid)).first_name
+            user_name = (await ultroid_bot.get_entity(uid)).first_name
         except BaseException:
             user_name = ""
         await event.edit(
@@ -499,12 +499,12 @@ async def apr_in(event):
                 Button.inline("Block", data=f"block_{uid}"),
             ],
         )
-        async for message in ultroid.iter_messages(uid, search=UND):
+        async for message in ultroid_bot.iter_messages(uid, search=UND):
             await message.delete()
-        async for message in ultroid.iter_messages(uid, search=UNS):
+        async for message in ultroid_bot.iter_messages(uid, search=UNS):
             await message.delete()
         await event.answer("Approved.")
-        x = await ultroid.send_message(uid, "You have been approved to PM me!")
+        x = await ultroid_bot.send_message(uid, "You have been approved to PM me!")
         await asyncio.sleep(5)
         await x.delete()
     else:
@@ -528,7 +528,7 @@ async def disapr_in(event):
     if is_approved(uid):
         disapprove_user(uid)
         try:
-            user_name = (await ultroid.get_entity(uid)).first_name
+            user_name = (await ultroid_bot.get_entity(uid)).first_name
         except BaseException:
             user_name = ""
         await event.edit(
@@ -539,7 +539,7 @@ async def disapr_in(event):
             ],
         )
         await event.answer("DisApproved.")
-        x = await ultroid.send_message(uid, "You have been disapproved from PMing me!")
+        x = await ultroid_bot.send_message(uid, "You have been disapproved from PMing me!")
         await asyncio.sleep(5)
         await x.delete()
     else:
@@ -562,7 +562,7 @@ async def blck_in(event):
     uid = int(event.data_match.group(1).decode("UTF-8"))
     await ultroid(BlockRequest(uid))
     try:
-        user_name = (await ultroid.get_entity(uid)).first_name
+        user_name = (await ultroid_bot.get_entity(uid)).first_name
     except BaseException:
         user_name = ""
     await event.answer("Blocked.")
@@ -582,7 +582,7 @@ async def unblck_in(event):
     uid = int(event.data_match.group(1).decode("UTF-8"))
     await ultroid(UnblockRequest(uid))
     try:
-        user_name = (await ultroid.get_entity(uid)).first_name
+        user_name = (await ultroid_bot.get_entity(uid)).first_name
     except BaseException:
         user_name = ""
     await event.answer("UnBlocked.")

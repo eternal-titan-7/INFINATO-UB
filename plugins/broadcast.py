@@ -36,7 +36,7 @@ async def broadcast_adder(event):
         await x.edit(get_string("bd_2"))
         chats = [
             e.entity
-            for e in await ultroid.get_dialogs()
+            for e in await ultroid_bot.get_dialogs()
             if (e.is_group or e.is_channel)
         ]
         for i in chats:
@@ -125,7 +125,7 @@ async def list_all(event):
     for channel in channels:
         name = ""
         try:
-            name = (await ultroid.get_entity(int(channel))).title
+            name = (await ultroid_bot.get_entity(int(channel))).title
         except BaseException:
             name = ""
         msg += f"=> **{name}** [`{channel}`]\n"
