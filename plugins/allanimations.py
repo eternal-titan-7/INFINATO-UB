@@ -430,7 +430,7 @@ async def goodmorning(gm):
     await gm.edit(Q)
 
 
-@ultroid_cmd(pattern="hi (.*)")
+@ultroid_cmd(pattern="hi ?(.*)")
 async def hii(hi):
     cf = hi.text[4:]
     if not cf:
@@ -471,7 +471,7 @@ async def goodnight2(gn2):
 """)
 
 
-@ultroid_cmd(pattern="bday (.*)")
+@ultroid_cmd(pattern="bday ?(.*)")
 async def happybday(bday):
     bd = bday.text[6:]
     if not bd:
