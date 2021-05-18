@@ -73,10 +73,10 @@ async def _(e):
                     xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
         if "all" in okk:
             if not (bb.bot or bb.deleted):
-                xx1.append(f"\n[{get_display_name(bb)}](tg://user?id={bb.id})")
+                xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
         if "bot" in okk:
             if bb.bot:
-                xx1.append(f"\n[{get_display_name(bb)}](tg://user?id={bb.id})")
+                xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
     for z in range(0, len(xx1), 50):
         if lll:
             xx = f"{lll}"
