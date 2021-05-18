@@ -473,6 +473,14 @@ async def goodnight2(gn2):
 """)
 
 
+@ultroid_cmd(pattern=r"thank")
+async def thanks(thank):
+    ms = random.choice(["⋆*⁎ ᎢℋᎪɳᏦ ᎩӫᏌ ⁎*⋆", "ପ(๑•̀ᴗ•̀)* ॣ৳৸ᵃᵑᵏ Ꮍ৹੫ᵎ *", "ᐝ୨୧ Ƭʜᵃℕҡ ყօϋ ୨୧ᐝ",
+                        "ෆ⃛ෆ⃛ෆ⃛ ♡♡[τ̲̅н̲̅a̲̅и̲̅κ̲̅ ч̲̅o̲̅u̲̅]ᴗ͈ₒᴗ͈♡", "ᵗᑋᵃᐢᵏ ᵞᵒᵘ ♡⃝⃜", "τнänκ чöü♥", "⠒̫⃝♡ᵗʱᵃᵑᵏઽ",
+                        "Thanks : ✚⃞ ⸌̷̻( ᷇ॢ〰ॢ ᷆◍)⸌̷̻"])
+    await thank.edit(ms)
+
+
 @ultroid_cmd(pattern="stupid$")
 async def snku(ult):
     if ult.fwd_from:
