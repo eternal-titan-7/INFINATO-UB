@@ -14,55 +14,56 @@ import re
     ),
 )
 async def all_messages_catcher(e):
-    if udB.get("TAG_LOG"):
-        try:
-            NEEDTOLOG = int(udB.get("TAG_LOG"))
-        except Exception:
-            return LOGS.warning("you given Wrong Grp/Channel ID in TAG_LOG.")
-        try:
+    try:
+        if udB.get("TAG_LOG"):
+            try:
+                NEEDTOLOG = int(udB.get("TAG_LOG"))
+            except Exception:
+                return LOGS.warning("you given Wrong Grp/Channel ID in TAG_LOG.")
             x = await ultroid_bot.get_entity(e.sender_id)
             if x.bot or x.verified:
                 return
-        except:
-            pass
-        y = await ultroid_bot.get_entity(e.chat_id)
-        where_n = get_display_name(y)
-        who_n = get_display_name(x)
-        where_l = f"https://t.me/c/{y.id}/{e.id}"
-        send = await ultroid_bot.get_messages(e.chat_id, ids=e.id)
-        try:
-            if x.username:
-                who_l = f"https://t.me/{x.username}"
-                await asst.send_message(
-                    NEEDTOLOG,
-                    send,
-                    buttons=[[Button.url(who_n, who_l)],[Button.url(where_n, where_l)]],
-                )
-            else:
-                await asst.send_message(
-                    NEEDTOLOG,
-                    send,
-                    buttons=[[Button.inline(who_n, data=f"who{x.id}")],[Button.url(where_n, where_l)]],
-                )
-        except mee:
-            if x.username:
-                who_l = f"https://t.me/{x.username}"
-                await asst.send_message(
-                    NEEDTOLOG,
-                    "`Unsupported Media`",
-                    buttons=[[Button.url(who_n, who_l)],[Button.url(where_n, where_l)]],
-                )
-            else:
-                await asst.send_message(
-                    NEEDTOLOG,
-                    "`Unsupported Media`",
-                    buttons=[[Button.inline(who_n, data=f"who{x.id}")],[Button.url(where_n, where_l)]],
-                )
-        except Exception as er:
-            LOGS.info(str(er))
-            await ultroid_bot.send_message(NEEDTOLOG, f"Please Add Your Assistant Bot - @{asst.me.username} as admin here.")
-    else:
-        return
+            y = await ultroid_bot.get_entity(e.chat_id)
+            where_n = get_display_name(y)
+            who_n = get_display_name(x)
+            where_l = f"https://t.me/c/{y.id}/{e.id}"
+            send = await ultroid_bot.get_messages(e.chat_id, ids=e.id)
+            try:
+                if x.username:
+                    who_l = f"https://t.me/{x.username}"
+                    await asst.send_message(
+                        NEEDTOLOG,
+                        send,
+                        buttons=[[Button.url(who_n, who_l)], [Button.url(where_n, where_l)]],
+                    )
+                else:
+                    await asst.send_message(
+                        NEEDTOLOG,
+                        send,
+                        buttons=[[Button.inline(who_n, data=f"who{x.id}")], [Button.url(where_n, where_l)]],
+                    )
+            except mee:
+                if x.username:
+                    who_l = f"https://t.me/{x.username}"
+                    await asst.send_message(
+                        NEEDTOLOG,
+                        "`Unsupported Media`",
+                        buttons=[[Button.url(who_n, who_l)], [Button.url(where_n, where_l)]],
+                    )
+                else:
+                    await asst.send_message(
+                        NEEDTOLOG,
+                        "`Unsupported Media`",
+                        buttons=[[Button.inline(who_n, data=f"who{x.id}")], [Button.url(where_n, where_l)]],
+                    )
+            except Exception as er:
+                LOGS.info(str(er))
+                await ultroid_bot.send_message(NEEDTOLOG,
+                                               f"Please Add Your Assistant Bot - @{asst.me.username} as admin here.")
+        else:
+            return
+    except Exception as ex:
+        LOGS.info(ex)
 
 
 @callback(re.compile(b"who(.*)"))
