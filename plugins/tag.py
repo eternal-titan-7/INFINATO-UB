@@ -82,9 +82,10 @@ async def _(e):
             xx = f"{lll}"
         else:
             xx = ""
-        mentions = '\n'.join(xx1[z:z+50])
+        mentions = ' '.join(xx1[z:z+50])
         xx += f"\n{mentions}"
         await e.client.send_message(e.chat_id, xx)
+        await asyncio.sleep(5)
     await e.delete()
 
 
