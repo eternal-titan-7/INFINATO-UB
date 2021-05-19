@@ -77,12 +77,12 @@ async def _(e):
         if "bot" in okk:
             if bb.bot:
                 xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
-    for z in range(0, len(xx1), 50):
+    for z in range(0, len(xx1), 100):
         if lll:
             xx = f"{lll}"
         else:
             xx = ""
-        mentions = ' '.join(xx1[z:z+50])
+        mentions = ' '.join(xx1[z:z+100])
         xx += f"\n{mentions}"
         await e.client.send_message(e.chat_id, xx)
         await asyncio.sleep(5)
