@@ -438,22 +438,9 @@ async def hii(hi):
     await hi.edit(R.format(cf=cf))
 
 
-@ultroid_cmd(pattern=r"gn?(2)")
+@ultroid_cmd(pattern=r"gn")
 async def goodnight(gn):
-    if gn.text[3] == "2":
-        await gn.edit("""
-        🌙.     *       ☄️      
-        🌟   .  *       .         
-                               *   .      🛰     .        ✨      *
-          .     *   SLEEP WELL        🚀     
-              .              . . SWEET DREAMS 🌙
-        . *       🌏 GOOD NIGHT         *
-                             🌙.     *       ☄️      
-        🌟   .  *       .         
-                               *   .      🛰     .        ✨      *
-        """)
-    else:
-        await gn.edit("""
+    await gn.edit("""
         ┌▀█┌▀█┌▀█┌▀█┌▀█┌▀█┌▀█
         ┌▀█╔══╗╔══╗╔══╗╔══╗▀█
         ┌▀█║╔═╣║╔╗║║╔╗║╚╗╗║▀█
@@ -467,6 +454,21 @@ async def goodnight(gn):
         ┌▀█░░░░░░░░░░░░░░░░▀█
         ┌▀█┌▀█┌▀█┌▀█┌▀█┌▀█┌▀█ 
         """)
+
+
+@ultroid_cmd(pattern=r"gst")
+async def sweetdreams(gst):
+    await gst.edit("""
+            🌙.     *       ☄️      
+            🌟   .  *       .         
+                                   *   .      🛰     .        ✨      *
+              .     *   SLEEP WELL        🚀     
+                  .              . . SWEET DREAMS 🌙
+            . *       🌏 GOOD NIGHT         *
+                                 🌙.     *       ☄️      
+            🌟   .  *       .         
+                                   *   .      🛰     .        ✨      *
+            """)
 
 
 @ultroid_cmd(pattern="bday ?(.*)")
