@@ -288,7 +288,7 @@ async def semxy():
             await ultroid_bot.send_message("botfather", UL)
             await asyncio.sleep(1)
             await ultroid_bot.send_file(
-                "botfather", "resources/extras/assistant.jpg"
+                "botfather", "resources/extras/cf1.png"
             )
             await asyncio.sleep(2)
             await ultroid_bot.send_message("botfather", "/setabouttext")
