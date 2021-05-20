@@ -78,7 +78,13 @@ async def _(e):
     rece = 0
     xx1 = []
     if okk[4:8] == "list":
-        pass
+        taglist = get_list(e.chat_id)
+        if len(taglist) == 0:
+            await e.edit("TAGLIST is Empty.")
+            return
+        else:
+            for xb in taglist:
+                xx1.append(f"[{xb[0]}](tg://user?id={xb[1]})")
     elif okk[4:7] == "add":
         replied_user, error_i_a = await get_full_user(e)
         if replied_user is not None:
@@ -87,8 +93,10 @@ async def _(e):
             update_list(e.chat_id, nm, rpl)
         else:
             await e.edit("Please Reply to the person.")
+            return
     elif okk[4:9] == "add":
         clear_list(e.chat_id)
+        return
     else:
         async for bb in e.client.iter_participants(e.chat_id):
             users = users + 1
