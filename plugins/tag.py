@@ -1,4 +1,3 @@
-
 """
 ✘ Commands Available -
 
@@ -23,7 +22,7 @@
 • `{i}tagoff`
     Tag Offline Members(work only if privacy off).
 """
-
+from telethon.tl.custom import Message
 from telethon.tl.types import ChannelParticipantAdmin as admin
 from telethon.tl.types import ChannelParticipantCreator as owner
 from telethon.tl.types import UserStatusOffline as off
@@ -34,11 +33,34 @@ from telethon.utils import get_display_name
 from . import *
 
 
+def update_list(chat, name, id):
+    if not udB.get("TAGLIST"):
+        taglist = {chat: []}
+        udB.set("TAGLIST", str(taglist))
+    taglist = eval(udB.get("TAGLIST"))
+    if chat not in taglist.keys():
+        taglist[chat] = []
+    taglist[chat].append([name, id])
+    udB.set("TAGLIST", str(taglist))
+
+
+def clear_list(chat):
+    if not udB.get("TAGLIST"):
+        taglist = {}
+        udB.set("TAGLIST", str(taglist))
+        return
+    taglist = eval(udB.get("TAGLIST"))
+    if chat not in taglist.keys():
+        return
+    del taglist[chat]
+    udB.set("TAGLIST", str(taglist))
+
+
 @ultroid_cmd(
-    pattern="tag(on|off|all|bots|rec|admins|owner)?(.*)",
+    pattern="tag(on|off|all|bots|rec|admins|owner|list|add|clear)?(.*)",
     groups_only=True,
 )
-async def _(e):
+async def _(e: Message):
     okk = e.text
     lll = e.pattern_match.group(2)
     users = 0
@@ -46,43 +68,56 @@ async def _(e):
     nn = 0
     rece = 0
     xx1 = []
-    async for bb in e.client.iter_participants(e.chat_id):
-        users = users + 1
-        x = bb.status
-        y = bb.participant
-        if isinstance(x, onn):
-            o = o + 1
-            if "on" in okk:
-                xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
-        if isinstance(x, off):
-            nn = nn + 1
-            if "off" in okk:
+    if okk[4:8] == "list":
+        pass
+    elif okk[4:7] == "add":
+        replied_user, error_i_a = await get_full_user(e)
+        if replied_user is not None:
+            rpl = replied_user.user.id
+            nm = get_display_name(replied_user.user)
+            update_list(e.chat_id, nm, rpl)
+        else:
+            await e.edit("Please Reply to the person.")
+    elif okk[4:9] == "add":
+        clear_list(e.chat_id)
+    else:
+        async for bb in e.client.iter_participants(e.chat_id):
+            users = users + 1
+            x = bb.status
+            y = bb.participant
+            if isinstance(x, onn):
+                o = o + 1
+                if okk[4:6].lower() == "on":
+                    xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
+            if isinstance(x, off):
+                nn = nn + 1
+                if okk[4:7].lower() == "off":
+                    if not (bb.bot or bb.deleted):
+                        xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
+            if isinstance(x, rec):
+                rece = rece + 1
+                if okk[4:7].lower() == "rec":
+                    if not (bb.bot or bb.deleted):
+                        xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
+            if isinstance(y, owner):
+                if (okk[4:9] == "admin") or (okk[4:9] == "owner"):
+                    xx1.append(f"꧁[{get_display_name(bb)}](tg://user?id={bb.id})꧂")
+            if isinstance(y, admin):
+                if okk[4:9] == "admin":
+                    if not bb.deleted:
+                        xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
+            if okk[4:7] == "all":
                 if not (bb.bot or bb.deleted):
                     xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
-        if isinstance(x, rec):
-            rece = rece + 1
-            if "rec" in okk:
-                if not (bb.bot or bb.deleted):
+            if okk[4:8] == "bots":
+                if bb.bot:
                     xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
-        if isinstance(y, owner):
-            if ("admin" in okk) or ("owner" in okk):
-                xx1.append(f"꧁[{get_display_name(bb)}](tg://user?id={bb.id})꧂")
-        if isinstance(y, admin):
-            if "admin" in okk:
-                if not bb.deleted:
-                    xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
-        if "all" in okk:
-            if not (bb.bot or bb.deleted):
-                xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
-        if "bot" in okk:
-            if bb.bot:
-                xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
     for z in range(0, len(xx1), 100):
         if lll:
             xx = f"{lll}"
         else:
             xx = ""
-        mentions = ' '.join(xx1[z:z+100])
+        mentions = ' '.join(xx1[z:z + 100])
         xx += f"\n{mentions}"
         await e.client.send_message(e.chat_id, xx)
         await asyncio.sleep(5)
