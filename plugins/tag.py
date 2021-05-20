@@ -55,6 +55,16 @@ def clear_list(chat):
     udB.set("TAGLIST", str(taglist))
 
 
+def get_list(chat):
+    if not udB.get("TAGLIST"):
+        taglist = {chat: []}
+        udB.set("TAGLIST", str(taglist))
+    taglist = eval(udB.get("TAGLIST"))
+    if chat not in taglist.keys():
+        taglist[chat] = []
+    return taglist[chat]
+
+
 @ultroid_cmd(
     pattern="tag(on|off|all|bots|rec|admins|owner|list|add|clear)?(.*)",
     groups_only=True,
