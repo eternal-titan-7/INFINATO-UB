@@ -22,7 +22,6 @@
 • `{i}tagoff`
     Tag Offline Members(work only if privacy off).
 """
-from telethon.tl.custom import Message
 from telethon.tl.types import ChannelParticipantAdmin as admin
 from telethon.tl.types import ChannelParticipantCreator as owner
 from telethon.tl.types import UserStatusOffline as off
@@ -60,7 +59,7 @@ def clear_list(chat):
     pattern="tag(on|off|all|bots|rec|admins|owner|list|add|clear)?(.*)",
     groups_only=True,
 )
-async def _(e: Message):
+async def _(e):
     okk = e.text
     lll = e.pattern_match.group(2)
     users = 0
