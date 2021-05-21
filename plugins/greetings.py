@@ -112,6 +112,7 @@ async def _(event):
             msgg = wel["welcome"]
             med = wel["media"]
             userid = user.id
+            await asyncio.sleep(2)
             if msgg:
                 await event.reply(
                     msgg.format(
@@ -125,10 +126,8 @@ async def _(event):
                     ),
                     file=med,
                 )
-                await asyncio.sleep(2)
             else:
                 await event.reply(file=med)
-                await asyncio.sleep(2)
 
 
 @ultroid_cmd(pattern="setgoodbye")
