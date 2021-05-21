@@ -94,7 +94,7 @@ async def _(e):
         else:
             await e.edit("Please Reply to the person.")
             return
-    elif okk[4:9] == "add":
+    elif okk[4:9] == "clear":
         clear_list(e.chat_id)
         return
     else:
