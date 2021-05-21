@@ -91,6 +91,8 @@ async def _(e):
             rpl = replied_user.user.id
             nm = get_display_name(replied_user.user)
             update_list(e.chat_id, nm, rpl)
+            await e.edit(f"[nm](tg://user?id={rpl}) was added to TAGLIST.")
+            await asyncio.sleep(2)
         else:
             await e.edit("Please Reply to the person.")
             return
@@ -137,7 +139,7 @@ async def _(e):
         mentions = ' '.join(xx1[z:z + 100])
         xx += f"\n{mentions}"
         await e.client.send_message(e.chat_id, xx)
-        await asyncio.sleep(5)
+        await asyncio.sleep(2)
     await e.delete()
 
 
