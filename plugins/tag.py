@@ -81,7 +81,7 @@ async def _(e):
         taglist = get_list(e.chat_id)
         if len(taglist) == 0:
             await e.edit("TAGLIST is Empty.")
-            return
+            await asyncio.sleep(2)
         else:
             for xb in taglist:
                 xx1.append(f"[{xb[0]}](tg://user?id={xb[1]})")
@@ -95,10 +95,11 @@ async def _(e):
             await asyncio.sleep(2)
         else:
             await e.edit("Please Reply to the person.")
-            return
+            await asyncio.sleep(2)
     elif okk[4:9] == "clear":
         clear_list(e.chat_id)
-        return
+        await e.edit(f"TAGLIST of this group was cleared.")
+        await asyncio.sleep(2)
     else:
         async for bb in e.client.iter_participants(e.chat_id):
             users = users + 1
