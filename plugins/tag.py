@@ -147,14 +147,20 @@ async def _(e):
             if okk[4:8] == "bots":
                 if bb.bot:
                     xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
-    for z in range(0, len(xx1), 100):
-        xx = lll
-        if okk[4:12] == "everyone":
-            xx += "\n\n`<\\Everyone\\>`\n"
-        mentions = ' '.join(xx1[z:z + 100])
-        xx += f"\n{mentions}"
-        await e.client.send_message(e.chat_id, xx)
-        await asyncio.sleep(2)
+    if okk[4:12] == "everyone":
+        for z in range(0, len(xx1), 1000):
+            xx = lll + "\n\n`<\\Everyone\\>`\n"
+            mentions = ' '.join(xx1[z:z + 1000])
+            xx += f"\n{mentions}"
+            await e.client.send_message(e.chat_id, xx)
+            await asyncio.sleep(2)
+    else:
+        for z in range(0, len(xx1), 100):
+            xx = lll
+            mentions = ' '.join(xx1[z:z + 100])
+            xx += f"\n{mentions}"
+            await e.client.send_message(e.chat_id, xx)
+            await asyncio.sleep(2)
     await e.delete()
 
 
