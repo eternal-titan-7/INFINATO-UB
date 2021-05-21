@@ -21,6 +21,15 @@
 
 • `{i}tagoff`
     Tag Offline Members(work only if privacy off).
+
+• `{i}tagadd <Reply to the Person>`
+    Add someone to Tag List For Specific Chat.
+
+• `{i}tagclear <Reply to the Person>`
+    Clear Tag List For Specific Chat.
+
+• `{i}taglist <Reply to the Person>`
+    Tag Users on Tag List For Specific Chat.
 """
 from telethon.tl.types import ChannelParticipantAdmin as admin
 from telethon.tl.types import ChannelParticipantCreator as owner
@@ -71,7 +80,7 @@ def get_list(chat):
 )
 async def _(e):
     okk = e.text
-    lll = e.pattern_match.group(2)
+    lll = okk.split(" ", maxsplit=1)[1]
     users = 0
     o = 0
     nn = 0
@@ -141,7 +150,7 @@ async def _(e):
         else:
             xx = ""
         if okk[4:12] == "everyone":
-            xx += "<\\Everyone\\>\n"
+            xx += "\n\n``<\\Everyone\\>`\n"
         mentions = ' '.join(xx1[z:z + 100])
         xx += f"\n{mentions}"
         await e.client.send_message(e.chat_id, xx)
