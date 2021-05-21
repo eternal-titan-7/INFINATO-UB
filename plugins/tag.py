@@ -80,7 +80,10 @@ def get_list(chat):
 )
 async def _(e):
     okk = e.text
-    lll = okk.split(" ", maxsplit=1)[1]
+    try:
+        lll = okk.split(" ", maxsplit=1)[1]
+    except:
+        lll = ""
     users = 0
     o = 0
     nn = 0
@@ -145,12 +148,9 @@ async def _(e):
                 if bb.bot:
                     xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
     for z in range(0, len(xx1), 100):
-        if lll:
-            xx = f"{lll}"
-        else:
-            xx = ""
+        xx = lll
         if okk[4:12] == "everyone":
-            xx += "\n\n``<\\Everyone\\>`\n"
+            xx += "\n\n`<\\Everyone\\>`\n"
         mentions = ' '.join(xx1[z:z + 100])
         xx += f"\n{mentions}"
         await e.client.send_message(e.chat_id, xx)
