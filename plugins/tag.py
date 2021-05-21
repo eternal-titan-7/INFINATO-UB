@@ -32,7 +32,7 @@
     Tag Members on Tag List For Specific Chat.
 
 • `{i}tageveryone`
-    Tag Everyone With Less Spam.
+    Tag Everyone in chat With Less Spam.
 """
 from telethon.tl.types import ChannelParticipantAdmin as admin
 from telethon.tl.types import ChannelParticipantCreator as owner
