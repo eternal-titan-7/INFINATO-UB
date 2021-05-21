@@ -66,7 +66,7 @@ def get_list(chat):
 
 
 @ultroid_cmd(
-    pattern="tag(on|off|all|bots|rec|admins|owner|list|add|clear)?(.*)",
+    pattern="tag(on|off|all|bots|rec|admins|owner|list|add|clear|everyone)?(.*)",
     groups_only=True,
 )
 async def _(e):
@@ -91,7 +91,7 @@ async def _(e):
             rpl = replied_user.user.id
             nm = get_display_name(replied_user.user)
             update_list(e.chat_id, nm, rpl)
-            await e.edit(f"[nm](tg://user?id={rpl}) was added to TAGLIST.")
+            await e.edit(f"[{nm}](tg://user?id={rpl}) was added to TAGLIST.")
             await asyncio.sleep(2)
         else:
             await e.edit("Please Reply to the person.")
@@ -129,6 +129,9 @@ async def _(e):
             if okk[4:7] == "all":
                 if not (bb.bot or bb.deleted):
                     xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
+            if okk[4:12] == "everyone":
+                if not (bb.bot or bb.deleted):
+                    xx1.append(f"[\u200b](tg://user?id={bb.id})")
             if okk[4:8] == "bots":
                 if bb.bot:
                     xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
@@ -137,6 +140,8 @@ async def _(e):
             xx = f"{lll}"
         else:
             xx = ""
+        if okk[4:12] == "everyone":
+            xx += "<\\Everyone\\>\n"
         mentions = ' '.join(xx1[z:z + 100])
         xx += f"\n{mentions}"
         await e.client.send_message(e.chat_id, xx)
