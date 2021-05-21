@@ -146,7 +146,7 @@ async def _(e):
                     xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
             if okk[4:12] == "everyone":
                 if not (bb.bot or bb.deleted):
-                    xx1.append(f"[\u200b](tg://user?id={bb.id})")
+                    xx1.append(f"[\u2063](tg://user?id={bb.id})")
             if okk[4:8] == "bots":
                 if bb.bot:
                     xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
