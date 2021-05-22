@@ -34,6 +34,7 @@
 • `{i}tageveryone`
     Tag Everyone in chat With Less Spam.
 """
+from telethon.tl.custom import Message
 from telethon.tl.types import ChannelParticipantAdmin as admin
 from telethon.tl.types import ChannelParticipantCreator as owner
 from telethon.tl.types import UserStatusOffline as off
@@ -44,14 +45,17 @@ from telethon.utils import get_display_name
 from . import *
 
 
-def update_list(chat, name, id):
+def update_list(chat, name, id, usernm=None):
     if not udB.get("TAGLIST"):
         taglist = {chat: []}
         udB.set("TAGLIST", str(taglist))
     taglist = eval(udB.get("TAGLIST"))
     if chat not in taglist.keys():
         taglist[chat] = []
-    taglist[chat].append([name, id])
+    if usernm:
+        taglist[chat].append([name, id, usernm])
+    else:
+        taglist[chat].append([name, id])
     udB.set("TAGLIST", str(taglist))
 
 
@@ -81,7 +85,7 @@ def get_list(chat):
     pattern="tag(on|off|all|bots|rec|admins|owner|list|add|clear|everyone)?(.*)",
     groups_only=True,
 )
-async def _(e):
+async def _(e: Message):
     okk = e.text
     try:
         lll = okk.split(" ", maxsplit=1)[1]
@@ -99,13 +103,20 @@ async def _(e):
             await asyncio.sleep(2)
         else:
             for xb in taglist:
-                xx1.append(f"[{xb[0]}](tg://user?id={xb[1]})")
+                if len(xb) == 3:
+                    xx1.append(xb[0])
+                else:
+                    xx1.append(f"[{xb[0]}](tg://user?id={xb[1]})")
     elif okk[4:7] == "add":
         replied_user, error_i_a = await get_full_user(e)
         if replied_user is not None:
             rpl = replied_user.user.id
+            unm = replied_user.user.username
             nm = get_display_name(replied_user.user)
-            update_list(e.chat_id, nm, rpl)
+            if unm:
+                update_list(e.chat_id, nm, rpl, unm)
+            else:
+                update_list(e.chat_id, nm, rpl)
             await e.edit(f"[{nm}](tg://user?id={rpl}) was added to TAGLIST.")
             await asyncio.sleep(2)
         else:
@@ -120,36 +131,58 @@ async def _(e):
             users = users + 1
             x = bb.status
             y = bb.participant
+            un = bb.username
             if isinstance(x, onn):
                 o = o + 1
                 if okk[4:6].lower() == "on":
-                    xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
+                    if un:
+                        xx1.append(un)
+                    else:
+                        xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
             if isinstance(x, off):
                 nn = nn + 1
                 if okk[4:7].lower() == "off":
                     if not (bb.bot or bb.deleted):
-                        xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
+                        if un:
+                            xx1.append(un)
+                        else:
+                            xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
             if isinstance(x, rec):
                 rece = rece + 1
                 if okk[4:7].lower() == "rec":
                     if not (bb.bot or bb.deleted):
-                        xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
+                        if un:
+                            xx1.append(un)
+                        else:
+                            xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
             if isinstance(y, owner):
                 if (okk[4:9] == "admin") or (okk[4:9] == "owner"):
-                    xx1.append(f"꧁[{get_display_name(bb)}](tg://user?id={bb.id})꧂")
+                    if un:
+                        xx1.append(f"**{un}**")
+                    else:
+                        xx1.append(f"꧁[{get_display_name(bb)}](tg://user?id={bb.id})꧂")
             if isinstance(y, admin):
                 if okk[4:9] == "admin":
                     if not bb.deleted:
-                        xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
+                        if un:
+                            xx1.append(un)
+                        else:
+                            xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
             if okk[4:7] == "all":
                 if not (bb.bot or bb.deleted):
-                    xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
+                    if un:
+                        xx1.append(un)
+                    else:
+                        xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
             if okk[4:12] == "everyone":
                 if not (bb.bot or bb.deleted):
                     xx1.append(f"[\u2063](tg://user?id={bb.id})")
             if okk[4:8] == "bots":
                 if bb.bot:
-                    xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
+                    if un:
+                        xx1.append(un)
+                    else:
+                        xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
     if okk[4:12] == "everyone":
         for z in range(0, len(xx1), 1000):
             xx = lll + "\n\n`<\\Everyone\\>`\n"
