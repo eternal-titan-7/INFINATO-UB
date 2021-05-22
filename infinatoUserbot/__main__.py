@@ -41,7 +41,7 @@ if not os.path.isdir("addons"):
     os.mkdir("addons")
 
 if udB.get("CUSTOM_THUMBNAIL"):
-    os.system(f"wget {udB.get('CUSTOM_THUMBNAIL')} -O resources/extras/cf1.png")
+    os.system(f"wget {udB.get('CUSTOM_THUMBNAIL')} -O resources/extras/cf1.jpg")
 
 token = udB.get("GDRIVE_TOKEN")
 if token:
@@ -288,7 +288,7 @@ async def semxy():
             await ultroid_bot.send_message("botfather", UL)
             await asyncio.sleep(1)
             await ultroid_bot.send_file(
-                "botfather", "resources/extras/cf1.png"
+                "botfather", "resources/extras/cf1.jpg"
             )
             await asyncio.sleep(2)
             await ultroid_bot.send_message("botfather", "/setabouttext")

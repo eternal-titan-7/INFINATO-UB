@@ -2,10 +2,10 @@
 """
 ✘ Commands Available
 
-• `{i}add <id/reply to list/none>`
+• `{i}addch <id/reply to list/none>`
     Add chat to database. Adds current chat if no id specified.
 
-• `{i}rem <all/id/none>`
+• `{i}remch <all/id/none>`
     Removes the specified chat (current chat if none specified), or all chats.
 
 • `{i}broadcast <reply to msg>`
@@ -24,11 +24,11 @@ import io
 from . import *
 
 
-@ultroid_cmd(pattern="add ?(.*)", allow_sudo=False)
+@ultroid_cmd(
+    pattern="addch ?(.*)",
+    allow_sudo=False,
+)
 async def broadcast_adder(event):
-    if len(event.text) > 4:
-        if not event.text[4] == " ":  # weird fix
-            return
     msgg = event.pattern_match.group(1)
     x = await eor(event, get_string("bd_1"))
     aldone = new = crsh = 0
@@ -68,7 +68,7 @@ async def broadcast_adder(event):
         return
     chat_id = event.chat_id
     try:
-        if int(chat_id) == Var.LOG_CHANNEL:
+        if int(chat_id) == int(udB.get("LOG_CHANNEL")):
             return
     except BaseException:
         pass
@@ -86,11 +86,11 @@ async def broadcast_adder(event):
         await event.delete()
 
 
-@ultroid_cmd(pattern="rem ?(.*)", allow_sudo=False)
+@ultroid_cmd(
+    pattern="remch ?(.*)",
+    allow_sudo=False,
+)
 async def broadcast_remover(event):
-    if len(event.text) > 4:
-        if not event.text[4] == " ":  # weird fix
-            return
     chat_id = event.pattern_match.group(1)
     x = await eor(event, get_string("com_1"))
     if chat_id == "all":
@@ -114,7 +114,9 @@ async def broadcast_remover(event):
         await x.delete()
 
 
-@ultroid_cmd(pattern="listchannels")
+@ultroid_cmd(
+    pattern="listchannels$",
+)
 async def list_all(event):
     x = await eor(event, "`Calculating...`")
     channels = get_channels()
@@ -147,7 +149,10 @@ async def list_all(event):
         await x.edit(msg)
 
 
-@ultroid_cmd(pattern="forward ?(.*)", allow_sudo=False)
+@ultroid_cmd(
+    pattern="forward$",
+    allow_sudo=False,
+)
 async def forw(event):
     if not event.is_reply:
         await eor(event, "Reply to a message to broadcast.")
@@ -171,7 +176,7 @@ async def forw(event):
         except Exception:
             try:
                 await ultroid_bot.send_message(
-                    Var.LOG_CHANNEL,
+                    int(udB.get("LOG_CHANNEL")),
                     f"Error in sending at {channel}.",
                 )
             except BaseException:
@@ -183,12 +188,17 @@ async def forw(event):
     await x.edit(f"{sent_count} messages sent with {error_count} errors.")
     if error_count > 0:
         try:
-            await ultroid_bot.send_message(Var.LOG_CHANNEL, f"{error_count} Errors")
+            await ultroid_bot.send_message(
+                int(udB.get("LOG_CHANNEL")), f"{error_count} Errors"
+            )
         except BaseException:
             await x.edit("Set up log channel for checking errors.")
 
 
-@ultroid_cmd(pattern="broadcast ?(.*)", allow_sudo=False)
+@ultroid_cmd(
+    pattern="broadcast ?(.*)",
+    allow_sudo=False,
+)
 async def sending(event):
     x = await eor(event, "`Processing...`")
     if not event.is_reply:
@@ -214,7 +224,7 @@ async def sending(event):
                 except Exception as error:
                     try:
                         await ultroid_bot.send_message(
-                            Var.LOG_CHANNEL,
+                            int(udB.get("LOG_CHANNEL")),
                             f"Error in sending at {channel}.\n\n{error}",
                         )
                     except BaseException:
@@ -227,7 +237,7 @@ async def sending(event):
             if error_count > 0:
                 try:
                     await ultroid_bot.send_message(
-                        Var.LOG_CHANNEL,
+                        int(udB.get("LOG_CHANNEL")),
                         f"{error_count} Errors",
                     )
                 except BaseException:

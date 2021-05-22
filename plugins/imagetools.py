@@ -34,6 +34,10 @@
 
 • `{i}blue <reply to any media>`
     just cool.
+
+• `{i}csample <color name /color code>`
+   example : `{i}csample red`
+             `{i}csample #ffffff`
 """
 
 import asyncio
@@ -43,6 +47,10 @@ import cv2
 import numpy as np
 from PIL import Image
 from telegraph import upload_file as upf
+from telethon.errors.rpcerrorlist import (
+    ChatSendMediaForbiddenError,
+    MessageDeleteForbiddenError,
+)
 from validators.url import url
 
 from . import *
@@ -60,8 +68,8 @@ async def sketch(e):
     ultt = await ureply.download_media()
     if ultt.endswith(".tgs"):
         await xx.edit("`Ooo Animated Sticker 👀...`")
-        cmd = ["lottie_convert.py", ultt, "ult.png"]
-        file = "ult.png"
+        cmd = ["lottie_convert.py", ultt, "inf.png"]
+        file = "inf.png"
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -74,19 +82,19 @@ async def sketch(e):
         await xx.edit("`Processing...`")
         img = cv2.VideoCapture(ultt)
         heh, lol = img.read()
-        cv2.imwrite("ult.png", lol)
-        file = "ult.png"
+        cv2.imwrite("inf.png", lol)
+        file = "inf.png"
     img = cv2.imread(file)
     gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     inverted_gray_image = 255 - gray_image
     blurred_img = cv2.GaussianBlur(inverted_gray_image, (21, 21), 0)
     inverted_blurred_img = 255 - blurred_img
     pencil_sketch_IMG = cv2.divide(gray_image, inverted_blurred_img, scale=256.0)
-    cv2.imwrite("ultroid.png", pencil_sketch_IMG)
-    await e.client.send_file(e.chat_id, file="ultroid.png")
+    cv2.imwrite("infinato.png", pencil_sketch_IMG)
+    await e.client.send_file(e.chat_id, file="infinato.png")
     await xx.delete()
     os.remove(file)
-    os.remove("ultroid.png")
+    os.remove("infinato.png")
 
 
 @ultroid_cmd(pattern="color$")
@@ -98,17 +106,17 @@ async def _(event):
     image = await ultroid_bot.download_media(reply.media)
     img = cv2.VideoCapture(image)
     ret, frame = img.read()
-    cv2.imwrite("ult.jpg", frame)
+    cv2.imwrite("inf.jpg", frame)
     if udB.get("DEEP_API"):
         key = Redis("DEEP_API")
     else:
         key = "quickstart-QUdJIGlzIGNvbWluZy4uLi4K"
     r = requests.post(
         "https://api.deepai.org/api/colorizer",
-        files={"image": open("ult.jpg", "rb")},
+        files={"image": open("inf.jpg", "rb")},
         headers={"api-key": key},
     )
-    os.remove("ult.jpg")
+    os.remove("inf.jpg")
     os.remove(image)
     if "status" in r.json():
         return await event.edit(
@@ -130,8 +138,8 @@ async def ultd(event):
     ultt = await ureply.download_media()
     if ultt.endswith(".tgs"):
         xx = await eor(event, "`Ooo Animated Sticker 👀...`")
-        cmd = ["lottie_convert.py", ultt, "ult.png"]
-        file = "ult.png"
+        cmd = ["lottie_convert.py", ultt, "inf.png"]
+        file = "inf.png"
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -144,20 +152,20 @@ async def ultd(event):
         xx = await eor(event, "`Processing...`")
         img = cv2.VideoCapture(ultt)
         heh, lol = img.read()
-        cv2.imwrite("ult.png", lol)
-        file = "ult.png"
+        cv2.imwrite("inf.png", lol)
+        file = "inf.png"
     ult = cv2.imread(file)
     ultroid = cv2.cvtColor(ult, cv2.COLOR_BGR2GRAY)
-    cv2.imwrite("ult.jpg", ultroid)
+    cv2.imwrite("inf.jpg", ultroid)
     await event.client.send_file(
         event.chat_id,
-        "ult.jpg",
+        "inf.jpg",
         force_document=False,
         reply_to=event.reply_to_msg_id,
     )
     await xx.delete()
-    os.remove("ult.png")
-    os.remove("ult.jpg")
+    os.remove("inf.png")
+    os.remove("inf.jpg")
     os.remove(ultt)
 
 
@@ -172,8 +180,8 @@ async def ultd(event):
     ultt = await ureply.download_media()
     if ultt.endswith(".tgs"):
         xx = await eor(event, "`Ooo Animated Sticker 👀...`")
-        cmd = ["lottie_convert.py", ultt, "ult.png"]
-        file = "ult.png"
+        cmd = ["lottie_convert.py", ultt, "inf.png"]
+        file = "inf.png"
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -186,20 +194,20 @@ async def ultd(event):
         xx = await eor(event, "`Processing...`")
         img = cv2.VideoCapture(ultt)
         heh, lol = img.read()
-        cv2.imwrite("ult.png", lol)
-        file = "ult.png"
+        cv2.imwrite("inf.png", lol)
+        file = "inf.png"
     ult = cv2.imread(file)
     ultroid = cv2.GaussianBlur(ult, (35, 35), 0)
-    cv2.imwrite("ult.jpg", ultroid)
+    cv2.imwrite("inf.jpg", ultroid)
     await event.client.send_file(
         event.chat_id,
-        "ult.jpg",
+        "inf.jpg",
         force_document=False,
         reply_to=event.reply_to_msg_id,
     )
     await xx.delete()
-    os.remove("ult.png")
-    os.remove("ult.jpg")
+    os.remove("inf.png")
+    os.remove("inf.jpg")
     os.remove(ultt)
 
 
@@ -215,8 +223,8 @@ async def ultd(event):
     ultt = await ureply.download_media()
     if ultt.endswith(".tgs"):
         await xx.edit("`Ooo Animated Sticker 👀...`")
-        cmd = ["lottie_convert.py", ultt, "ult.png"]
-        file = "ult.png"
+        cmd = ["lottie_convert.py", ultt, "inf.png"]
+        file = "inf.png"
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -229,20 +237,20 @@ async def ultd(event):
         await xx.edit("`Processing...`")
         img = cv2.VideoCapture(ultt)
         heh, lol = img.read()
-        cv2.imwrite("ult.png", lol)
-        file = "ult.png"
+        cv2.imwrite("inf.png", lol)
+        file = "inf.png"
     ult = cv2.imread(file)
     ultroid = cv2.bitwise_not(ult)
-    cv2.imwrite("ult.jpg", ultroid)
+    cv2.imwrite("inf.jpg", ultroid)
     await event.client.send_file(
         event.chat_id,
-        "ult.jpg",
+        "inf.jpg",
         force_document=False,
         reply_to=event.reply_to_msg_id,
     )
     await xx.delete()
-    os.remove("ult.png")
-    os.remove("ult.jpg")
+    os.remove("inf.png")
+    os.remove("inf.jpg")
     os.remove(ultt)
 
 
@@ -258,8 +266,8 @@ async def ultd(event):
     ultt = await ureply.download_media()
     if ultt.endswith(".tgs"):
         await xx.edit("`Ooo Animated Sticker 👀...`")
-        cmd = ["lottie_convert.py", ultt, "ult.png"]
-        file = "ult.png"
+        cmd = ["lottie_convert.py", ultt, "inf.png"]
+        file = "inf.png"
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -272,21 +280,21 @@ async def ultd(event):
         await xx.edit("`Processing...`")
         img = cv2.VideoCapture(ultt)
         heh, lol = img.read()
-        cv2.imwrite("ult.png", lol)
-        file = "ult.png"
+        cv2.imwrite("inf.png", lol)
+        file = "inf.png"
     ult = cv2.imread(file)
     ish = cv2.flip(ult, 1)
     ultroid = cv2.hconcat([ult, ish])
-    cv2.imwrite("ult.jpg", ultroid)
+    cv2.imwrite("inf.jpg", ultroid)
     await event.client.send_file(
         event.chat_id,
-        "ult.jpg",
+        "inf.jpg",
         force_document=False,
         reply_to=event.reply_to_msg_id,
     )
     await xx.delete()
-    os.remove("ult.png")
-    os.remove("ult.jpg")
+    os.remove("inf.png")
+    os.remove("inf.jpg")
     os.remove(ultt)
 
 
@@ -302,8 +310,8 @@ async def ultd(event):
     ultt = await ureply.download_media()
     if ultt.endswith(".tgs"):
         await xx.edit("`Ooo Animated Sticker 👀...`")
-        cmd = ["lottie_convert.py", ultt, "ult.png"]
-        file = "ult.png"
+        cmd = ["lottie_convert.py", ultt, "inf.png"]
+        file = "inf.png"
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -316,22 +324,22 @@ async def ultd(event):
         await xx.edit("`Processing...`")
         img = cv2.VideoCapture(ultt)
         heh, lol = img.read()
-        cv2.imwrite("ult.png", lol)
-        file = "ult.png"
+        cv2.imwrite("inf.png", lol)
+        file = "inf.png"
     ult = cv2.imread(file)
     trn = cv2.flip(ult, 1)
     ish = cv2.rotate(trn, cv2.ROTATE_180)
     ultroid = cv2.vconcat([ult, ish])
-    cv2.imwrite("ult.jpg", ultroid)
+    cv2.imwrite("inf.jpg", ultroid)
     await event.client.send_file(
         event.chat_id,
-        "ult.jpg",
+        "inf.jpg",
         force_document=False,
         reply_to=event.reply_to_msg_id,
     )
     await xx.delete()
-    os.remove("ult.png")
-    os.remove("ult.jpg")
+    os.remove("inf.png")
+    os.remove("inf.jpg")
     os.remove(ultt)
 
 
@@ -347,8 +355,8 @@ async def ultd(event):
     ultt = await ureply.download_media()
     if ultt.endswith(".tgs"):
         await xx.edit("`Ooo Animated Sticker 👀...`")
-        cmd = ["lottie_convert.py", ultt, "ult.png"]
-        file = "ult.png"
+        cmd = ["lottie_convert.py", ultt, "inf.png"]
+        file = "inf.png"
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -361,24 +369,24 @@ async def ultd(event):
         await xx.edit("`Processing...`")
         img = cv2.VideoCapture(ultt)
         heh, lol = img.read()
-        cv2.imwrite("ult.png", lol)
-        file = "ult.png"
+        cv2.imwrite("inf.png", lol)
+        file = "inf.png"
     ult = cv2.imread(file)
     roid = cv2.flip(ult, 1)
     mici = cv2.hconcat([ult, roid])
     fr = cv2.flip(mici, 1)
     trn = cv2.rotate(fr, cv2.ROTATE_180)
     ultroid = cv2.vconcat([mici, trn])
-    cv2.imwrite("ult.jpg", ultroid)
+    cv2.imwrite("inf.jpg", ultroid)
     await event.client.send_file(
         event.chat_id,
-        "ult.jpg",
+        "inf.jpg",
         force_document=False,
         reply_to=event.reply_to_msg_id,
     )
     await xx.delete()
-    os.remove("ult.png")
-    os.remove("ult.jpg")
+    os.remove("inf.png")
+    os.remove("inf.jpg")
     os.remove(ultt)
 
 
@@ -394,8 +402,8 @@ async def ultd(event):
     ultt = await ureply.download_media()
     if ultt.endswith(".tgs"):
         await xx.edit("`Ooo Animated Sticker 👀...`")
-        cmd = ["lottie_convert.py", ultt, "ult.png"]
-        file = "ult.png"
+        cmd = ["lottie_convert.py", ultt, "inf.png"]
+        file = "inf.png"
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -408,8 +416,8 @@ async def ultd(event):
         await xx.edit("`Processing...`")
         img = cv2.VideoCapture(ultt)
         heh, lol = img.read()
-        cv2.imwrite("ult.png", lol)
-        file = "ult.png"
+        cv2.imwrite("inf.png", lol)
+        file = "inf.png"
     ult = cv2.imread(file)
     height, width, channels = ult.shape
     samples = np.zeros([height * width, 3], dtype=np.float32)
@@ -429,16 +437,16 @@ async def ultd(event):
     centers = np.uint8(centers)
     ish = centers[labels.flatten()]
     ultroid = ish.reshape(ult.shape)
-    cv2.imwrite("ult.jpg", ultroid)
+    cv2.imwrite("inf.jpg", ultroid)
     await event.client.send_file(
         event.chat_id,
-        "ult.jpg",
+        "inf.jpg",
         force_document=False,
         reply_to=event.reply_to_msg_id,
     )
     await xx.delete()
-    os.remove("ult.png")
-    os.remove("ult.jpg")
+    os.remove("inf.png")
+    os.remove("inf.jpg")
     os.remove(ultt)
 
 
@@ -454,8 +462,8 @@ async def ultd(event):
     ultt = await ureply.download_media()
     if ultt.endswith(".tgs"):
         await xx.edit("`Ooo Animated Sticker 👀...`")
-        cmd = ["lottie_convert.py", ultt, "ult.png"]
-        file = "ult.png"
+        cmd = ["lottie_convert.py", ultt, "inf.png"]
+        file = "inf.png"
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -468,22 +476,43 @@ async def ultd(event):
         await xx.edit("`Processing...`")
         img = cv2.VideoCapture(ultt)
         heh, lol = img.read()
-        cv2.imwrite("ult.png", lol)
-        file = "ult.png"
+        cv2.imwrite("inf.png", lol)
+        file = "inf.png"
     ult = cv2.imread(file)
     dan = cv2.cvtColor(ult, cv2.COLOR_BGR2RGB)
     ultroid = cv2.cvtColor(dan, cv2.COLOR_HSV2BGR)
-    cv2.imwrite("ult.jpg", ultroid)
+    cv2.imwrite("inf.jpg", ultroid)
     await event.client.send_file(
         event.chat_id,
-        "ult.jpg",
+        "inf.jpg",
         force_document=False,
         reply_to=event.reply_to_msg_id,
     )
     await xx.delete()
-    os.remove("ult.png")
-    os.remove("ult.jpg")
+    os.remove("inf.png")
+    os.remove("inf.jpg")
     os.remove(ultt)
+
+
+@ultroid_cmd(pattern="csample (.*)")
+async def sampl(ult):
+    color = ult.pattern_match.group(1)
+    if color:
+        img = Image.new("RGB", (200, 100), f"{color}")
+        img.save("csample.png")
+        try:
+            try:
+                await ult.delete()
+                await ultroid_bot.send_message(
+                    ult.chat_id, f"Colour Sample for `{color}` !", file="csample.png"
+                )
+            except MessageDeleteForbiddenError:
+                await ult.reply(f"Colour Sample for `{color}` !", file="csample.png")
+        except ChatSendMediaForbiddenError:
+            await eor(ult, "Umm! Sending Media is disabled here!")
+
+    else:
+        await eor(ult, f"Wrong Color Name/Hex Code specified!")
 
 
 @ultroid_cmd(
@@ -498,8 +527,8 @@ async def ultd(event):
     ultt = await ureply.download_media()
     if ultt.endswith(".tgs"):
         await xx.edit("`Ooo Animated Sticker 👀...`")
-        cmd = ["lottie_convert.py", ultt, "ult.png"]
-        file = "ult.png"
+        cmd = ["lottie_convert.py", ultt, "inf.png"]
+        file = "inf.png"
         process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -512,8 +541,8 @@ async def ultd(event):
         await xx.edit("`Processing...`")
         img = cv2.VideoCapture(ultt)
         heh, lol = img.read()
-        cv2.imwrite("ult.png", lol)
-        file = "ult.png"
+        cv2.imwrite("inf.png", lol)
+        file = "inf.png"
     got = upf(file)
     lnk = f"https://telegra.ph{got[0]}"
     r = requests.get(
@@ -523,9 +552,9 @@ async def ultd(event):
     utd = url(ms)
     if not utd:
         return
-    with open("ult.png", "wb") as f:
+    with open("inf.png", "wb") as f:
         f.write(requests.get(ms).content)
-    img = Image.open("ult.png").convert("RGB")
+    img = Image.open("inf.png").convert("RGB")
     img.save("ult.webp", "webp")
     await event.client.send_file(
         event.chat_id,
@@ -534,7 +563,7 @@ async def ultd(event):
         reply_to=event.reply_to_msg_id,
     )
     await xx.delete()
-    os.remove("ult.png")
+    os.remove("inf.png")
     os.remove("ult.webp")
     os.remove(ultt)
 

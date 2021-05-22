@@ -1,16 +1,27 @@
 # /usr/bin/python3
+# Ultroid - UserBot
+# Copyright (C) 2020 TeamUltroid
+#
+# This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
+# Please read the GNU Affero General Public License in
+# <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
 # Standalone file for facilitating local deploys.
 
 import os
 
 a = r"""
-  _    _ _ _             _     _
- | |  | | | |           (_)   | |
- | |  | | | |_ _ __ ___  _  __| |
- | |  | | | __| '__/ _ \| |/ _  |
- | |__| | | |_| | | (_) | | (_| |
-  \____/|_|\__|_|  \___/|_|\__,_|
+        @@@@            @@@@
+      @@    @@        @@    @@
+    @@        @@    @@        @@
+  @@            @@@@            @@
+  @@            @@@@            @@
+    @@        @@    @@        @@
+      @@    @@        @@    @@
+        @@@@            @@@@
+
+
+        WELCOME TO INFINATO!
 """
 
 
@@ -20,14 +31,15 @@ def start():
     check_for_py()
 
     print(f"{a}\n\n")
-    print("Welcome to INFINATO, lets start setting up!\n\n")
+    print("Welcome to Infinato, lets start setting up!\n\n")
     print("Cloning the repository...\n\n")
     try:
-        os.system("git clone https://github.com/coolfoolunidentifiedhacker/INFINATO-UB && cd INFINATO-UB")
-    except Exception as e:
-        print(f"ERROR\n{str(e)}")
+        os.system("rm -rf INFINATO-UB")
+    except BaseException:
+        pass
+    os.system("git clone https://github.com/coolfoolunidentifiedhacker/INFINATO-UB")
     print("\n\nDone")
-    os.system("cd INFINATO-UB")
+    os.chdir("INFINATO-UB")
     clear_screen()
     print(a)
     print("\n\nLet's start!\n")
@@ -52,10 +64,8 @@ def start():
         "API_ID",
         "API_HASH",
         "SESSION",
-        "BOT_TOKEN",
         "REDIS_URI",
         "REDIS_PASSWORD",
-        "LOG_CHANNEL",
     ]
     all_done = "# INFINATO Environment Variables.\n# Do not delete this file.\n\n"
     for i in varrs:
@@ -81,6 +91,7 @@ def start():
     clear_screen()
     print("\nCongrats. All done!\nTime to start the bot!")
     print("\nInstalling requirements... This might take a while...")
+    os.system("pip3 install -r requirements.txt")
     os.system("pip3 install -r resources/extras/local-requirements.txt")
     clear_screen()
     print(a)

@@ -22,4 +22,4 @@ async def on_new_mssg(event):
         return
     else:
         xx = await event.forward_to(OWNER_ID)
-        udB.set(str(xx.id), str(who))
+        add_stuff(xx.id, who)

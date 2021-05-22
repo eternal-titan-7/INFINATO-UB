@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./resources/extras/cf1.png" alt="Infinato Logo">
+  <img src="./resources/extras/cf1.jpg" alt="Infinato Logo">
 </p>
 <h1 align="center">
   <b>Infinato - UserBot</b>
@@ -64,8 +64,6 @@ Get the [Necessary Variables](#Necessary-Variables) and then click the button be
 - `API_ID` - Your API_ID from [my.telegram.org](https://my.telegram.org/)
 - `API_HASH` - Your API_HASH from [my.telegram.org](https://my.telegram.org/)
 - `SESSION` - SessionString for your accounts login session. Get it from [here](https://replit.com/@INFINATO/INFINATO-UB-SESSION-BUILDER)
-- `BOT_TOKEN` - The token of your bot from [@BotFather](https://t.me/BotFather)
-- `LOG_CHANNEL` - A private group/channel id.
 - `REDIS_URI` - Redis endpoint URL, from [redislabs](http://redislabs.com/), tutorial [here.](./resources/extras/redistut.md)
 - `REDIS_PASSWORD ` - Redis endpoint Password, from [redislabs](http://redislabs.com/), tutorial [here.](./resources/extras/redistut.md)
 

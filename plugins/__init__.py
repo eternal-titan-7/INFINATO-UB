@@ -10,6 +10,7 @@ from infinatoUserbot.functions.goodbye_db import *
 from infinatoUserbot.functions.google_image import googleimagesdownload
 from infinatoUserbot.functions.sudos import *
 from infinatoUserbot.functions.welcome_db import *
+from infinatoUserbot.functions.ytdl import *
 from infinatoUserbot.utils import *
 
 from strings import get_string
@@ -23,7 +24,7 @@ except ModuleNotFoundError:
 
 
 start_time = time.time()
-infinato_version = "v0.0.6"
+infinato_version = "v0.0.7"
 OWNER_NAME = ultroid_bot.me.first_name
 OWNER_ID = ultroid_bot.me.id
 

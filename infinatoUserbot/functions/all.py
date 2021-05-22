@@ -187,7 +187,7 @@ async def updater():
     if changelog:
         msg = await ultroid_bot.asst.send_file(
             Var.LOG_CHANNEL,
-            "resources/extras/cf1.png",
+            "resources/extras/cf1.jpg",
             caption="**0.0.6 Update Available**",
             force_document=True,
             buttons=Button.inline("Changelogs", data="changes"),

@@ -8,10 +8,10 @@
 • `{i}getlink`
     Get link of group this cmd is used in.
 
-• `{i}create (b|g|c) <group_name>`
+• `{i}create (g|b|c) <group_name>`
     Create group woth a specific name.
-    b - megagroup/supergroup
-    g - small group
+    g - megagroup/supergroup
+    b - small group
     c - channel
 """
 
@@ -24,7 +24,6 @@ from telethon.tl.functions.messages import (
     ExportChatInviteRequest,
 )
 
-from infinatoUserbot.misc._decorators import ultroid_cmd
 from . import *
 
 
@@ -42,7 +41,9 @@ async def _(e):
         return await eod(xx, "`Cant delete this chat`", time=10)
     except no_admin:
         return await eod(xx, "`I m not an admin`", time=10)
-    await e.client.send_message(Var.LOG_CHANNEL, f"#Deleted\nDeleted {e.chat_id}")
+    await e.client.send_message(
+        int(udB.get("LOG_CHANNEL")), f"#Deleted\nDeleted {e.chat_id}"
+    )
 
 
 @ultroid_cmd(

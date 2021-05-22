@@ -1,11 +1,17 @@
 
-from telethon.utils import get_display_name
-from telethon.errors.rpcerrorlist import MediaEmptyError as mee
-from . import *
-
 import re
 
+from telethon.errors.rpcerrorlist import (
+    ChatWriteForbiddenError,
+    MediaEmptyError,
+    PeerIdInvalidError,
+)
+from telethon.utils import get_display_name
+
+from . import *
+
 # taglogger
+
 
 @ultroid_bot.on(
     events.NewMessage(
@@ -14,59 +20,73 @@ import re
     ),
 )
 async def all_messages_catcher(e):
-    try:
-        if udB.get("TAG_LOG"):
-            try:
-                NEEDTOLOG = int(udB.get("TAG_LOG"))
-            except Exception:
-                return LOGS.warning("you given Wrong Grp/Channel ID in TAG_LOG.")
-            x = await ultroid_bot.get_entity(e.sender_id)
-            if x.bot or x.verified:
-                return
-            y = await ultroid_bot.get_entity(e.chat_id)
-            where_n = get_display_name(y)
-            who_n = get_display_name(x)
-            where_l = f"https://t.me/c/{y.id}/{e.id}"
-            send = await ultroid_bot.get_messages(e.chat_id, ids=e.id)
-            try:
-                if x.username:
-                    who_l = f"https://t.me/{x.username}"
-                    await asst.send_message(
-                        NEEDTOLOG,
-                        send,
-                        buttons=[[Button.url(who_n, who_l)], [Button.url(where_n, where_l)]],
-                    )
-                else:
-                    await asst.send_message(
-                        NEEDTOLOG,
-                        send,
-                        buttons=[[Button.inline(who_n, data=f"who{x.id}")], [Button.url(where_n, where_l)]],
-                    )
-            except mee:
-                if x.username:
-                    who_l = f"https://t.me/{x.username}"
-                    await asst.send_message(
-                        NEEDTOLOG,
-                        "`Unsupported Media`",
-                        buttons=[[Button.url(who_n, who_l)], [Button.url(where_n, where_l)]],
-                    )
-                else:
-                    await asst.send_message(
-                        NEEDTOLOG,
-                        "`Unsupported Media`",
-                        buttons=[[Button.inline(who_n, data=f"who{x.id}")], [Button.url(where_n, where_l)]],
-                    )
-            except Exception as er:
-                LOGS.info(str(er))
-                await ultroid_bot.send_message(NEEDTOLOG,
-                                               f"Please Add Your Assistant Bot - @{asst.me.username} as admin here.")
-        else:
+    if udB.get("TAG_LOG"):
+        try:
+            NEEDTOLOG = int(udB.get("TAG_LOG"))
+        except Exception:
+            return LOGS.info("you given Wrong Grp/Channel ID in TAG_LOG.")
+        x = e.sender
+        if x.bot or x.verified:
             return
-    except Exception as ex:
-        LOGS.info(ex)
+        y = e.chat
+        where_n = get_display_name(y)
+        who_n = get_display_name(x)
+        where_l = f"https://t.me/c/{y.id}/{e.id}"
+        send = await ultroid_bot.get_messages(e.chat_id, ids=e.id)
+        try:
+            if x.username:
+                who_l = f"https://t.me/{x.username}"
+                await asst.send_message(
+                    NEEDTOLOG,
+                    send,
+                    buttons=[
+                        [Button.url(who_n, who_l)],
+                        [Button.url(where_n, where_l)],
+                    ],
+                )
+            else:
+                await asst.send_message(
+                    NEEDTOLOG,
+                    send,
+                    buttons=[
+                        [Button.inline(who_n, data=f"who{x.id}")],
+                        [Button.url(where_n, where_l)],
+                    ],
+                )
+        except MediaEmptyError:
+            if x.username:
+                who_l = f"https://t.me/{x.username}"
+                await asst.send_message(
+                    NEEDTOLOG,
+                    "`Unsupported Media`",
+                    buttons=[
+                        [Button.url(who_n, who_l)],
+                        [Button.url(where_n, where_l)],
+                    ],
+                )
+            else:
+                await asst.send_message(
+                    NEEDTOLOG,
+                    "`Unsupported Media`",
+                    buttons=[
+                        [Button.inline(who_n, data=f"who{x.id}")],
+                        [Button.url(where_n, where_l)],
+                    ],
+                )
+        except PeerIdInvalidError:
+            await ultroid_bot.send_message(
+                int(udB.get("LOG_CHANNEL")),
+                "The Chat Id You Set In Tag Logger Is Wrong , Please Correct It",
+            )
+        except ChatWriteForbiddenError:
+            await ultroid_bot.send_message(NEEDTOLOG, "Please Give Your Assistant Bot")
+        except Exception as er:
+            LOGS.info(str(er))
+    else:
+        return
 
 
-@callback(re.compile(b"who(.*)"))
+@callback(re.compile("who(.*)"))
 async def _(e):
     wah = e.pattern_match.group(1).decode("UTF-8")
     y = await ultroid_bot.get_entity(int(wah))
@@ -83,58 +103,55 @@ async def when_asst_added_to_chat(event):
         user = await event.get_user()
         chat = (await event.get_chat()).title
         tmp = event.added_by
-        add = tmp.id
-        if user.id == (await asst.get_me()).id:
-            if add == OWNER_ID:
-                # , buttons=Button.inline("Leave Chat", data=f"leave_ch_{event.chat_id}|bot"))
-                return await asst.send_message(
-                    Var.LOG_CHANNEL, f"#ADD_LOG\n\nYou had added me to {chat}."
-                )
-            else:
-                # , buttons=Button.inline("Leave Chat", data=f"leave_ch_{event.chat_id}|bot"))
-                return await asst.send_message(
-                    Var.LOG_CHANNEL, f"#ADD_LOG\n\n`{add}` added me to {chat}."
-                )
+        if user.is_self:
+            buttons = Button.inline("Leave Chat", data=f"leave_ch_{event.chat_id}|bot")
+            return await asst.send_message(
+                int(udB.get("LOG_CHANNEL")),
+                f"#ADD_LOG\n\n[{tmp.first_name}](tg://user?id={tmp.id}) added [{user.first_name}](tg://user?id={user.id}) to {chat}.",
+                buttons=buttons,
+            )
 
 
 # log for user's new joins
 
 
-@ultroid_bot.on(events.ChatAction)
+@ultroid.on(events.ChatAction)
 async def when_ultd_added_to_chat(event):
     if event.user_added:
         user = await event.get_user()
         chat = (await event.get_chat()).title
         tmp = event.added_by
-        add = tmp.id
-        if user.id == OWNER_ID:
-            # , buttons=Button.inline("Leave Chat", data=f"leave_ch_{event.chat_id}|user"))
+        if user.is_self:
+            buttons = Button.inline("Leave Chat", data=f"leave_ch_{event.chat_id}|user")
             return await asst.send_message(
-                Var.LOG_CHANNEL, f"#ADD_LOG\n\n`{add}` just added you to {chat}."
+                int(udB.get("LOG_CHANNEL")),
+                f"#ADD_LOG\n\n[{tmp.first_name}](tg://user?id={tmp.id}) just added [{user.first_name}](tg://user?id={user.id}) to {chat}.",
+                buttons=buttons,
             )
     elif event.user_joined:
         user = await event.get_user()
         chat = (await event.get_chat()).title
-        if user.id == OWNER_ID:
-            # , buttons=Button.inline("Leave Chat", data=f"leave_ch_{event.chat_id}|user"))
+        if user.is_self:
+            buttons = Button.inline("Leave Chat", data=f"leave_ch_{event.chat_id}|user")
             return await asst.send_message(
-                Var.LOG_CHANNEL, f"#JOIN_LOG\n\nYou just joined {chat}."
+                int(udB.get("LOG_CHANNEL")),
+                f"#JOIN_LOG\n\n[{user.first_name}](tg://user?id={user.id}) just joined {chat}.",
+                buttons=buttons,
             )
 
 
-"""
 @callback(
     re.compile(
-        b"leave_ch_(.*)",
+        "leave_ch_(.*)",
     ),
 )
 @owner
 async def leave_ch_at(event):
     cht = event.data_match.group(1).decode("UTF-8")
     ch_id, client = cht.split("|")
+    name = (await event.get_chat()).title
     if client == "bot":
-        await asst.delete_dialog(ch_id)
+        await asst.delete_dialog(int(ch_id))
     elif client == "user":
-        await ultroid_bot.delete_dialog(ch_id)
-    await event.edit(f"Left `{ch_id}`")
-"""
+        await ultroid_bot.delete_dialog(int(ch_id))
+    await event.edit(f"Left `{name}`")

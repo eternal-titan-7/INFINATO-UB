@@ -126,6 +126,9 @@ async def restartbt(ult):
 
 @ultroid_cmd(pattern="shutdown")
 async def shutdownbot(ult):
+    if not ult.out:
+        if not is_fullsudo(ult.sender_id):
+            return await eod(ult, "`This Command Is Sudo Restricted.`")
     try:
         dyno = ult.text.split(" ", maxsplit=1)[1]
     except IndexError:
@@ -194,7 +197,7 @@ async def def_logs(ult):
     await ultroid_bot.send_file(
         ult.chat_id,
         file="infinato.log",
-        thumb="resources/extras/cf1.png",
+        thumb="resources/extras/cf1.jpg",
         caption=f"**Infinato Logs.**\nPasted [here]({url}) too!",
     )
     await xx.edit("Done")
