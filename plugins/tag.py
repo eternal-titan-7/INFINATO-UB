@@ -104,7 +104,7 @@ async def _(e: Message):
         else:
             for xb in taglist:
                 if len(xb) == 3:
-                    xx1.append(xb[0])
+                    xx1.append(f"@{xb[2]}")
                 else:
                     xx1.append(f"[{xb[0]}](tg://user?id={xb[1]})")
     elif okk[4:7] == "add":
@@ -136,7 +136,7 @@ async def _(e: Message):
                 o = o + 1
                 if okk[4:6].lower() == "on":
                     if un:
-                        xx1.append(un)
+                        xx1.append(f"@{un}")
                     else:
                         xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
             if isinstance(x, off):
@@ -144,7 +144,7 @@ async def _(e: Message):
                 if okk[4:7].lower() == "off":
                     if not (bb.bot or bb.deleted):
                         if un:
-                            xx1.append(un)
+                            xx1.append(f"@{un}")
                         else:
                             xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
             if isinstance(x, rec):
@@ -152,26 +152,26 @@ async def _(e: Message):
                 if okk[4:7].lower() == "rec":
                     if not (bb.bot or bb.deleted):
                         if un:
-                            xx1.append(un)
+                            xx1.append(f"@{un}")
                         else:
                             xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
             if isinstance(y, owner):
                 if (okk[4:9] == "admin") or (okk[4:9] == "owner"):
                     if un:
-                        xx1.append(f"**{un}**")
+                        xx1.append(f"**@{un}**")
                     else:
                         xx1.append(f"꧁[{get_display_name(bb)}](tg://user?id={bb.id})꧂")
             if isinstance(y, admin):
                 if okk[4:9] == "admin":
                     if not bb.deleted:
                         if un:
-                            xx1.append(un)
+                            xx1.append(f"@{un}")
                         else:
                             xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
             if okk[4:7] == "all":
                 if not (bb.bot or bb.deleted):
                     if un:
-                        xx1.append(un)
+                        xx1.append(f"@{un}")
                     else:
                         xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
             if okk[4:12] == "everyone":
@@ -180,7 +180,7 @@ async def _(e: Message):
             if okk[4:8] == "bots":
                 if bb.bot:
                     if un:
-                        xx1.append(un)
+                        xx1.append(f"@{un}")
                     else:
                         xx1.append(f"[{get_display_name(bb)}](tg://user?id={bb.id})")
     if okk[4:12] == "everyone":
