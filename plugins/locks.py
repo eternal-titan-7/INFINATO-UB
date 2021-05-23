@@ -10,7 +10,7 @@
 
 """
 
-from pyUltroid.functions.all import lucks, unlucks
+from infinatoUserbot.functions.all import lucks, unlucks
 from telethon.tl.functions.messages import EditChatDefaultBannedRightsRequest
 
 from . import *
