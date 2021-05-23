@@ -16,3 +16,9 @@ wikipedia
 quotefancy
 pyfiglet
 python-decouple
+telethon
+redis
+python-decouple==3.3
+TgCrypto
+python-dotenv==0.15.0
+cloudscraper
