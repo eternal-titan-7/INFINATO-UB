@@ -10,7 +10,6 @@ RUN git clone https://github.com/coolfoolunidentifiedhacker/INFINATO-UB.git /roo
 WORKDIR /root/INFINATO/
 
 RUN pip3 install -r requirements.txt
-RUN pip3 install --upgrade pip
 RUN npm install -g npm@7.12.1 -g
 RUN npm install
 RUN npm run build
