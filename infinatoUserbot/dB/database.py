@@ -12,7 +12,7 @@ class Var(object):
     BOT_TOKEN = config("BOT_TOKEN", default=None)
     SESSION = config("SESSION", default=None)
     DB_URI = config("DATABASE_URL", default=None)
-    LOG_CHANNEL = config("LOG_CHANNEL", default=None, cast=int)
+    LOG_CHANNEL = config("LOG_CHANNEL", default=0, cast=int)
     BLACKLIST_CHAT = set(int(x) for x in config("BLACKLIST_CHAT", "").split())
     # bot mode
     BOT_MODE = config("BOT_MODE", default=False, cast=bool)

@@ -36,8 +36,12 @@ async def logo_gen(event):
                 bg_ = await temp.download_media()
     else:
         pics = []
-        async for i in ultroid.iter_messages(
+        async for i in ultroid_bot.iter_messages(
             "@UltroidLogos", filter=InputMessagesFilterPhotos
+        ):
+            pics.append(i)
+        async for i in ultroid_bot.iter_messages(
+            "@bg_for_logos", filter=InputMessagesFilterPhotos
         ):
             pics.append(i)
         id_ = random.choice(pics)
@@ -47,8 +51,12 @@ async def logo_gen(event):
         font_ = fpath_ + f
     if not bg_:
         pics = []
-        async for i in ultroid.iter_messages(
+        async for i in ultroid_bot.iter_messages(
             "@UltroidLogos", filter=InputMessagesFilterPhotos
+        ):
+            pics.append(i)
+        async for i in ultroid_bot.iter_messages(
+            "@bg_for_logos", filter=InputMessagesFilterPhotos
         ):
             pics.append(i)
         id_ = random.choice(pics)
@@ -84,13 +92,13 @@ async def logo_gen(event):
     draw.text(
         (x, y), name, font=font, fill="white", stroke_width=strke, stroke_fill="black"
     )
-    flnme = f"ultd.png"
+    flnme = f"infi.png"
     img.save(flnme, "png")
     await xx.edit("`Done!`")
     if os.path.exists(flnme):
         tt = time.time()
         up = await uploader(flnme, flnme, tt, xx, "Uploading...")
-        await ultroid.send_file(
+        await ultroid_bot.send_file(
             event.chat_id,
             file=up,
             caption=f"Logo by [{OWNER_NAME}](tg://user?id={OWNER_ID})",

@@ -2,8 +2,6 @@
 import inspect
 import re
 import sys
-from asyncio import create_subprocess_shell as asyncsubshell
-from asyncio import subprocess as asyncsub
 from pathlib import Path
 from sys import *
 from time import gmtime, sleep, strftime
@@ -14,14 +12,17 @@ from telethon import *
 from telethon import __version__ as telever
 from telethon.errors.rpcerrorlist import (
     BotMethodInvalidError,
+    ChatSendInlineForbiddenError,
     FloodWaitError,
     MessageIdInvalidError,
     MessageNotModifiedError,
 )
+from telethon.utils import get_display_name
 
 from .. import *
 from ..dB.core import *
 from ..dB.database import Var
+from ..functions.all import bash
 from ..functions.all import time_formatter as tf
 from ..utils import *
 from ..version import __version__ as pyver
@@ -71,15 +72,6 @@ def ultroid_cmd(allow_sudo=on, **args):
     pattern = args["pattern"]
     groups_only = args.get("groups_only", False)
     admins_only = args.get("admins_only", False)
-    # args["outgoing"] = True
-
-    # if allow_sudo == "True":
-    #    args["from_users"] = sed
-    #    args["incoming"] = True if str(file_test) in sudoplugs else False
-    # elif allow_sudo == "False" and BOT_MODE:
-    #    args["from_users"] = [ultroid_bot.uid]
-    # else:
-    #    args["outgoing"] = True
 
     if pattern is not None:
         if pattern.startswith(r"\#"):
@@ -132,12 +124,13 @@ def ultroid_cmd(allow_sudo=on, **args):
             if not ult.out and (ult.sender_id not in sudos):
                 return
             chat = await ult.get_chat()
+            naam = get_display_name(chat)
             if ult.fwd_from:
                 return
             if groups_only and ult.is_private:
-                return await eod(ult, "`Use this in group/channel.`", time=3)
+                return await eod(ult, "`Use this in group/channel.`")
             if admins_only and not chat.admin_rights:
-                return await eod(ult, "`I am not an admin.`", time=3)
+                return await eod(ult, "`I am not an admin.`")
             try:
                 await func(ult)
             except MessageIdInvalidError:
@@ -157,8 +150,10 @@ def ultroid_cmd(allow_sudo=on, **args):
             except BotMethodInvalidError:
                 return await eor(
                     ult,
-                    "Seems Like You are using BOT_MODE\nYou cant Use This Command !",
+                    "`Seems Like You are using BOT_MODE\nYou cant Use This Command !`",
                 )
+            except ChatSendInlineForbiddenError:
+                return await eod(ult, "`Inline Locked In This Chat.`")
             except events.StopPropagation:
                 raise events.StopPropagation
             except KeyboardInterrupt:
@@ -174,8 +169,9 @@ def ultroid_cmd(allow_sudo=on, **args):
                 ftext += "\nTelethon Version: " + str(telever) + "\n\n"
                 ftext += "--------START INFINATO CRASH LOG--------"
                 ftext += "\nDate: " + date
-                ftext += "\nGroup ID: " + str(ult.chat_id)
+                ftext += "\nGroup: " + str(ult.chat_id) + " " + str(naam)
                 ftext += "\nSender ID: " + str(ult.sender_id)
+                ftext += "\nReplied: " + str(ult.is_reply)
                 ftext += "\n\nEvent Trigger:\n"
                 ftext += str(ult.text)
                 ftext += "\n\nTraceback info:\n"
@@ -183,16 +179,10 @@ def ultroid_cmd(allow_sudo=on, **args):
                 ftext += "\n\nError text:\n"
                 ftext += str(sys.exc_info()[1])
                 ftext += "\n\n--------END INFINATO CRASH LOG--------"
-
-                command = 'git log --pretty=format:"%an: %s" -5'
-
                 ftext += "\n\n\nLast 5 commits:\n"
 
-                process = await asyncsubshell(
-                    command, stdout=asyncsub.PIPE, stderr=asyncsub.PIPE
-                )
-                stdout, stderr = await process.communicate()
-                result = str(stdout.decode().strip()) + str(stderr.decode().strip())
+                stdout, stderr = await bash('git log --pretty=format:"%an: %s" -5')
+                result = str(stdout.strip()) + str(stderr.strip())
 
                 ftext += result + "`"
 

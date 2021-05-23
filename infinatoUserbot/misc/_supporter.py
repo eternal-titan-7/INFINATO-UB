@@ -146,7 +146,7 @@ if ENV:
             "TMP_DOWNLOAD_DIRECTORY", "resources/downloads/"
         )
         TEMP_DOWNLOAD_DIRECTORY = TMP_DOWNLOAD_DIRECTORY
-        TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "Infinato")
+        TELEGRAPH_SHORT_NAME = os.environ.get("TELEGRAPH_SHORT_NAME", "INFINATO")
         OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", None)
         G_BAN_LOGGER_GROUP = Var.LOG_CHANNEL
         GOOGLE_SEARCH_COUNT_LIMIT = int(os.environ.get("GOOGLE_SEARCH_COUNT_LIMIT", 9))

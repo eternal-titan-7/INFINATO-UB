@@ -45,6 +45,7 @@ def load_plugins(plugin_name):
         mod.tgbot = ultroid_bot.asst
         mod.ultroid_bot = ultroid_bot
         mod.bot = ultroid_bot
+        mod.ultroid = ultroid_bot
         mod.infinato = ultroid_bot
         mod.owner = owner()
         mod.in_owner = inline_owner()
@@ -69,13 +70,14 @@ def load_plugins(plugin_name):
         sys.modules["userbot.config"] = xxx
         spec.loader.exec_module(mod)
         sys.modules["plugins." + plugin_name] = mod
-        try:
-            PLUGINS.append(plugin_name)
-        except BaseException:
-            if plugin_name not in PLUGINS:
+        if not plugin_name.startswith("_"):
+            try:
                 PLUGINS.append(plugin_name)
-            else:
-                pass
+            except BaseException:
+                if plugin_name not in PLUGINS:
+                    PLUGINS.append(plugin_name)
+                else:
+                    pass
 
 
 # for addons
@@ -122,6 +124,7 @@ def load_addons(plugin_name):
         mod.ultroid_bot = ultroid_bot
         mod.ub = ultroid_bot
         mod.bot = ultroid_bot
+        mod.ultroid = ultroid_bot
         mod.infinato = ultroid_bot
         mod.borg = ultroid_bot
         mod.telebot = ultroid_bot
@@ -168,13 +171,14 @@ def load_addons(plugin_name):
         sys.modules["userbot.uniborgConfig"] = xxx
         spec.loader.exec_module(mod)
         sys.modules["addons." + plugin_name] = mod
-        try:
-            ADDONS.append(plugin_name)
-        except BaseException:
-            if plugin_name not in ADDONS:
+        if not plugin_name.startswith("_"):
+            try:
                 ADDONS.append(plugin_name)
-            else:
-                pass
+            except BaseException:
+                if plugin_name not in ADDONS:
+                    ADDONS.append(plugin_name)
+                else:
+                    pass
 
 
 # for assistant
@@ -206,6 +210,7 @@ def load_assistant(plugin_name):
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         mod.ultroid_bot = ultroid_bot
+        mod.ultroid = ultroid_bot
         mod.infinato = ultroid_bot
         mod.Redis = udB.get
         mod.udB = udB
@@ -253,6 +258,7 @@ def load_pmbot(plugin_name):
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         mod.ultroid_bot = ultroid_bot
+        mod.ultroid = ultroid_bot
         mod.infinato = ultroid_bot
         mod.bot = ultroid_bot
         mod.Redis = udB.get

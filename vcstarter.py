@@ -14,7 +14,7 @@ from telethon.tl.functions.phone import (
 )
 from telethon.tl.types import DataJSON
 
-LOG_CHANNEL = int(udB.get("LOG_CHANNEL"))
+LOG_CHANNEL = Var.LOG_CHANNEL
 if vcbot is not None:
 
     bot = TelegramClient("infinato_vc", Var.API_ID, Var.API_HASH).start(bot_token=udB.get("BOT_TOKEN"))

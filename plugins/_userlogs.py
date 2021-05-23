@@ -75,7 +75,7 @@ async def all_messages_catcher(e):
                 )
         except PeerIdInvalidError:
             await ultroid_bot.send_message(
-                int(udB.get("LOG_CHANNEL")),
+                Var.LOG_CHANNEL,
                 "The Chat Id You Set In Tag Logger Is Wrong , Please Correct It",
             )
         except ChatWriteForbiddenError:
@@ -106,7 +106,7 @@ async def when_asst_added_to_chat(event):
         if user.is_self:
             buttons = Button.inline("Leave Chat", data=f"leave_ch_{event.chat_id}|bot")
             return await asst.send_message(
-                int(udB.get("LOG_CHANNEL")),
+                Var.LOG_CHANNEL,
                 f"#ADD_LOG\n\n[{tmp.first_name}](tg://user?id={tmp.id}) added [{user.first_name}](tg://user?id={user.id}) to {chat}.",
                 buttons=buttons,
             )
@@ -124,7 +124,7 @@ async def when_ultd_added_to_chat(event):
         if user.is_self:
             buttons = Button.inline("Leave Chat", data=f"leave_ch_{event.chat_id}|user")
             return await asst.send_message(
-                int(udB.get("LOG_CHANNEL")),
+                Var.LOG_CHANNEL,
                 f"#ADD_LOG\n\n[{tmp.first_name}](tg://user?id={tmp.id}) just added [{user.first_name}](tg://user?id={user.id}) to {chat}.",
                 buttons=buttons,
             )
@@ -134,7 +134,7 @@ async def when_ultd_added_to_chat(event):
         if user.is_self:
             buttons = Button.inline("Leave Chat", data=f"leave_ch_{event.chat_id}|user")
             return await asst.send_message(
-                int(udB.get("LOG_CHANNEL")),
+                Var.LOG_CHANNEL,
                 f"#JOIN_LOG\n\n[{user.first_name}](tg://user?id={user.id}) just joined {chat}.",
                 buttons=buttons,
             )

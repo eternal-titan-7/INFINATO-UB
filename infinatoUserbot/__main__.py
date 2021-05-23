@@ -1,65 +1,45 @@
 
 import asyncio
 import glob
-import logging
 import os
 import traceback
+import urllib
 from pathlib import Path
+from random import randint
 
 import telethon.utils
 from telethon import TelegramClient
 from telethon import __version__ as vers
-from telethon.errors.rpcerrorlist import AuthKeyDuplicatedError, PeerIdInvalidError
+from telethon.errors.rpcerrorlist import AuthKeyDuplicatedError
 from telethon.tl.custom import Button
-from telethon.tl.functions.channels import InviteToChannelRequest, JoinChannelRequest
-from telethon.tl.functions.messages import AddChatUserRequest
-from telethon.tl.types import InputMessagesFilterDocument
+from telethon.tl.functions.channels import (
+    CreateChannelRequest,
+    EditAdminRequest,
+    EditPhotoRequest,
+    JoinChannelRequest,
+)
+from telethon.tl.types import (
+    ChatAdminRights,
+    InputChatUploadedPhoto,
+    InputMessagesFilterDocument,
+)
 
 from . import *
-from .functions.all import AreUpdatesAvailable
+from .functions.all import updater
 from .utils import *
 from .version import __version__ as ver
 
-# remove the old logs file.
-if os.path.exists("infinato.log"):
-    os.remove("infinato.log")
-
-# start logging into a new file.
-logging.basicConfig(
-    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
-    level=logging.INFO,
-    handlers=[logging.FileHandler("infinato.log"), logging.StreamHandler()],
-)
-
-if not os.path.isdir("resources/auths"):
-    os.mkdir("resources/auths")
-
-if not os.path.isdir("resources/downloads"):
-    os.mkdir("resources/downloads")
-
-if not os.path.isdir("addons"):
-    os.mkdir("addons")
+x = ["resources/auths", "resources/downloads", "addons"]
+for x in x:
+    if not os.path.isdir(x):
+        os.mkdir(x)
 
 if udB.get("CUSTOM_THUMBNAIL"):
     os.system(f"wget {udB.get('CUSTOM_THUMBNAIL')} -O resources/extras/cf1.jpg")
 
-token = udB.get("GDRIVE_TOKEN")
-if token:
+if udB.get("GDRIVE_TOKEN"):
     with open("resources/auths/auth_token.txt", "w") as t_file:
-        t_file.write(token)
-
-websocket = udB.get("WEBSOCKET_URL")
-if websocket:
-    ulr = f"WEBSOCKET_URL={websocket}"
-    try:
-        with open(".env", "r") as x:
-            m = x.read()
-        if "WEBSOCKET_URL" not in m:
-            with open(".env", "a+") as t:
-                t.write("\n" + ulr)
-    except BaseException:
-        with open(".env", "w") as t:
-            t.write(ulr)
+        t_file.write(udB.get("GDRIVE_TOKEN"))
 
 
 async def istart(ult):
@@ -70,11 +50,18 @@ async def istart(ult):
     if not ultroid_bot.me.bot:
         udB.set("OWNER_ID", ultroid_bot.uid)
     if str(BOT_MODE) == "True":
-        OWNER = await ultroid_bot.get_entity(int(udB.get("OWNER_ID")))
-        ultroid_bot.me = OWNER
-        asst.me = OWNER
-        ultroid_bot.uid = OWNER.id
-        ultroid_bot.first_name = OWNER.first_name
+        if Var.OWNER_ID:
+            OWNER = await ultroid_bot.get_entity(Var.OWNER_ID)
+            ultroid_bot.me = OWNER
+            asst.me = OWNER
+            ultroid_bot.uid = OWNER.id
+            ultroid_bot.first_name = OWNER.first_name
+        elif udB.get("OWNER_ID"):
+            OWNER = await ultroid_bot.get_entity(int(udB.get("OWNER_ID")))
+            ultroid_bot.me = OWNER
+            asst.me = OWNER
+            ultroid_bot.uid = OWNER.id
+            ultroid_bot.first_name = OWNER.first_name
 
 
 ultroid_bot.asst = None
@@ -98,7 +85,7 @@ LOGS.info(
 LOGS.info("Initialising...")
 LOGS.info(f"InfinatoLoader Version - {ver}")
 LOGS.info(f"Telethon Version - {vers}")
-LOGS.info("INFINATO Version - 0.0.6")
+LOGS.info("INFINATO Version - 0.0.7")
 
 if str(BOT_MODE) == "True":
     mode = "Bot Mode - Started"
@@ -134,7 +121,7 @@ BOTINVALID_PLUGINS = [
     "autopic",
     "pmpermit",
     "fedutils",
-    "_tagnotifs",
+    "_userlogs",
     "webupload",
     "clone",
     "inlinefun",
@@ -192,8 +179,8 @@ if addons == "True" or addons is None:
                     if not plugin_name.startswith("__") or plugin_name.startswith("_"):
                         LOGS.info(f"Ultroid - Addons - Installed - {plugin_name}")
             except Exception as e:
-                LOGS.warning(f"Ultroid - Addons - ERROR - {plugin_name}")
-                LOGS.warning(str(e))
+                LOGS.info(f"Ultroid - Addons - ERROR - {plugin_name}")
+                LOGS.info(str(e))
 else:
     os.system("cp plugins/__init__.py addons/")
 
@@ -247,7 +234,7 @@ if Plug_channel:
                     LOGS.info(f"Plugin {plugin} is Pre Installed")
                     os.remove(files)
         except Exception as e:
-            LOGS.warning(str(e))
+            LOGS.info(str(e))
 
 
 # chat via assistant
@@ -265,7 +252,7 @@ if pmbot == "True":
 # customize assistant
 
 
-async def semxy():
+async def customize():
     try:
         xx = await ultroid_bot.get_entity(asst.me.username)
         if xx.photo is None:
@@ -319,49 +306,44 @@ async def semxy():
 
 
 # some stuffs
-async def hehe():
-    if Var.LOG_CHANNEL:
+async def ready():
+    try:
+        chat_id = Var.LOG_CHANNEL
+        MSG = f"**INFINATO has been deployed!**\n➖➖➖➖➖➖➖➖➖\n**UserMode**: [{ultroid_bot.me.first_name}](tg://user?id={ultroid_bot.me.id})\n**Assistant**: @{asst.me.username}\n➖➖➖➖➖➖➖➖➖"
+        BTTS = None
+        updava = await updater()
+        if updava:
+            BTTS = [[Button.inline(text="Update Available", data="updtavail")]]
+        await ultroid_bot.asst.send_message(chat_id, MSG, buttons=BTTS)
+    except BaseException:
         try:
-            try:
-                await ultroid_bot(
-                    AddChatUserRequest(
-                        chat_id=Var.LOG_CHANNEL,
-                        user_id=asst.me.username,
-                        fwd_limit=10,
-                    ),
-                )
-            except BaseException:
-                try:
-                    await ultroid_bot(
-                        InviteToChannelRequest(
-                            channel=Var.LOG_CHANNEL, users=[asst.me.username]
-                        )
-                    )
-                except PeerIdInvalidError:
-                    LOGS.warning("WRONG CHANNEL/GROUP ID in LOG_CHANNEL Var")
-                except BaseException as ep:
-                    LOGS.info(ep)
             MSG = f"**INFINATO has been deployed!**\n➖➖➖➖➖➖➖➖➖\n**UserMode**: [{ultroid_bot.me.first_name}](tg://user?id={ultroid_bot.me.id})\n**Assistant**: @{asst.me.username}\n➖➖➖➖➖➖➖➖➖"
-            BTTS = None
-            updava = await AreUpdatesAvailable()
-            if updava:
-                BTTS = [[Button.inline(text="Update Available", data="updtavail")]]
-            await ultroid_bot.asst.send_message(Var.LOG_CHANNEL, MSG, buttons=BTTS)
-        except BaseException:
-            try:
-                MSG = f"**INFINATO has been deployed!**\n➖➖➖➖➖➖➖➖➖\n**UserMode**: [{ultroid_bot.me.first_name}](tg://user?id={ultroid_bot.me.id})\n**Assistant**: @{asst.me.username}\n➖➖➖➖➖➖➖➖➖"
-                await ultroid_bot.send_message(Var.LOG_CHANNEL, MSG)
-            except PeerIdInvalidError:
-                LOGS.warning("WRONG CHANNEL/GROUP ID in LOG_CHANNEL Var")
-            except BaseException as ef:
-                LOGS.info(ef)
+            await ultroid_bot.send_message(chat_id, MSG)
+        except Exception as ef:
+            LOGS.info(ef)
+
+
+if Var.HEROKU_APP_NAME:
+    ws = f"WEBSOCKET_URL=https://{Var.HEROKU_APP_NAME}.herokuapp.com"
+else:
+    ws = f"WEBSOCKET_URL=127.0.0.1"
+
+try:
+    with open(".env", "r") as x:
+        m = x.read()
+    if "WEBSOCKET_URL" not in m:
+        with open(".env", "a+") as t:
+            t.write("\n" + ws)
+except BaseException:
+    with open(".env", "w") as t:
+        t.write(ws)
 
 
 if str(BOT_MODE) != "True":
-    ultroid_bot.loop.run_until_complete(semxy())
+    ultroid_bot.loop.run_until_complete(customize())
     if Plug_channel:
         ultroid_bot.loop.run_until_complete(plug())
-ultroid_bot.loop.run_until_complete(hehe())
+ultroid_bot.loop.run_until_complete(ready())
 
 LOGS.info(
     """

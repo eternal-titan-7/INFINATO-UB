@@ -3,7 +3,8 @@
 ✘ Commands Available -
 
 • `{i}saavn <search query>`
-   `search song on saavn`
+    Download songs from Saavn
+
 """
 
 import os
@@ -22,7 +23,7 @@ async def siesace(e):
     if not song:
         return await eod(e, "`Give me Something to Search")
     hmm = time.time()
-    lol = await eor(e, "`...`")
+    lol = await eor(e, "`Searching on Saavn...`")
     sung = song.replace(" ", "%20")
     url = f"https://jostapi.herokuapp.com/saavn?query={sung}"
     try:
@@ -42,6 +43,7 @@ async def siesace(e):
     await ultroid_bot.send_file(
         e.chat_id,
         okk,
+        caption="`" + title + "`" + "\n`From Saavn`",
         attributes=[
             DocumentAttributeAudio(
                 duration=int(duration),
