@@ -15,3 +15,4 @@ pokedex.py
 wikipedia
 quotefancy
 pyfiglet
+python-decouple
