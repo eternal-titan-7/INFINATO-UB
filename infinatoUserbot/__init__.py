@@ -61,6 +61,9 @@ except ConnectionError as ce:
 except ResponseError as res:
     LOGS.info(f"ERROR - {res}")
     exit(1)
+except Exception as er:
+    LOGS.info(f"ERROR - {er}")
+    exit(1)
 
 START_TIME = datetime.now()
 
@@ -121,7 +124,7 @@ else:
 if not udB.get("SUDO"):
     udB.set("SUDO", "False")
 
-if udB.get("SUDOS") is None:
+if not udB.get("SUDOS"):
     udB.set("SUDOS", "1")
 
 if udB.get("VC_SESSION"):

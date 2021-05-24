@@ -45,12 +45,7 @@ from telethon.tl.types import (
 
 filename = ""
 
-try:
-    from mautrix.crypto.attachments import async_encrypt_attachment
-except ImportError:
-    async_encrypt_attachment = None
-
-log: logging.Logger = logging.getLogger("telethon")
+log: logging.Logger = logging.getLogger("FastTelethon")
 
 TypeLocation = Union[
     Document,
@@ -134,10 +129,6 @@ class UploadSender:
 
     async def _next(self, data: bytes) -> None:
         self.request.bytes = data
-        log.debug(
-            f"Sending file part {self.request.file_part}/{self.part_count}"
-            f" with {len(data)} bytes"
-        )
         await self.client._call(self.sender, self.request)
         self.request.file_part += self.stride
 
@@ -265,7 +256,6 @@ class ParallelTransferrer:
             )
         )
         if not self.auth_key:
-            log.debug(f"Exporting auth to DC {self.dc_id}")
             auth = await self.client(ExportAuthorizationRequest(self.dc_id))
             self.client._init_request.query = ImportAuthorizationRequest(
                 id=auth.id, bytes=auth.bytes
@@ -306,10 +296,6 @@ class ParallelTransferrer:
         connection_count = connection_count or self._get_connection_count(file_size)
         part_size = (part_size_kb or utils.get_appropriated_part_size(file_size)) * 1024
         part_count = math.ceil(file_size / part_size)
-        log.debug(
-            "Starting parallel download: "
-            f"{connection_count} {part_size} {part_count} {file!s}"
-        )
         await self._init_download(connection_count, file, part_count, part_size)
 
         part = 0
@@ -323,9 +309,6 @@ class ParallelTransferrer:
                     break
                 yield data
                 part += 1
-                log.debug(f"Part {part} downloaded")
-
-        log.debug("Parallel download finished, cleaning up connections")
         await self._cleanup()
 
 
@@ -356,7 +339,10 @@ async def _internal_transfer_to_telegram(
         if progress_callback:
             r = progress_callback(response.tell(), file_size)
             if inspect.isawaitable(r):
-                await r
+                try:
+                    await r
+                except BaseException:
+                    pass
         if not is_large:
             hash_md5.update(data)
         if len(buffer) == 0 and len(data) == part_size:
@@ -396,7 +382,10 @@ async def download_file(
         if progress_callback:
             r = progress_callback(out.tell(), size)
             if inspect.isawaitable(r):
-                await r
+                try:
+                    await r
+                except BaseException:
+                    pass
 
     return out
 

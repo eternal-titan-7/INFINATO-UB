@@ -1,4 +1,3 @@
-
 import re
 from os import remove
 
@@ -63,13 +62,18 @@ async def update(eve):
     if Var.HEROKU_API:
         import heroku3
 
-        heroku = heroku3.from_key(Var.HEROKU_API)
-        heroku_app = None
-        heroku_applications = heroku.apps()
+        try:
+            heroku = heroku3.from_key(Var.HEROKU_API)
+            heroku_app = None
+            heroku_applications = heroku.apps()
+        except BaseException:
+            return await eve.edit(
+                "`Invalid Heroku credentials for updating userbot dyno.`"
+            )
         for app in heroku_applications:
             if app.name == Var.HEROKU_APP_NAME:
                 heroku_app = app
-        if heroku_app is None:
+        if not heroku_app:
             await eve.edit("`Invalid Heroku credentials for updating userbot dyno.`")
             repo.__del__()
             return
@@ -93,18 +97,6 @@ async def update(eve):
             repo.__del__()
             return
         await eve.edit("`Successfully Updated!\nRestarting, please wait...`")
-    elif Var.HEROKU_API is None:
-        try:
-            ups_rem.pull(ac_br)
-        except GitCommandError:
-            repo.git.reset("--hard", "FETCH_HEAD")
-        await updateme_requirements()
-        await eve.edit(
-            "`Successfully Updated!\nBot is restarting... Wait for a second!`"
-        )
-        os.system("git pull"), os.system(
-            "pip3.9 install -U -r requirements.txt"
-        ), os.execl(sys.executable, sys.executable, "-m", "infinatoUserbot")
     else:
         try:
             ups_rem.pull(ac_br)
@@ -153,9 +145,9 @@ async def _(e):
     hmm.close()
     key = (
         requests.post("https://nekobin.com/api/documents", json={"content": hmmm})
-        .json()
-        .get("result")
-        .get("key")
+            .json()
+            .get("result")
+            .get("key")
     )
     if ok.startswith("plugins"):
         buttons = [
@@ -635,9 +627,9 @@ async def media(event):
             pass
         media = await event.client.download_media(response, "alvpc")
         if (
-            not (response.text).startswith("/")
-            and not response.text == ""
-            and not response.media
+                not (response.text).startswith("/")
+                and not response.text == ""
+                and not response.media
         ):
             url = response.text
         else:
@@ -781,9 +773,9 @@ async def media(event):
             pass
         media = await event.client.download_media(response, "pmpc")
         if (
-            not (response.text).startswith("/")
-            and not response.text == ""
-            and not response.media
+                not (response.text).startswith("/")
+                and not response.text == ""
+                and not response.media
         ):
             url = response.text
         else:

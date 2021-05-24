@@ -21,7 +21,6 @@ from telethon.utils import get_display_name
 
 from .. import *
 from ..dB.core import *
-from ..dB.database import Var
 from ..functions.all import bash
 from ..functions.all import time_formatter as tf
 from ..utils import *
@@ -60,6 +59,9 @@ if SUDO_ALLOWED_PLUGINS:
     sudoplugs = list(SUDO_ALLOWED_PLUGINS)
 else:
     sudoplugs = ""
+
+black_list_chats = eval(udB.get("BLACKLIST_CHATS"))
+
 # decorator
 
 

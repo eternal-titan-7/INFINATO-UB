@@ -10,7 +10,11 @@ from random import randint
 import telethon.utils
 from telethon import TelegramClient
 from telethon import __version__ as vers
-from telethon.errors.rpcerrorlist import AuthKeyDuplicatedError
+from telethon.errors.rpcerrorlist import (
+    ApiIdInvalidError,
+    AuthKeyDuplicatedError,
+    PhoneNumberInvalidError,
+)
 from telethon.tl.custom import Button
 from telethon.tl.functions.channels import (
     CreateChannelRequest,
@@ -25,6 +29,7 @@ from telethon.tl.types import (
 )
 
 from . import *
+from .dB import DEVLIST
 from .functions.all import updater
 from .utils import *
 from .version import __version__ as ver
@@ -85,7 +90,7 @@ LOGS.info(
 LOGS.info("Initialising...")
 LOGS.info(f"InfinatoLoader Version - {ver}")
 LOGS.info(f"Telethon Version - {vers}")
-LOGS.info("INFINATO Version - 0.0.7")
+LOGS.info("INFINATO Version - 0.0.7.1")
 
 if str(BOT_MODE) == "True":
     mode = "Bot Mode - Started"
@@ -104,10 +109,13 @@ if Var.BOT_TOKEN:
         ultroid_bot.loop.run_until_complete(bot_info(asst))
         LOGS.info("Done, startup completed")
         LOGS.info(mode)
-    except AuthKeyDuplicatedError:
+    except AuthKeyDuplicatedError or PhoneNumberInvalidError:
         LOGS.info(
             "Session String expired. Please create a new one! Infinato is stopping..."
         )
+        exit(1)
+    except ApiIdInvalidError:
+        LOGS.info("Your API ID/API HASH combination is invalid. Kindly recheck.")
         exit(1)
     except BaseException:
         LOGS.info("Error: " + str(traceback.print_exc()))
@@ -197,8 +205,8 @@ for name in files:
             if not plugin_name.startswith("__") or plugin_name.startswith("_"):
                 LOGS.info(f"INFINATO - Assistant - Installed - {plugin_name}")
         except Exception as e:
-            LOGS.warning(f"INFINATO - Assistant - ERROR - {plugin_name}")
-            LOGS.warning(str(e))
+            LOGS.info(f"INFINATO - Assistant - ERROR - {plugin_name}")
+            LOGS.info(str(e))
 
 # for channel plugin
 Plug_channel = udB.get("PLUGIN_CHANNEL")
@@ -228,8 +236,8 @@ if Plug_channel:
                         load_addons(plugin.replace(".py", ""))
                         LOGS.info(f"INFINATO - PLUGIN_CHANNEL - Installed - {plugin}")
                     except Exception as e:
-                        LOGS.warning(f"INFINATO - PLUGIN_CHANNEL - ERROR - {plugin}")
-                        LOGS.warning(str(e))
+                        LOGS.info(f"INFINATO - PLUGIN_CHANNEL - ERROR - {plugin}")
+                        LOGS.info(str(e))
                 else:
                     LOGS.info(f"Plugin {plugin} is Pre Installed")
                     os.remove(files)
@@ -307,8 +315,8 @@ async def customize():
 
 # some stuffs
 async def ready():
+    chat_id = Var.LOG_CHANNEL
     try:
-        chat_id = Var.LOG_CHANNEL
         MSG = f"**INFINATO has been deployed!**\n➖➖➖➖➖➖➖➖➖\n**UserMode**: [{ultroid_bot.me.first_name}](tg://user?id={ultroid_bot.me.id})\n**Assistant**: @{asst.me.username}\n➖➖➖➖➖➖➖➖➖"
         BTTS = None
         updava = await updater()

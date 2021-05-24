@@ -32,7 +32,7 @@ import heroku3
 import requests
 from git import Repo
 from infinatoUserbot import __version__ as UltVer
-from telethon import __version__
+from telethon import __version__, events
 from telethon.errors.rpcerrorlist import ChatSendMediaForbiddenError
 
 from . import *

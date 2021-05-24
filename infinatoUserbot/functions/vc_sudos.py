@@ -1,3 +1,9 @@
+# Ultroid - UserBot
+# Copyright (C) 2020 TeamUltroid
+#
+# This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
+# PLease read the GNU Affero General Public License in
+# <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
 from .. import udB
 
@@ -50,7 +56,7 @@ def add_vcsudo(id):  # Take int or str with numbers only , Returns Boolean
         udB.set("VC_SUDOS", list_to_str(sudos))
         return True
     except Exception as e:
-        print(f"Infinato LOG : // functions/sudos/add_sudo : {e}")
+        print(f"Ultroid LOG : // functions/sudos/add_sudo : {e}")
         return False
 
 
@@ -64,5 +70,5 @@ def del_vcsudo(id):  # Take int or str with numbers only , Returns Boolean
         udB.set("VC_SUDOS", list_to_str(sudos))
         return True
     except Exception as e:
-        print(f"Infinato LOG : // functions/sudos/del_sudo : {e}")
+        print(f"Ultroid LOG : // functions/sudos/del_sudo : {e}")
         return False

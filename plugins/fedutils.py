@@ -45,15 +45,14 @@ async def _(event):
                 except BaseException:
                     pass
             arg = event.text.split(" ", maxsplit=2)
-            try:
+            if len(arg) == 2:
+                FBAN = arg[1]
+                REASON = "#TBMassBanned"
+            elif len(arg) > 2:
                 FBAN = arg[1]
                 REASON = arg[2]
-            except IndexError:
-                try:
-                    FBAN = arg[1]
-                except IndexError:
-                    return await msg.edit("No user was designated.")
-                REASON = "#TBMassBanned "
+            else:
+                return await msg.edit("No user was designated.")
         else:
             FBAN = previous_message.sender_id
             try:
@@ -62,20 +61,26 @@ async def _(event):
                 REASON = "#TBMassBanned"
     else:
         arg = event.text.split(" ", maxsplit=2)
-        try:
+        if len(arg) == 2:
+            FBAN = arg[1]
+            REASON = "#TBMassBanned"
+        elif len(arg) > 2:
             FBAN = arg[1]
             REASON = arg[2]
-        except IndexError:
-            try:
-                FBAN = arg[1]
-            except BaseException:
-                return await msg.edit("No user was designated.")
-            REASON = "#TBMassBanned"
+        else:
+            return await msg.edit("No user was designated.")
+    if FBAN.startswith("@"):
+        usr = FBAN
+    else:
+        try:
+            usr = int(FBAN)
+        except BaseException:
+            return await msg.edit("Give username or id.")
     try:
-        uid = int(FBAN)
-    except ValueError:
-        x = await ultroid_bot(GetFullUserRequest(FBAN))
-        uid = x.user.id
+        x = await ultroid_bot.get_entity(usr)
+        uid = x.id
+    except BaseException:
+        return await msg.edit("Incorrect user was designated.")
 
     if str(uid) in DEVLIST:
         return await msg.edit("The user is my Dev and cannot be FBanned!")
@@ -119,13 +124,13 @@ async def _(event):
                             except BaseException:
                                 pass
                     elif "You can only use fed commands once every 5 minutes" in (
-                        await bot_conv.get_edit
+                            await bot_conv.get_edit
                     ):
                         await msg.edit("Try again after 5 mins.")
                         return
                 if len(fedList) == 0:
                     await msg.edit(
-                        f"Unable to collect FedAdminList. Retrying ({a+1}/3)...",
+                        f"Unable to collect FedAdminList. Retrying ({a + 1}/3)...",
                     )
                 else:
                     break
@@ -260,13 +265,13 @@ async def _(event):
                             except BaseException:
                                 pass
                     elif "You can only use fed commands once every 5 minutes" in (
-                        await bot_conv.get_edit
+                            await bot_conv.get_edit
                     ):
                         await msg.edit("Try again after 5 mins.")
                         return
                 if len(fedList) == 0:
                     await msg.edit(
-                        f"Unable to collect FedAdminList. Retrying ({a+1}/3)...",
+                        f"Unable to collect FedAdminList. Retrying ({a + 1}/3)...",
                     )
                 else:
                     break

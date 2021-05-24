@@ -1,4 +1,3 @@
-
 """
 ✘ Commands Available -
 
@@ -399,21 +398,12 @@ async def _(e):
 )
 async def _(e):
     xx = await eor(e, "`UnGbanning...`")
-    if e.is_private:
-        userid = (await e.get_chat()).id
-    elif e.reply_to_msg_id:
+    if e.reply_to_msg_id:
         userid = (await e.get_reply_message()).sender_id
     elif e.pattern_match.group(1):
-        if (e.pattern_match.group(1)).isdigit():
-            try:
-                userid = (await e.client.get_entity(int(e.pattern_match.group(1)))).id
-            except ValueError as err:
-                return await eod(xx, f"{str(err)}", time=5)
-        else:
-            try:
-                userid = (await e.client.get_entity(str(e.pattern_match.group(1)))).id
-            except ValueError as err:
-                return await eod(xx, f"{str(err)}", time=5)
+        userid = await get_user_id(e.pattern_match.group(1))
+    elif e.is_private:
+        userid = (await e.get_chat()).id
     else:
         return await eod(xx, "`Reply to some msg or add their id.`", time=5)
     name = (await e.client.get_entity(userid)).first_name
@@ -442,13 +432,7 @@ async def _(e):
         return await eor(e, "`This Command Is Sudo Restricted.`")
     xx = await eor(e, "`Gbanning...`")
     reason = ""
-    if e.is_private:
-        userid = (await e.get_chat()).id
-        try:
-            reason = e.text.split(" ", maxsplit=1)[1]
-        except IndexError:
-            reason = ""
-    elif e.reply_to_msg_id:
+    if e.reply_to_msg_id:
         userid = (await e.get_reply_message()).sender_id
         try:
             reason = e.text.split(" ", maxsplit=1)[1]
@@ -456,18 +440,15 @@ async def _(e):
             reason = ""
     elif e.pattern_match.group(1):
         usr = e.text.split(" ", maxsplit=2)[1]
-        if (e.pattern_match.group(1)).isdigit():
-            try:
-                userid = (await e.client.get_entity(int(usr))).id
-            except ValueError as err:
-                return await eod(xx, f"{str(err)}", time=5)
-        else:
-            try:
-                userid = (await e.client.get_entity(str(usr))).id
-            except ValueError as err:
-                return await eod(xx, f"{str(err)}", time=5)
+        userid = await get_user_id(usr)
         try:
             reason = e.text.split(" ", maxsplit=2)[2]
+        except IndexError:
+            reason = ""
+    elif e.is_private:
+        userid = (await e.get_chat()).id
+        try:
+            reason = e.text.split(" ", maxsplit=1)[1]
         except IndexError:
             reason = ""
     else:
@@ -554,21 +535,12 @@ async def gucast(event):
 )
 async def gkick(e):
     xx = await eor(e, "`Gkicking...`")
-    if e.is_private:
-        userid = (await e.get_chat()).id
-    elif e.reply_to_msg_id:
+    if e.reply_to_msg_id:
         userid = (await e.get_reply_message()).sender_id
     elif e.pattern_match.group(1):
-        if (e.pattern_match.group(1)).isdigit():
-            try:
-                userid = (await e.client.get_entity(int(e.pattern_match.group(1)))).id
-            except ValueError as err:
-                return await eod(xx, f"{str(err)}", time=5)
-        else:
-            try:
-                userid = (await e.client.get_entity(str(e.pattern_match.group(1)))).id
-            except ValueError as err:
-                return await eod(xx, f"{str(err)}", time=5)
+        userid = await get_user_id(e.pattern_match.group(1))
+    elif e.is_private:
+        userid = (await e.get_chat()).id
     else:
         return await eod(xx, "`Reply to some msg or add their id.`", time=5)
     name = (await e.client.get_entity(userid)).first_name
@@ -594,21 +566,12 @@ async def _(e):
     if not e.out and not is_fullsudo(e.sender_id):
         return await eor(e, "`This Command Is Sudo Restricted.`")
     xx = await eor(e, "`Gmuting...`")
-    if e.is_private:
-        userid = (await e.get_chat()).id
-    elif e.reply_to_msg_id:
+    if e.reply_to_msg_id:
         userid = (await e.get_reply_message()).sender_id
     elif e.pattern_match.group(1):
-        if (e.pattern_match.group(1)).isdigit():
-            try:
-                userid = (await e.client.get_entity(int(e.pattern_match.group(1)))).id
-            except ValueError as err:
-                return await eod(xx, f"{str(err)}", time=5)
-        else:
-            try:
-                userid = (await e.client.get_entity(str(e.pattern_match.group(1)))).id
-            except ValueError as err:
-                return await eod(xx, f"{str(err)}", time=5)
+        userid = await get_user_id(e.pattern_match.group(1))
+    elif e.is_private:
+        userid = (await e.get_chat()).id
     else:
         return await eod(xx, "`Reply to some msg or add their id.`", tome=5)
     name = (await e.client.get_entity(userid)).first_name
@@ -635,21 +598,12 @@ async def _(e):
 )
 async def _(e):
     xx = await eor(e, "`UnGmuting...`")
-    if e.is_private:
-        userid = (await e.get_chat()).id
-    elif e.reply_to_msg_id:
+    if e.reply_to_msg_id:
         userid = (await e.get_reply_message()).sender_id
     elif e.pattern_match.group(1):
-        if (e.pattern_match.group(1)).isdigit():
-            try:
-                userid = (await e.client.get_entity(int(e.pattern_match.group(1)))).id
-            except ValueError as err:
-                return await eod(xx, f"{str(err)}", time=5)
-        else:
-            try:
-                userid = (await e.client.get_entity(str(e.pattern_match.group(1)))).id
-            except ValueError as err:
-                return await eod(xx, f"{str(err)}", time=5)
+        userid = await get_user_id(e.pattern_match.group(1))
+    elif e.is_private:
+        userid = (await e.get_chat()).id
     else:
         return await eod(xx, "`Reply to some msg or add their id.`", time=5)
     name = (await e.client.get_entity(userid)).first_name

@@ -65,7 +65,7 @@ from ..utils import *
 from ._FastTelethon import download_file as downloadable
 from ._FastTelethon import upload_file as uploadable
 
-infinato_version = "0.0.7"
+infinato_version = "0.0.7.1"
 
 OAUTH_SCOPE = "https://www.googleapis.com/auth/drive.file"
 REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
@@ -789,7 +789,9 @@ def vcdyno(action):
 print(vcdyno("off"))
 
 
-async def shutdown(ult, dynotype=["web", "worker"]):
+async def shutdown(ult, dynotype=None):
+    if dynotype is None:
+        dynotype = ["web", "worker"]
     ult = await eor(ult, "Shutting Down")
     if Var.HEROKU_APP_NAME and Var.HEROKU_API:
         try:

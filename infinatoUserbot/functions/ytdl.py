@@ -11,6 +11,7 @@ from youtubesearchpython.__future__ import VideosSearch
 from .all import uploader
 
 # search youtube
+from .. import udB, ultroid_bot
 
 
 async def get_yt_link(query):
@@ -26,7 +27,6 @@ async def download_yt(xx, event, link, ytd):
     st = time.time()
     info = ytd.extract_info(link, False)
     title = info["title"]
-    author = info["uploader"]
     try:
         ytd.download([link])
     except Exception as e:
@@ -52,7 +52,7 @@ async def download_yt(xx, event, link, ytd):
         elif f"{tm}.webp" in dir:
             thumb = f"{tm}.webp"
         else:
-            thumb = "resources/extras/cf1.jpg"
+            thumb = "resources/extras/ultroid.jpg"
         caption = f"`{title}`\n\n`From YouTube Official`"
     else:
         return
@@ -67,6 +67,15 @@ async def download_yt(xx, event, link, ytd):
         hi = metadata.get("height")
     if metadata.has("duration"):
         duration = metadata.get("duration").seconds
+    if info.get("uploader"):
+        author = info["uploader"]
+    elif metadata.has("artist"):
+        author = metadata.get("artist")
+    else:
+        if udB.get("artist"):
+            author = udB.get("artist")
+        else:
+            author = ultroid_bot.first_name
     if kk.endswith(".mkv"):
         im = Image.open(thumb)
         ok = im.resize((int(wi), int(hi)))

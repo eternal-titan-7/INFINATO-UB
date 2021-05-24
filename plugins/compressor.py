@@ -54,7 +54,7 @@ async def _(e):
             )
             o_size = os.path.getsize(file.name)
             d_time = time.time()
-            diff = time_formatter((d_time - c_time) * 1000)
+            diff = time_formatter(int((d_time - c_time) * 1000))
             file_name = (file.name).split("/")[-1]
             out = file_name.replace(file_name.split(".")[-1], " compressed.mkv")
             await xxx.edit(
@@ -72,6 +72,12 @@ async def _(e):
                 stdout=asyncio.subprocess.PIPE,
                 stderr=asyncio.subprocess.PIPE,
             )
+            if proce.returncode is None:
+                proce = await asyncio.create_subprocess_shell(
+                    f'ffmpeg -hide_banner -loglevel quiet -progress {progress} -i """{file.name}""" -preset ultrafast -vcodec libx265 -crf {crf} """{out}""" -y',
+                    stdout=asyncio.subprocess.PIPE,
+                    stderr=asyncio.subprocess.PIPE,
+                )
             while proce.returncode != 0:
                 await asyncio.sleep(3)
                 with open(progress, "r+") as fil:
@@ -94,7 +100,7 @@ async def _(e):
             os.remove(file.name)
             c_size = os.path.getsize(out)
             f_time = time.time()
-            difff = time_formatter((f_time - d_time) * 1000)
+            difff = time_formatter(int((f_time - d_time) * 1000))
             await xxx.edit(
                 f"`Compressed {humanbytes(o_size)} to {humanbytes(c_size)} in {difff}\nTrying to Upload...`"
             )
