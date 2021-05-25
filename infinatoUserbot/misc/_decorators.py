@@ -62,6 +62,7 @@ else:
 
 black_list_chats = eval(udB.get("BLACKLIST_CHATS"))
 
+
 # decorator
 
 
@@ -86,14 +87,14 @@ def ultroid_cmd(allow_sudo=on, **args):
             try:
                 cmd = (
                     cmd.group(1)
-                    .replace("$", "")
-                    .replace("?(.*)", "")
-                    .replace("(.*)", "")
-                    .replace("(?: |)", "")
-                    .replace("| ", "")
-                    .replace("( |)", "")
-                    .replace("?((.|//)*)", "")
-                    .replace("?P<shortname>\\w+", "")
+                        .replace("$", "")
+                        .replace("?(.*)", "")
+                        .replace("(.*)", "")
+                        .replace("(?: |)", "")
+                        .replace("| ", "")
+                        .replace("( |)", "")
+                        .replace("?((.|//)*)", "")
+                        .replace("?P<shortname>\\w+", "")
                 )
             except BaseException:
                 pass
@@ -104,7 +105,7 @@ def ultroid_cmd(allow_sudo=on, **args):
         except BaseException:
             pass
     args["blacklist_chats"] = True
-    black_list_chats = list(Var.BLACKLIST_CHAT)
+    black_list_chats = eval(udB.get("BLACKLIST_CHATS"))
     if len(black_list_chats) > 0:
         args["chats"] = black_list_chats
 
@@ -116,6 +117,7 @@ def ultroid_cmd(allow_sudo=on, **args):
         del args["admins_only"]
     if "groups_only" in args:
         del args["groups_only"]
+
     # check if the plugin should listen for outgoing 'messages'
 
     def decorator(func):
@@ -142,7 +144,7 @@ def ultroid_cmd(allow_sudo=on, **args):
             except FloodWaitError as fwerr:
                 await ultroid_bot.asst.send_message(
                     Var.LOG_CHANNEL,
-                    f"`FloodWaitError:\n{str(fwerr)}\n\nSleeping for {tf((fwerr.seconds + 10)*1000)}`",
+                    f"`FloodWaitError:\n{str(fwerr)}\n\nSleeping for {tf((fwerr.seconds + 10) * 1000)}`",
                 )
                 sleep(fwerr.seconds + 10)
                 await ultroid_bot.asst.send_message(

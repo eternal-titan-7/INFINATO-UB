@@ -60,7 +60,9 @@ def get_all_users():  # Returns List
 
 
 def is_blacklisted(id):  # Take int or str with numbers only , Returns Boolean
-    if not str(id).isdigit():
+    if not str(id)[1:].isdigit():
+        return False
+    if (str(id)[0] != "-") or (not str(id)[0].isdigit()):
         return False
     users = get_all_bl_users()
     if str(id) in users:
