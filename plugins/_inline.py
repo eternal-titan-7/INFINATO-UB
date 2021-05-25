@@ -6,6 +6,7 @@ from math import ceil
 from os import remove
 from platform import python_version as PyVer
 
+import telethon.events
 from git import Repo
 from infinatoUserbot import __version__ as UltVer
 from support import *
@@ -27,7 +28,7 @@ else:
 if udB.get("INLINE_PIC"):
     _file_to_replace = udB.get("INLINE_PIC")
 else:
-    _file_to_replace = "resources/extras/inline.jpg"
+    _file_to_replace = "resources/extras/cf1.jpg"
 # ============================================#
 
 
@@ -69,32 +70,41 @@ async def inline_handler(event):
             z.append(y)
     cmd = len(z)
     bnn = asst.me.username
-    result = event.builder.article(
-        title="Help Menu",
-        description="Help Menu - INFINATO",
-        thumb=InputWebDocument(INFINATO_PIC, 0, "image/jpeg", []),
-        text=get_string("inline_4").format(
-            OWNER_NAME,
-            len(PLUGINS),
-            len(ADDONS),
-            cmd,
-        ),
-        buttons=[
-            [
-                Button.inline("• Pʟᴜɢɪɴs", data="hrrrr"),
-                Button.inline("• Aᴅᴅᴏɴs", data="frrr"),
+
+    @in_pattern("ultd")
+    @in_owner
+    async def inline_handler(event: telethon.events.InlineQuery.Event):
+        z = []
+        for x in LIST.values():
+            for y in x:
+                z.append(y)
+        cmd = len(z)
+        bnn = asst.me.username
+        result = event.builder.photo(
+            file=_file_to_replace,
+            link_preview=False,
+            text=get_string("inline_4").format(
+                OWNER_NAME,
+                len(PLUGINS),
+                len(ADDONS),
+                cmd,
+            ),
+            buttons=[
+                [
+                    Button.inline("• Pʟᴜɢɪɴs", data="hrrrr"),
+                    Button.inline("• Aᴅᴅᴏɴs", data="frrr"),
+                ],
+                [
+                    Button.inline("Oᴡɴᴇʀ•ᴛᴏᴏʟꜱ", data="ownr"),
+                    Button.inline("Iɴʟɪɴᴇ•Pʟᴜɢɪɴs", data="inlone"),
+                ],
+                [
+                    Button.url("⚙️Sᴇᴛᴛɪɴɢs⚙️", url=f"https://t.me/{bnn}?start=set"),
+                ],
+                [Button.inline("••Cʟᴏꜱᴇ••", data="close")],
             ],
-            [
-                Button.inline("Oᴡɴᴇʀ•ᴛᴏᴏʟꜱ", data="ownr"),
-                Button.inline("Iɴʟɪɴᴇ•Pʟᴜɢɪɴs", data="inlone"),
-            ],
-            [
-                Button.url("⚙️Sᴇᴛᴛɪɴɢs⚙️", url=f"https://t.me/{bnn}?start=set"),
-            ],
-            [Button.inline("••Cʟᴏꜱᴇ••", data="close")],
-        ],
-    )
-    await event.answer([result])
+        )
+        await event.answer([result])
 
 
 @in_pattern("paste")
