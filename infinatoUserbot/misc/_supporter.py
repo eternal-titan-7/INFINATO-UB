@@ -155,7 +155,6 @@ if ENV:
         TG_BOT_USER_NAME_BF_HER = asst.me.username
         DUAL_LOG = os.environ.get("DUAL_LOG", None)
         MAX_MESSAGE_SIZE_LIMIT = 4095
-        UB_BLACK_LIST_CHAT = eval(udB.get("BLACKLIST_CHATS"))
         MAX_ANTI_FLOOD_MESSAGES = 10
         ANTI_FLOOD_WARN_MODE = ChatBannedRights(
             until_date=None, view_messages=None, send_messages=True
@@ -194,7 +193,6 @@ if ENV:
         GOOGLE_CHROME_BIN = os.environ.get(
             "GOOGLE_CHROME_BIN", "/app/.apt/usr/bin/google-chrome"
         )
-        BLACKLIST_CHAT = UB_BLACK_LIST_CHAT
         MONGO_URI = os.environ.get("MONGO_URI", None)
         ALIVE_PHOTTO = os.environ.get("ALIVE_PHOTTO", None)
         ALIVE_PIC = os.environ.get("ALIVE_PIC", None)

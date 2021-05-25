@@ -60,8 +60,6 @@ if SUDO_ALLOWED_PLUGINS:
 else:
     sudoplugs = ""
 
-black_list_chats = eval(udB.get("BLACKLIST_CHATS"))
-
 
 # decorator
 
@@ -104,10 +102,6 @@ def ultroid_cmd(allow_sudo=on, **args):
                 LIST.update({file_test: [cmd]})
         except BaseException:
             pass
-    args["blacklist_chats"] = True
-    black_list_chats = eval(udB.get("BLACKLIST_CHATS"))
-    if len(black_list_chats) > 0:
-        args["chats"] = black_list_chats
 
     # check if the plugin should allow edited updates
     if "allow_edited_updates" in args and args["allow_edited_updates"]:

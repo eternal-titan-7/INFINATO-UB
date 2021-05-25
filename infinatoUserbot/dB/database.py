@@ -2,8 +2,6 @@
 from decouple import config
 from dotenv import find_dotenv, load_dotenv
 
-from infinatoUserbot import udB
-
 load_dotenv(find_dotenv())
 
 
@@ -15,7 +13,6 @@ class Var(object):
     SESSION = config("SESSION", default=None)
     DB_URI = config("DATABASE_URL", default=None)
     LOG_CHANNEL = config("LOG_CHANNEL", default=0, cast=int)
-    BLACKLIST_CHAT = eval(udB.get("BLACKLIST_CHATS"))
     # bot mode
     BOT_MODE = config("BOT_MODE", default=False, cast=bool)
     OWNER_ID = config("OWNER_ID", default=0, cast=int)

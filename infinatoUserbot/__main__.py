@@ -46,8 +46,6 @@ if udB.get("GDRIVE_TOKEN"):
     with open("resources/auths/auth_token.txt", "w") as t_file:
         t_file.write(udB.get("GDRIVE_TOKEN"))
 
-if not udB.get("BLACKLIST_CHATS"):
-    udB.set("BLACKLIST_CHATS", str(set()))
 
 
 async def istart(ult):
