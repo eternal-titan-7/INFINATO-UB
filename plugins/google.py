@@ -1,4 +1,3 @@
-
 """
 ✘ Commands Available -
 
@@ -47,7 +46,7 @@ async def google(event):
     omk = f"**Google Search Query:**\n`{inp}`\n\n**Results:**\n{out}"
     opn = []
     for bkl in range(0, len(omk), 4095):
-        opn.append(omk[bkl : bkl + 4095])
+        opn.append(omk[bkl: bkl + 4095])
     for bc in opn:
         await ultroid_bot.send_message(event.chat_id, bc, link_preview=False)
     await x.delete()
@@ -60,14 +59,12 @@ async def goimg(event):
     if not query:
         return await eor(event, "`Give something to search...`")
     nn = await eor(event, "`Processing Keep Patience...`")
-    if ";" in query:
-        try:
-            lmt = int(query.split(";")[1])
-            query = query.split(";")[0]
-        except BaseExceptaion:
-            lmt = 5
-    else:
-        lmt = 5
+    lmt = 5
+    try:
+        lmt = int(query.split(";")[1])
+        query = query.split(";")[0]
+    except:
+        pass
     gi = googleimagesdownload()
     args = {
         "keywords": query,
