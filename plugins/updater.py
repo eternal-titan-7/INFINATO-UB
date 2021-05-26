@@ -10,7 +10,7 @@ from telethon.tl.functions.channels import ExportMessageLinkRequest as GetLink
 
 from . import *
 
-INFPIC = "resources/extras/cf1.jpg"
+INFPIC = "resources/extras/cf_inline.jpg"
 CL = udB.get("INLINE_PIC")
 if CL:
     INFPIC = CL
