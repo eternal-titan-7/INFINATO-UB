@@ -193,7 +193,7 @@ async def _(e: Message):
     else:
         for z in range(0, len(xx1), 100):
             xx = lll
-            mentions = ' '.join(xx1[z:z + 100])
+            mentions = ' \n'.join(xx1[z:z + 100])
             xx += f"\n{mentions}"
             await e.client.send_message(e.chat_id, xx)
             await asyncio.sleep(2)
