@@ -1,4 +1,3 @@
-
 """
 ✘ Commands Available -
 
@@ -78,29 +77,15 @@ async def lsnote(e):
 async def fl(e):
     if isinstance(e.sender, User) and e.sender.bot:
         return
-    xx = (e.text).lower()
+    xx = e.text.lower()
     chat = e.chat_id
     x = get_filter(int(chat))
     if x:
-        if " " in xx:
-            xx = xx.split(" ")
-            kk = ""
-            for c in xx:
-                if c in x:
-                    k = get_reply(int(chat), c)
-                    if k:
-                        kk = k
-            if kk:
-                msg = k["msg"]
-                media = k["media"]
-                await e.reply(msg, file=media)
-
-        else:
-            k = get_reply(chat, xx)
-            if k:
-                msg = k["msg"]
-                media = k["media"]
-                await e.reply(msg, file=media)
+        k = get_reply(chat, xx)
+        if k:
+            msg = k["msg"]
+            media = k["media"]
+            await e.reply(msg, file=media)
 
 
 HELP.update({f"{__name__.split('.')[1]}": f"{__doc__.format(i=HNDLR)}"})

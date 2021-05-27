@@ -14,7 +14,7 @@ def ls(list):
     return xx
 
 
-def get_reply(chat, word):
+def get_reply(chat, words):
     masala = udB.get("FILTERS")
     if not masala:
         return
@@ -22,7 +22,7 @@ def get_reply(chat, word):
     for i in x:
         x = i.split("$|")
         try:
-            if str(x[0]) == str(chat) and str(x[1]) == str(word):
+            if str(x[0]) == str(chat) and str(x[1]) in str(words):
                 return eval(x[2])
         except BaseException:
             pass
