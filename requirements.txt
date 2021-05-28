@@ -16,7 +16,6 @@ quotefancy
 pyfiglet
 python-decouple
 redis
-python-decouple==3.3
 TgCrypto
 python-dotenv
 cloudscraper
