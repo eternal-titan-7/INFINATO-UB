@@ -1,6 +1,7 @@
 .env
 venv/
 root/
+install_node.sh
 infinato.session
 infinato.log
 infinato.session.journal
