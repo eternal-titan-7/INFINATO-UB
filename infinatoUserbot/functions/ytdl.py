@@ -52,7 +52,7 @@ async def download_yt(xx, event, link, ytd):
         elif f"{tm}.webp" in dir:
             thumb = f"{tm}.webp"
         else:
-            thumb = "resources/extras/ultroid.jpg"
+            thumb = "resources/extras/cf1.jpg"
         caption = f"`{title}`\n\n`From YouTube Official`"
     else:
         return

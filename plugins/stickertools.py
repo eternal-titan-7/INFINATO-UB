@@ -406,9 +406,9 @@ async def ultdestroy(event):
         ult.media and ult.media.document and "tgsticker" in ult.media.document.mime_type
     ):
         return await eor(event, "`Reply to Animated Sticker only`")
-    await event.client.download_media(ult, "ultroid.tgs")
+    await event.client.download_media(ult, "infi.tgs")
     xx = await eor(event, "`Processing...`")
-    os.system("lottie_convert.py ultroid.tgs json.json")
+    os.system("lottie_convert.py infi.tgs json.json")
     json = open("json.json")
     jsn = json.read()
     json.close()
@@ -428,10 +428,10 @@ async def ultdestroy(event):
         .replace("[9]", "[110]")
     )
     open("json.json", "w").write(jsn)
-    os.system("lottie_convert.py json.json ultroid.tgs")
+    os.system("lottie_convert.py json.json infni.tgs")
     await event.client.send_file(
         event.chat_id,
-        file="ultroid.tgs",
+        file="infi.tgs",
         force_document=False,
         reply_to=event.reply_to_msg_id,
     )

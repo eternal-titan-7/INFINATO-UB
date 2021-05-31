@@ -114,7 +114,7 @@ sf_14: "SuperFBan concluído.\nFeds Totais - {}.\nExcluído - {}.\n Afetado {} f
 sf_15: "Iniciando Desban-Fed em massa..."
 sf_16: "SuperDesban-Fed Concluído.\nTotal Feds - {}.\nExcluído - {}.\n Afetado {} feds.\n#TB"
 sf_17: "`Informe a id de usuário, ou responda a mensagem de alguém para verificar seu/sua fedstat.`"
-sf_18: "Lista de feds {} foi banido em.\n\nColetados usando Ultroid."
+sf_18: "Lista de feds {} foi banido em.\n\nColetados usando INFINATO."
 sf_19: "**Erro**\n `Desbloqueie` @MissRose_Bot `e tente novamente!"
 sf_20: "`Extraindo informações...`"
 sf_21: "\n\nFedInfo Extraído por Ultroid"

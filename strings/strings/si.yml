@@ -144,7 +144,7 @@ sf_14: "SuperFBan Completed.\nTotal Feds - {}.\nExcluded - {}.\n Affected {} fed
 sf_15: "Starting a Mass-UnFedBan..."
 sf_16: "SuperUnFBan Completed.\nTotal Feds - {}.\nExcluded - {}.\n Affected {} feds.\n#TB"
 sf_17: "`Give me someones id, or reply to somones message to check his/her fedstat.`"
-sf_18: "List of feds {} has been banned in.\n\nCollected using Ultroid."
+sf_18: "List of feds {} has been banned in.\n\nCollected using INFINATO."
 sf_19: "**Error**\n `Unblock` @MissRose_Bot `and try again!"
 sf_20: "`Extracting information...`"
 sf_21: "\n\nFedInfo Extracted by Ultroid"

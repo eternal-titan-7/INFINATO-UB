@@ -57,18 +57,17 @@ afk_7: "Sedang AFK dengan sebab {}"
 afk_8: "Sedang AFK."
 
 # bot
-alive_1: "**Userbot Ultroid...**\n\n
+alive_1: "**Userbot INFINATO...**\n\n
 **{}**\n\n
 ┏━━━━━━━━━━━━━━━━━━━━━\n
 ┣ **Pemilik** - `{}`\n
 ┣ **Versi** - `{}`\n
-┣ **Py-Ultroid** - `{}`\n
 ┣ **Masa hidup** - `{}`\n
 ┣ **Python** - `{}`\n
 ┣ **Telethon** - `{}`\n
 ┣ **Cawangan** - `{}`\n
 ┗━━━━━━━━━━━━━━━━━━━━━"
-log: "**Heroku** Log Ultroid. \nTerap [di sini] ({}) juga!"
+log: "**Heroku** Log INFINATO. \nTerap [di sini] ({}) juga!"
 ping: "**Pong !!** `{}ms`\n**Masa hidup** - `{}`"
 usage: "**⚙️ Penggunaan Dyno ⚙️**:\n\n
 -> **Penggunaan Dyno untuk** `{}`:\n
@@ -150,7 +149,7 @@ sf_14: "SuperFBan Selesai. \nJumlah Feds - {}. \nTidak termasuk - {}. \n {} Fed 
 sf_15: "Memulakan Mass-UnFedBan..."
 sf_16: "SuperUnFBan Selesai. \nJumlah Feds - {}. \nTidak termasuk - {}. \n {} Fed terjejas.\n#TB"
 sf_17: "`Beri saya id seseorang, atau balas mesej seseorang untuk memeriksa fedstatnya.`"
-sf_18: "Senarai feds {} telah dilarang masuk. \n\nDikumpulkan menggunakan Ultroid."
+sf_18: "Senarai feds {} telah dilarang masuk. \n\nDikumpulkan menggunakan INFINATO."
 sf_19: "**Ralat**\n `Buka sekatan` @MissRose_Bot `and try again!"
 sf_20: "`Mengambil maklumat...`"
 sf_21: "\n\nFedInfo diekstrak oleh Ultroid"

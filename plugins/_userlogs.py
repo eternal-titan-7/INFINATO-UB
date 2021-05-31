@@ -115,7 +115,7 @@ async def when_asst_added_to_chat(event):
 # log for user's new joins
 
 
-@ultroid.on(events.ChatAction)
+@ultroid_bot.on(events.ChatAction)
 async def when_ultd_added_to_chat(event):
     if event.user_added:
         user = await event.get_user()

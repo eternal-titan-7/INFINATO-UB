@@ -80,7 +80,7 @@ async def _(event):
                 event.chat_id,
                 out_file,
                 force_document=True,
-                thumb="resources/extras/ultroid.jpg",
+                thumb="resources/extras/cf1.jpg",
                 allow_cache=False,
                 caption=f"`{cmd}`",
                 reply_to=reply_to_id,
