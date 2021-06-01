@@ -7,12 +7,14 @@ from . import *
 
 @ultroid_cmd(pattern="autoname")
 async def _(ult):
-    if ultroid_bot.me.first_name and ultroid_bot.me.last_name:
-        DEFAULTUSER = f"{ultroid_bot.me.first_name} {ultroid_bot.me.last_name}"
+    first_name = (await ultroid_bot.get_me()).first_name
+    last_name = (await ultroid_bot.get_me()).last_name
+    if first_name and last_name:
+        DEFAULTUSER = f"{first_name} {last_name}"
     elif ultroid_bot.me.first_name:
-        DEFAULTUSER = ultroid_bot.me.first_name
+        DEFAULTUSER = first_name
     elif ultroid_bot.me.last_name:
-        DEFAULTUSER = ultroid_bot.me.last_name
+        DEFAULTUSER = last_name
     else:
         DEFAULTUSER = ''
     udB.set("OLDNAME", DEFAULTUSER)
