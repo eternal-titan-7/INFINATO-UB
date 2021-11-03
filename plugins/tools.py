@@ -183,16 +183,16 @@ async def _(e):
             im = cv2.imread(bbbb)
             dsize = (320, 320)
             output = cv2.resize(im, dsize, interpolation=cv2.INTER_AREA)
-            cv2.imwrite("img.png", output)
-            thumb = "img.png"
+            cv2.imwrite("cf_inline.png", output)
+            thumb = "cf_inline.png"
             os.remove(bbbb)
         except TypeError:
             bbbb = "resources/extras/cf1.jpg"
             im = cv2.imread(bbbb)
             dsize = (320, 320)
             output = cv2.resize(im, dsize, interpolation=cv2.INTER_AREA)
-            cv2.imwrite("img.png", output)
-            thumb = "img.png"
+            cv2.imwrite("cf_inline.png", output)
+            thumb = "cf_inline.png"
         c = await downloader(
             "resources/downloads/" + a.file.name,
             a.media.document,
@@ -221,7 +221,7 @@ async def _(e):
         )
         await z.delete()
         os.system("rm resources/downloads/*")
-        os.system("rm circle.mp4 comp.mp3 img.png")
+        os.system("rm circle.mp4 comp.mp3 cf_inline.png")
     elif a.document and a.document.mime_type == "video/mp4":
         z = await eor(e, "**Cʀᴇᴀᴛɪɴɢ Vɪᴅᴇᴏ Nᴏᴛᴇ**")
         c = await a.download_media("resources/downloads/")
