@@ -1,4 +1,3 @@
-
 """
 ✘ Commands Available -
 
@@ -138,9 +137,6 @@ async def uconverter(event):
 )
 async def hehe(args):
     xx = await eor(args, "`Processing...`")
-    user = await ultroid_bot.get_me()
-    if not user.username:
-        user.username = user.first_name
     message = await args.get_reply_message()
     photo = None
     is_anim = False
@@ -155,8 +151,8 @@ async def hehe(args):
             photo = io.BytesIO()
             await ultroid_bot.download_file(message.media.document, photo)
             if (
-                DocumentAttributeFilename(file_name="sticker.webp")
-                in message.media.document.attributes
+                    DocumentAttributeFilename(file_name="sticker.webp")
+                    in message.media.document.attributes
             ):
                 emoji = message.media.document.attributes[1].alt
         elif "video" in message.media.document.mime_type.split("/"):
@@ -219,9 +215,38 @@ async def hehe(args):
         )
         htmlstr = response.read().decode("utf8").split("\n")
 
-        if (
-            "  A <strong>Telegram</strong> user has created the <strong>Sticker&nbsp;Set</strong>."
-            not in htmlstr
+        if udB.get("STICKERSET"):
+            pkdt = dict(udB.get("STICKERSET"))
+            async with ultroid_bot.conversation("@Stickers") as conv:
+                await conv.send_message("/addsticker")
+                await conv.get_response()
+                await ultroid_bot.send_read_acknowledge(conv.chat_id)
+                await conv.send_message(pkdt["anim" if is_anim else "img"])
+                x = await conv.get_response()
+                if "120" in x.text:
+                    return await xx.edit(
+                        f"Pack : http://t.me/addstickers/{pkdt['anim' if is_anim else 'img']}\n is full\nMax Stickers = 120.")
+                if is_anim:
+                    await conv.send_file("AnimatedSticker.tgs")
+                    remove("AnimatedSticker.tgs")
+                else:
+                    file.seek(0)
+                    await conv.send_file(file, force_document=True)
+                rsp = await conv.get_response()
+                if "Sorry, the file type is invalid." in rsp.text:
+                    await xx.edit(
+                        "`Failed to add sticker, use` @Stickers `bot to add the sticker manually.`",
+                    )
+                    return
+                await conv.send_message(emoji)
+                await ultroid_bot.send_read_acknowledge(conv.chat_id)
+                await conv.get_response()
+                await conv.send_message("/done")
+                await conv.get_response()
+                await ultroid_bot.send_read_acknowledge(conv.chat_id)
+        elif (
+                "  A <strong>Telegram</strong> user has created the <strong>Sticker&nbsp;Set</strong>."
+                not in htmlstr
         ):
             async with ultroid_bot.conversation("@Stickers") as conv:
                 await conv.send_message("/addsticker")
@@ -231,8 +256,8 @@ async def hehe(args):
                 x = await conv.get_response()
                 while "120" in x.text:
                     pack += 1
-                    packname = f"CF_{user.username}_INFINATO_{pack}"
-                    packnick = f"@{user.username}'s INFINATO Vol.{pack}"
+                    packname = f"{user.username}_INFINATO_{pack}"
+                    packnick = f"@{user.username} INFINATO Volume {pack}"
                     await xx.edit(
                         "`Switching to Pack "
                         + str(pack)
@@ -403,7 +428,7 @@ async def ultdestroy(event):
     if not event.is_reply:
         return await eor(event, "`Reply to Animated Sticker Only...`")
     if not (
-        ult.media and ult.media.document and "tgsticker" in ult.media.document.mime_type
+            ult.media and ult.media.document and "tgsticker" in ult.media.document.mime_type
     ):
         return await eor(event, "`Reply to Animated Sticker only`")
     await event.client.download_media(ult, "infi.tgs")
@@ -414,18 +439,18 @@ async def ultdestroy(event):
     json.close()
     jsn = (
         jsn.replace("[100]", "[200]")
-        .replace("[10]", "[40]")
-        .replace("[-1]", "[-10]")
-        .replace("[0]", "[15]")
-        .replace("[1]", "[20]")
-        .replace("[2]", "[17]")
-        .replace("[3]", "[40]")
-        .replace("[4]", "[37]")
-        .replace("[5]", "[60]")
-        .replace("[6]", "[70]")
-        .replace("[7]", "[40]")
-        .replace("[8]", "[37]")
-        .replace("[9]", "[110]")
+            .replace("[10]", "[40]")
+            .replace("[-1]", "[-10]")
+            .replace("[0]", "[15]")
+            .replace("[1]", "[20]")
+            .replace("[2]", "[17]")
+            .replace("[3]", "[40]")
+            .replace("[4]", "[37]")
+            .replace("[5]", "[60]")
+            .replace("[6]", "[70]")
+            .replace("[7]", "[40]")
+            .replace("[8]", "[37]")
+            .replace("[9]", "[110]")
     )
     open("json.json", "w").write(jsn)
     os.system("lottie_convert.py json.json infni.tgs")
