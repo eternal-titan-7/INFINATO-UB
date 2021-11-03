@@ -1,4 +1,3 @@
-
 import base64
 from random import choice
 from re import compile as re_compile
@@ -7,7 +6,6 @@ from urllib.request import urlopen
 
 import requests
 from bs4 import BeautifulSoup
-from orangefoxapi import OrangeFoxAPI
 from play_scraper import search
 from search_engine_parser import GoogleSearch, YahooSearch
 from telethon import Button
@@ -16,14 +14,10 @@ from telethon.tl.types import InputWebDocument as wb
 from . import *
 from . import humanbytes as hb
 
-ofox = "https://telegra.ph/file/231f0049fcd722824f13b.jpg"
 gugirl = "https://telegra.ph/file/0df54ae4541abca96aa11.jpg"
 yeah = "https://telegra.ph/file/e3c67885e16a194937516.jpg"
 ps = "https://telegra.ph/file/de0b8d9c858c62fae3b6e.jpg"
 ultpic = "https://telegra.ph/file/6caf4aa6587c30824a440.png"
-
-
-ofox_api = OrangeFoxAPI()
 
 api1 = base64.b64decode("QUl6YVN5QXlEQnNZM1dSdEI1WVBDNmFCX3c4SkF5NlpkWE5jNkZV").decode(
     "ascii"
@@ -34,60 +28,6 @@ api2 = base64.b64decode("QUl6YVN5QkYwenhMbFlsUE1wOXh3TVFxVktDUVJxOERnZHJMWHNn").
 api3 = base64.b64decode("QUl6YVN5RGRPS253blB3VklRX2xiSDVzWUU0Rm9YakFLSVFWMERR").decode(
     "ascii"
 )
-
-
-@in_pattern("ofox")
-@in_owner
-async def _(e):
-    try:
-        match = e.text.split(" ", maxsplit=1)[1]
-    except IndexError:
-        kkkk = e.builder.article(
-            title="Enter Device Codename",
-            thumb=wb(ofox, 0, "image/jpeg", []),
-            text="**OFᴏx🦊Rᴇᴄᴏᴠᴇʀʏ**\n\nYou didn't search anything",
-            buttons=Button.switch_inline("Sᴇᴀʀᴄʜ Aɢᴀɪɴ", query="ofox ", same_peer=True),
-        )
-        await e.answer([kkkk])
-    a = ofox_api.releases(codename=match)
-    c = ofox_api.devices(codename=match)
-    if len(a.data) > 0:
-        fox = []
-        for b in a.data:
-            ver = b.version
-            release = b.type
-            size = hb(b.size)
-            for z in c.data:
-                fullname = z.full_name
-                code = z.codename
-                link = f"https://orangefox.download/device/{code}"
-                text = f"**••OʀᴀɴɢᴇFᴏx Rᴇᴄᴏᴠᴇʀʏ Fᴏʀ•[•]({ofox})** {fullname}\n"
-                text += f"**••Cᴏᴅᴇɴᴀᴍᴇ••** {code}\n"
-                text += f"**••Bᴜɪʟᴅ Tʏᴘᴇ••** {release}\n"
-                text += f"**••Vᴇʀsɪᴏɴ••** {ver}\n"
-                text += f"**••Sɪᴢᴇ••** {size}\n"
-                fox.append(
-                    await e.builder.article(
-                        title=f"{fullname}",
-                        description=f"{ver}\n{release}",
-                        text=text,
-                        thumb=wb(ofox, 0, "image/jpeg", []),
-                        link_preview=True,
-                        buttons=[
-                            Button.url("Dᴏᴡɴʟᴏᴀᴅ", url=f"{link}"),
-                            Button.switch_inline(
-                                "Sᴇᴀʀᴄʜ Aɢᴀɪɴ", query="ofox ", same_peer=True
-                            ),
-                        ],
-                    )
-                )
-        await e.answer(
-            fox, switch_pm="OrangeFox Recovery Search.", switch_pm_param="start"
-        )
-    else:
-        await e.answer(
-            [], switch_pm="OrangeFox Recovery Search.", switch_pm_param="start"
-        )
 
 
 @in_pattern("fl2lnk ?(.*)")
@@ -216,52 +156,6 @@ async def gsearch(q_event):
         except IndexError:
             break
     await q_event.answer(searcher, switch_pm="Google Search.", switch_pm_param="start")
-
-
-@in_pattern("rex")
-@in_owner
-async def rextester(event):
-    builder = event.builder
-    try:
-        omk = event.text.split(" ", maxsplit=1)[1]
-        if omk is not None:
-            if "|" in omk:
-                lang, codee = omk.split("|")
-            else:
-                lang = "python3"
-                codee = omk
-            if lang == "php":
-                code = f"<?php {codee} ?>"
-            else:
-                code = codee
-            output = await rexec_aio(lang, code)
-            stats = output.stats
-            if output.errors is not None:
-                outputt = output.errors
-                resultm = builder.article(
-                    title="Code",
-                    description=f"Language-`{lang}` & Code-`{code}`",
-                    text=f"Language:\n`{lang}`\n\nCode:\n`{code}`\n\nErrors:\n`{outputt}`\n\nStats:\n`{stats}`",
-                )
-            else:  # By @ProgrammingError
-                outputt = output.results
-                resultm = builder.article(
-                    title="Code",  # By @ProgrammingError
-                    description=f"Language-`{lang}` & Code-`{code}`",
-                    text=f"Language:\n`{lang}`\n\nCode:\n`{code}`\n\nResult:\n`{outputt}`\n\nStats:\n`{stats}`",
-                )
-            await event.answer(
-                [resultm], switch_pm="RexTester.", switch_pm_param="start"
-            )
-    except UnknownLanguage:
-        resultm = builder.article(
-            title="Error",  # By @ProgrammingError
-            description="Invalid language choosen",
-            text=f"The list of valid languages are\n\n{rex_langs}\n\n\nFormat to use Rextester is `@Yourassistantusername rex langcode|code`",
-        )
-        await event.answer(
-            [resultm], switch_pm="RexTester. Invalid Language!", switch_pm_param="start"
-        )
 
 
 @in_pattern("yahoo")
